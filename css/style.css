@@ -43,7 +43,11 @@ nav a{
 nav a:hover{
     color:#009c3b;
 }
-
+nav a.active{
+    color:#009c3b;
+    border-bottom:3px solid #009c3b;
+    padding-bottom:6px;
+}
 .hero{
     background:
         linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
