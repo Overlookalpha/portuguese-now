@@ -12,12 +12,20 @@ body{
 }
 
 header{
-    background:#009c3b;
-    color:white;
-    padding:20px 40px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: white;
+    color: #222;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 60px;
+
+    box-shadow: 0 3px 15px rgba(0,0,0,.08);
 }
 
 header h2{
@@ -25,15 +33,15 @@ header h2{
 }
 
 nav a{
-    color:white;
+    color:#333;
     text-decoration:none;
-    margin-left:25px;
-    font-weight:bold;
+    margin-left:30px;
+    font-weight:600;
     transition:.3s;
 }
 
 nav a:hover{
-    color:#ffdf00;
+    color:#009c3b;
 }
 
 .hero{
