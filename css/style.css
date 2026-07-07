@@ -114,3 +114,15 @@ footer{
 .card p{
     line-height:1.6;
 }
+
+.courses{
+    background:#eef3f8;
+    padding:80px 20px;
+    text-align:center;
+}
+
+.courses h2{
+    font-size:40px;
+    color:#002776;
+    margin-bottom:50px;
+}
