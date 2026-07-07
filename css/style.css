@@ -513,3 +513,31 @@ footer{
 }
 
 }
+
+.contact-form{
+    max-width:700px;
+    margin:40px auto;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.contact-form input,
+.contact-form textarea{
+    width:100%;
+    padding:16px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    font-size:16px;
+    font-family:inherit;
+}
+
+.contact-form textarea{
+    resize:vertical;
+    min-height:160px;
+}
+
+.contact-form button{
+    border:none;
+    cursor:pointer;
+}
