@@ -541,3 +541,77 @@ footer{
     border:none;
     cursor:pointer;
 }
+
+/* REGISTER PAGE */
+
+.register-box{
+
+max-width:500px;
+
+margin:0 auto;
+
+background:#fff;
+
+padding:40px;
+
+border-radius:20px;
+
+box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+}
+
+.register-box h2{
+
+text-align:center;
+
+margin-bottom:30px;
+
+}
+
+.register-box form{
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+}
+
+.register-box input{
+
+padding:16px;
+
+border:1px solid #ddd;
+
+border-radius:12px;
+
+font-size:16px;
+
+}
+
+.register-box button{
+
+border:none;
+
+cursor:pointer;
+
+}
+
+.login-link{
+
+margin-top:25px;
+
+text-align:center;
+
+}
+
+.login-link a{
+
+color:#0d8b5b;
+
+font-weight:600;
+
+text-decoration:none;
+
+}
