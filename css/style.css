@@ -45,20 +45,31 @@ nav a:hover{
 }
 
 .hero{
-    background:linear-gradient(135deg,#009c3b,#002776);
+    background:linear-gradient(135deg,#009c3b,#0066cc);
     color:white;
     text-align:center;
-    padding:120px 20px;
+
+    padding:180px 20px;
+
+    min-height:700px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
 }
 
 .hero h1{
-    font-size:55px;
-    margin-bottom:20px;
+    font-size:72px;
+    font-weight:800;
+    margin-bottom:25px;
 }
 
 .hero p{
-    font-size:22px;
-    margin-bottom:35px;
+    font-size:28px;
+    max-width:700px;
+    line-height:1.6;
+    margin-bottom:45px;
 }
 
 .btn{
