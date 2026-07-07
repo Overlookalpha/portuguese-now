@@ -174,3 +174,19 @@ footer{
     color:#002776;
     margin-bottom:50px;
 }
+
+.btn-menu{
+    background:#009c3b;
+    color:white !important;
+    padding:12px 22px;
+    border-radius:8px;
+    margin-left:35px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn-menu:hover{
+    background:#00752c;
+    color:white !important;
+}
