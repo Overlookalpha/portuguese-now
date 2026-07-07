@@ -211,3 +211,20 @@ footer{
     background:#00752c;
     color:white !important;
 }
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.brand-text{
+    display:flex;
+    flex-direction:column;
+}
+
+.brand-text span{
+    font-size:14px;
+    color:#666;
+    font-weight:600;
+}
