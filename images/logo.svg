@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="60">
+    <rect width="220" height="60" rx="10" fill="#009C3B"/>
+    <text x="20" y="38"
+          font-size="28"
+          font-family="Arial"
+          fill="white"
+          font-weight="bold">
+        Portuguese Now
+    </text>
+</svg>
