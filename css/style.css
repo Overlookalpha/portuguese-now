@@ -153,3 +153,16 @@ footer{
 .logo{
     height:55px;
 }
+
+
+.learn{
+    padding:80px 20px;
+    background:#eef5ff;
+    text-align:center;
+}
+
+.learn h2{
+    font-size:40px;
+    color:#002776;
+    margin-bottom:50px;
+}
