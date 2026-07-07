@@ -1,2 +1,76 @@
 
-/* Portuguese Now - CSS */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#222;
+}
+
+header{
+    background:#009c3b;
+    color:white;
+    padding:20px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+header h2{
+    font-size:28px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#ffdf00;
+}
+
+.hero{
+    background:linear-gradient(135deg,#009c3b,#002776);
+    color:white;
+    text-align:center;
+    padding:120px 20px;
+}
+
+.hero h1{
+    font-size:55px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:22px;
+    margin-bottom:35px;
+}
+
+.btn{
+    display:inline-block;
+    background:#ffdf00;
+    color:#000;
+    padding:15px 35px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+footer{
+    background:#002776;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
