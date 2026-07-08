@@ -102,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 loadCourseProgress();
 updateLessonMenu();
+loadLessonData();
 });
 
 // =======================================
@@ -146,6 +147,29 @@ function updateLessonMenu() {
         lesson2.innerHTML =
             '<a href="lesson2.html">🔓 Lesson 2 - Pronunciation</a>';
 
+    }
+
+}
+
+// =======================================
+// Load Lesson Information
+// =======================================
+
+function loadLessonData() {
+
+    if (typeof lessons === "undefined") return;
+
+    const lesson = lessons.lesson1;
+
+    const title = document.getElementById("lessonTitle");
+    const subtitle = document.getElementById("lessonSubtitle");
+
+    if (title) {
+        title.innerHTML = "🇧🇷 Lesson " + lesson.id + " – " + lesson.title;
+    }
+
+    if (subtitle) {
+        subtitle.innerHTML = lesson.subtitle;
     }
 
 }
