@@ -884,3 +884,21 @@ position:static;
 .audio-button:hover{
     transform:scale(1.1);
 }
+
+/* ===========================
+   Lesson Navigation
+=========================== */
+
+.lesson-navigation{
+    padding:50px 20px;
+}
+
+.lesson-navigation .container{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+
+}
