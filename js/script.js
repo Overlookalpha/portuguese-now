@@ -100,5 +100,29 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
     }
-
+loadCourseProgress();
 });
+
+// =======================================
+// Beginner Progress
+// =======================================
+
+function loadCourseProgress() {
+
+    const progress = document.getElementById("courseProgress");
+    const text = document.getElementById("progressText");
+
+    if (!progress || !text) return;
+
+    let completed = 0;
+
+    if (localStorage.getItem("lesson1Completed") === "true") {
+        completed++;
+    }
+
+    const percent = completed * 5;
+
+    progress.value = percent;
+    text.innerHTML = percent + "% Completed";
+
+}
