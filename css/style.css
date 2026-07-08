@@ -867,3 +867,20 @@ position:static;
 .course-card {
     margin-top: 30px;
 }
+
+.audio-button{
+    margin-left:8px;
+    border:none;
+    background:#009739;
+    color:#fff;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+}
+
+.audio-button:hover{
+    transform:scale(1.1);
+}
