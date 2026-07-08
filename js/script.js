@@ -101,6 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 loadCourseProgress();
+updateLessonMenu();
 });
 
 // =======================================
@@ -124,5 +125,27 @@ function loadCourseProgress() {
 
     progress.value = percent;
     text.innerHTML = percent + "% Completed";
+
+}
+
+// =======================================
+// Lesson Menu
+// =======================================
+
+function updateLessonMenu() {
+
+    const lesson1 = document.getElementById("lesson1Item");
+    const lesson2 = document.getElementById("lesson2Item");
+
+    if (!lesson1 || !lesson2) return;
+
+    if (localStorage.getItem("lesson1Completed") === "true") {
+
+        lesson1.innerHTML = "✅ Lesson 1 - Brazilian Alphabet";
+
+        lesson2.innerHTML =
+            '<a href="lesson2.html">🔓 Lesson 2 - Pronunciation</a>';
+
+    }
 
 }
