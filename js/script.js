@@ -67,9 +67,9 @@ function checkLesson1Quiz() {
 // Pronunciation
 // =======================================
 
-function speakLetter(letter) {
+function speakLetter(text) {
 
-    const speech = new SpeechSynthesisUtterance(letter);
+    const speech = new SpeechSynthesisUtterance(text);
 
     speech.lang = "pt-BR";
     speech.rate = 0.8;
