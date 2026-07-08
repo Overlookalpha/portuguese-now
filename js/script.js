@@ -62,3 +62,19 @@ function checkLesson1Quiz() {
     }
 
 }
+
+// =======================================
+// Pronunciation
+// =======================================
+
+function speakLetter(letter) {
+
+    const speech = new SpeechSynthesisUtterance(letter);
+
+    speech.lang = "pt-BR";
+    speech.rate = 0.8;
+    speech.pitch = 1;
+
+    window.speechSynthesis.speak(speech);
+
+}
