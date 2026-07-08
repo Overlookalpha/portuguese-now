@@ -2,7 +2,7 @@
 // Portuguese Now - Lessons Database
 // =======================================
 
-const lessons = {         
+const lessons = {                 
 
     lesson1: {
 
