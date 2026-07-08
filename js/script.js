@@ -54,11 +54,18 @@ function checkLesson1Quiz() {
     const result = document.getElementById("quizResult");
 
     if (answers[1].checked) {
-        result.innerHTML = "✅ Correct! The Brazilian alphabet has 26 letters.";
-        result.style.color = "green";
+
+        result.innerHTML = "✅ Correct! Lesson completed!";
+        result.style.color = "#009739";
+
+        // Salva o progresso
+        localStorage.setItem("lesson1Completed", "true");
+
     } else {
+
         result.innerHTML = "❌ Incorrect. Try again!";
         result.style.color = "red";
+
     }
 
 }
@@ -78,3 +85,20 @@ function speakLetter(text) {
     window.speechSynthesis.speak(speech);
 
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    if (localStorage.getItem("lesson1Completed") === "true") {
+
+        const result = document.getElementById("quizResult");
+
+        if(result){
+
+            result.innerHTML = "🏆 Lesson already completed!";
+            result.style.color = "#009739";
+
+        }
+
+    }
+
+});
