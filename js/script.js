@@ -5,6 +5,42 @@
 
 console.log("Portuguese Now Loaded!");
 
+/* =======================================
+   Dashboard Data
+======================================= */
+
+const dashboardData = {
+
+    studentName: "Student",
+
+    course: "Beginner",
+
+    completedLessons: 8,
+
+    totalLessons: 23,
+
+    currentLesson: {
+
+        number: 8,
+
+        title: "Introducing Yourself",
+
+        page: "lesson8.html"
+
+    },
+
+    nextLesson: {
+
+        number: 9,
+
+        title: "Talking About Your Family",
+
+        page: "lesson9.html"
+
+    }
+
+};
+
 // =======================================
 // Speech
 // =======================================
@@ -271,10 +307,13 @@ document.addEventListener("DOMContentLoaded", () => {
    Dashboard Progress
 =========================== */
 
-const completedLessons = 8;
-const totalLessons = 23;
+const progress = Math.round(
 
-const progress = Math.round((completedLessons / totalLessons) * 100);
+    (dashboardData.completedLessons /
+
+     dashboardData.totalLessons) * 100
+
+);
 
 const progressBar = document.getElementById("courseProgress");
 const progressText = document.getElementById("progressText");
@@ -291,11 +330,8 @@ if(progressBar && progressText){
    Continue Learning
 =========================== */
 
-const currentLesson = {
-    number: 8,
-    title: "Introducing Yourself",
-    page: "lesson8.html"
-};
+const currentLesson =
+    dashboardData.currentLesson;
 
 const lessonTitle =
 document.getElementById("currentLessonTitle");
@@ -323,10 +359,8 @@ if(lessonTitle && lessonName && continueButton){
    Next Lesson
 =========================== */
 
-const nextLesson = {
-    number: currentLesson.number + 1,
-    title: "Talking About Your Family"
-};
+const nextLesson =
+    dashboardData.nextLesson;
 
 const nextLessonTitle =
 document.getElementById("nextLessonTitle");
