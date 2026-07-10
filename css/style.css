@@ -1096,18 +1096,26 @@ position:static;
 
 }
 
-.teacher-photo{
+.teacher-photo img{
 
-    display:flex;
-    justify-content:center;
+    width:100%;
+    max-width:500px;
+
+    border-radius:20px;
+
+    object-fit:cover;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.15);
 
 }
 
 .teacher-photo img{
 
-    width:100%;
-    max-width:420px;
+    width:420px;
+    height:420px;
+
+    object-fit:cover;
+
     border-radius:20px;
-    box-shadow:0 20px 45px rgba(0,0,0,.15);
 
 }
