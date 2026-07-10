@@ -1,48 +1,57 @@
-// Portuguese Now - JavaScript
-console.log("Portuguese Now carregado!");
-
-// =======================================    
-// Render Beginner Modules
+// =======================================
+// Portuguese Now
+// Main Script
 // =======================================
 
-document.addEventListener("DOMContentLoaded", () => {
+console.log("Portuguese Now Loaded!");
 
-    const modulesContainer = document.getElementById("modulesContainer");
+// =======================================
+// Speech
+// =======================================
 
-    if (!modulesContainer) return;
-    if (typeof courses === "undefined") return;
+function speakLetter(text) {
 
-    const beginner = courses.beginner;
+    if (!("speechSynthesis" in window)) {
+        alert("Speech Synthesis is not supported in this browser.");
+        return;
+    }
 
-    beginner.modules.forEach(module => {
+    window.speechSynthesis.cancel();
 
-        const card = document.createElement("div");
-        card.className = "course-card";
+    const speech = new SpeechSynthesisUtterance(text);
 
-        let lessonsHTML = "";
+    speech.lang = "pt-BR";
+    speech.rate = 0.75;
+    speech.pitch = 1;
 
-        module.lessons.forEach(lesson => {
-            lessonsHTML += `
-                <li>✔️ ${lesson.title} <small>${lesson.duration}</small></li>
-            `;
-        });
+    window.speechSynthesis.speak(speech);
 
-        card.innerHTML = `
-            <h3>📚 ${module.title}</h3>
-            <p>${beginner.description}</p>
-            <ul>
-                ${lessonsHTML}
-            </ul>
-            <a href="lesson1.html" class="course-button">
-                Start Module
-            </a>
-        `;
+}
 
-        modulesContainer.appendChild(card);
+// =======================================
+// Save Lesson Progress
+// =======================================
 
-    });
+function completeLesson(lesson) {
 
-}); // <-- O DOMContentLoaded termina aqui
+    localStorage.setItem(
+        "lesson" + lesson + "Completed",
+        "true"
+    );
+
+}
+
+// =======================================
+// Check if Lesson Completed
+// =======================================
+
+function lessonCompleted(lesson) {
+
+    return localStorage.getItem(
+        "lesson" + lesson + "Completed"
+    ) === "true";
+
+}
 
 // =======================================
 // Lesson 1 Quiz
@@ -50,60 +59,88 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function checkLesson1Quiz() {
 
-    const answers = document.getElementsByName("quiz");
-    const result = document.getElementById("quizResult");
+    const answer =
+        document.querySelector('input[name="quiz"]:checked');
 
-    if (answers[1].checked) {
+    if (!answer) {
 
-        result.innerHTML = "✅ Correct! Lesson completed!";
-        result.style.color = "#009739";
+        alert("Please select an answer.");
 
-        // Salva o progresso
-        localStorage.setItem("lesson1Completed", "true");
+        return;
+
+    }
+
+    if (answer.parentElement.textContent.includes("26")) {
+
+        completeLesson(1);
+
+        alert("✅ Correct!");
 
     } else {
 
-        result.innerHTML = "❌ Incorrect. Try again!";
-        result.style.color = "red";
+        alert("❌ Incorrect.");
 
     }
 
 }
 
 // =======================================
-// Pronunciation
+// Lesson 2 Quiz
 // =======================================
 
-function speakLetter(text) {
+function checkLesson2Quiz() {
 
-    const speech = new SpeechSynthesisUtterance(text);
+    const answer =
+        document.querySelector('input[name="quiz"]:checked');
 
-    speech.lang = "pt-BR";
-    speech.rate = 0.8;
-    speech.pitch = 1;
+    if (!answer) {
 
-    window.speechSynthesis.speak(speech);
+        alert("Please select an answer.");
 
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    if (localStorage.getItem("lesson1Completed") === "true") {
-
-        const result = document.getElementById("quizResult");
-
-        if(result){
-
-            result.innerHTML = "🏆 Lesson already completed!";
-            result.style.color = "#009739";
-
-        }
+        return;
 
     }
-loadCourseProgress();
-updateLessonMenu();
-loadLessonData();
-});
+
+    if (answer.parentElement.textContent.includes("CH")) {
+
+        completeLesson(2);
+
+        alert("✅ Correct!");
+
+    } else {
+
+        alert("❌ Incorrect.");
+
+    }
+
+}
+// =======================================
+// Load Lesson Information
+// =======================================
+
+function loadLessonData() {
+
+    if (typeof lessons === "undefined") return;
+
+    const page = window.location.pathname.split("/").pop().replace(".html", "");
+
+    const lesson = lessons[page];
+
+    if (!lesson) return;
+
+    const title = document.getElementById("lessonTitle");
+    const subtitle = document.getElementById("lessonSubtitle");
+
+    if (title) {
+        title.innerHTML =
+            "🇧🇷 Lesson " + lesson.id + " - " + lesson.title;
+    }
+
+    if (subtitle) {
+        subtitle.innerHTML = lesson.subtitle;
+    }
+
+}
 
 // =======================================
 // Beginner Progress
@@ -118,58 +155,114 @@ function loadCourseProgress() {
 
     let completed = 0;
 
-    if (localStorage.getItem("lesson1Completed") === "true") {
-        completed++;
+    for (let i = 1; i <= 20; i++) {
+
+        if (lessonCompleted(i)) {
+
+            completed++;
+
+        }
+
     }
 
     const percent = completed * 5;
 
     progress.value = percent;
+
     text.innerHTML = percent + "% Completed";
 
 }
 
 // =======================================
-// Lesson Menu
+// Unlock Lessons
 // =======================================
 
 function updateLessonMenu() {
 
-    const lesson1 = document.getElementById("lesson1Item");
-    const lesson2 = document.getElementById("lesson2Item");
+    for (let i = 1; i <= 20; i++) {
 
-    if (!lesson1 || !lesson2) return;
+        const item =
+            document.getElementById("lesson" + i + "Item");
 
-    if (localStorage.getItem("lesson1Completed") === "true") {
+        if (!item) continue;
 
-        lesson1.innerHTML = "✅ Lesson 1 - Brazilian Alphabet";
+        if (lessonCompleted(i)) {
 
-        lesson2.innerHTML =
-            '<a href="lesson2.html">🔓 Lesson 2 - Pronunciation</a>';
+            item.innerHTML =
+                "✅ Lesson " + i;
+
+        }
+
+        if (lessonCompleted(i - 1)) {
+
+            item.innerHTML =
+                '<a href="lesson' + i + '.html">📖 Lesson ' + i + "</a>";
+
+        }
 
     }
 
 }
-
 // =======================================
-// Load Lesson Information
+// Page Initialization
 // =======================================
 
-function loadLessonData() {
+document.addEventListener("DOMContentLoaded", () => {
 
-    if (typeof lessons === "undefined") return;
+    // Render Beginner Modules
+    const modulesContainer = document.getElementById("modulesContainer");
 
-    const lesson = lessons.lesson1;
+    if (modulesContainer &&
+        typeof courses !== "undefined" &&
+        courses.beginner) {
 
-    const title = document.getElementById("lessonTitle");
-    const subtitle = document.getElementById("lessonSubtitle");
+        const beginner = courses.beginner;
 
-    if (title) {
-        title.innerHTML = "🇧🇷 Lesson " + lesson.id + " – " + lesson.title;
+        beginner.modules.forEach(module => {
+
+            const card = document.createElement("div");
+            card.className = "course-card";
+
+            let lessonsHTML = "";
+
+            module.lessons.forEach(lesson => {
+
+                lessonsHTML += `
+                    <li>✔️ ${lesson.title}
+                    <small>${lesson.duration}</small></li>
+                `;
+
+            });
+
+            card.innerHTML = `
+                <h3>📚 ${module.title}</h3>
+                <p>${beginner.description}</p>
+
+                <ul>
+                    ${lessonsHTML}
+                </ul>
+
+                <a href="lesson1.html"
+                   class="course-button">
+
+                    Start Module
+
+                </a>
+            `;
+
+            modulesContainer.appendChild(card);
+
+        });
+
     }
 
-    if (subtitle) {
-        subtitle.innerHTML = lesson.subtitle;
-    }
+    // Load lesson information
+    loadLessonData();
 
-}
+    // Update progress
+    loadCourseProgress();
+
+    // Update lesson menu
+    updateLessonMenu();
+
+});
