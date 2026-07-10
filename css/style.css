@@ -349,16 +349,29 @@ footer{
 }
 
 .course-card{
-    background:#fff;
+
+    background:#ffffff;
+
     border-radius:20px;
+
     padding:35px;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-    transition:.35s;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+    border:1px solid #ececec;
+
+    transition:all .3s ease;
+
 }
 
 .course-card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 20px 40px rgba(0,0,0,.15);
+
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 45px rgba(0,0,0,.15);
+
+    border-color:#009c3b;
+
 }
 
 .course-icon{
@@ -935,4 +948,34 @@ position:static;
     backdrop-filter:blur(8px);
     padding:50px;
     border-radius:24px;
+}
+
+/* =======================================
+   DASHBOARD CARDS
+======================================= */
+
+.course-card h3{
+
+    color:#002776;
+
+    margin-bottom:12px;
+
+    font-size:24px;
+
+}
+
+.course-card p{
+
+    color:#666;
+
+    line-height:1.7;
+
+    margin-bottom:25px;
+
+}
+
+.progress-card{
+
+    border:1px solid #ececec;
+
 }
