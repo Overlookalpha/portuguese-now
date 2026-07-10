@@ -1065,3 +1065,51 @@ position:static;
     padding:0 20px;
 
 }
+
+/* =======================================
+   ABOUT PAGE
+======================================= */
+
+.about-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:60px;
+
+    align-items:center;
+
+}
+
+.teacher-photo img{
+
+    width:100%;
+
+    max-width:450px;
+
+    border-radius:20px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+}
+
+@media(max-width:900px){
+
+    .about-grid{
+
+        grid-template-columns:1fr;
+
+        text-align:center;
+
+    }
+
+    .teacher-photo{
+
+        display:flex;
+
+        justify-content:center;
+
+    }
+
+}
