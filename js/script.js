@@ -425,3 +425,49 @@ if(certificateStatus && certificateButton){
     }
 
 }
+
+/* ===========================
+   My Courses
+=========================== */
+
+const beginnerProgress =
+document.getElementById("beginnerProgress");
+
+if(beginnerProgress){
+
+    const percent =
+    Math.round(
+        (dashboardData.completedLessons /
+        dashboardData.totalLessons) * 100
+    );
+
+    beginnerProgress.textContent =
+        percent + "% Completed";
+
+}
+
+const intermediateButton =
+document.getElementById("intermediateButton");
+
+if(intermediateButton){
+
+    intermediateButton.addEventListener("click",function(){
+
+        alert("Intermediate Course is coming soon!");
+
+    });
+
+}
+
+const advancedButton =
+document.getElementById("advancedButton");
+
+if(advancedButton){
+
+    advancedButton.addEventListener("click",function(){
+
+        alert("Advanced Course is coming soon!");
+
+    });
+
+}
