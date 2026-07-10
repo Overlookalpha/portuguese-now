@@ -318,3 +318,28 @@ if(lessonTitle && lessonName && continueButton){
         currentLesson.page;
 
 }
+
+/* ===========================
+   Next Lesson
+=========================== */
+
+const nextLesson = {
+    number: currentLesson.number + 1,
+    title: "Talking About Your Family"
+};
+
+const nextLessonTitle =
+document.getElementById("nextLessonTitle");
+
+const nextLessonName =
+document.getElementById("nextLessonName");
+
+if(nextLessonTitle && nextLessonName){
+
+    nextLessonTitle.textContent =
+        "Next Lesson " + nextLesson.number;
+
+    nextLessonName.textContent =
+        nextLesson.title;
+
+}
