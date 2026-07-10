@@ -386,3 +386,42 @@ if(nextLessonTitle && nextLessonName){
         nextLesson.title;
 
 }
+
+/* ===========================
+   Certificate
+=========================== */
+
+const certificateStatus =
+document.getElementById("certificateStatus");
+
+const certificateButton =
+document.getElementById("certificateButton");
+
+if(certificateStatus && certificateButton){
+
+    if(dashboardData.completedLessons >= dashboardData.totalLessons){
+
+        certificateStatus.textContent =
+        "Congratulations! Your certificate is ready.";
+
+        certificateButton.textContent =
+        "Download Certificate";
+
+        certificateButton.href =
+        "certificate.html";
+
+    }else{
+
+        certificateButton.addEventListener("click",function(e){
+
+            e.preventDefault();
+
+            alert(
+                "Complete the Beginner Course to unlock your certificate."
+            );
+
+        });
+
+    }
+
+}
