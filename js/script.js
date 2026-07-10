@@ -266,3 +266,23 @@ document.addEventListener("DOMContentLoaded", () => {
     updateLessonMenu();
 
 });
+
+/* ===========================
+   Dashboard Progress
+=========================== */
+
+const completedLessons = 8;
+const totalLessons = 23;
+
+const progress = Math.round((completedLessons / totalLessons) * 100);
+
+const progressBar = document.getElementById("courseProgress");
+const progressText = document.getElementById("progressText");
+
+if(progressBar && progressText){
+
+    progressBar.value = progress;
+
+    progressText.textContent = progress + "% Completed";
+
+}
