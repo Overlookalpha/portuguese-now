@@ -57,9 +57,9 @@ nav a.active{
     color:white;
     text-align:center;
 
-    padding:180px 20px;
+    padding:140px 20px;
 
-    min-height:700px;
+    min-height:600px;
 
     display:flex;
     flex-direction:column;
@@ -68,21 +68,26 @@ nav a.active{
 }
 
 .hero h1{
-    font-size:72px;
+
+    font-size:60px;
+
     font-weight:800;
-    margin-bottom:25px;
-    max-width:700px;
-    text-align:center;
+
+    margin-bottom:20px;
+
+    line-height:1.2;
+
 }
 
 .hero p{
-    font-size:28px;
-    max-width:600px;
-    line-height:1.6;
-    margin-bottom:45px;
-    text-align:center;
-}
 
+    font-size:22px;
+
+    line-height:1.8;
+
+    margin-bottom:30px;
+
+}
 .btn{
     display:inline-block;
     background:#FFD700;
@@ -343,9 +348,15 @@ footer{
 }
 
 .courses-grid{
+
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
     gap:30px;
+
+    align-items:stretch;
+
 }
 
 .course-card{
@@ -355,6 +366,10 @@ footer{
     border-radius:20px;
 
     padding:35px;
+
+    display:flex;
+    
+    flex-direction:column;
 
     box-shadow:0 12px 30px rgba(0,0,0,.08);
 
@@ -977,5 +992,46 @@ position:static;
 .progress-card{
 
     border:1px solid #ececec;
+
+}
+
+
+/* =======================================
+   HERO BUTTON
+======================================= */
+
+.hero .btn-primary{
+
+    display:inline-block;
+
+    margin-top:30px;
+
+    padding:18px 38px;
+
+    background:#009c3b;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    border-radius:50px;
+
+    transition:all .3s ease;
+
+    box-shadow:0 10px 25px rgba(0,156,59,.35);
+
+}
+
+.hero .btn-primary:hover{
+
+    background:#007a2f;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 15px 35px rgba(0,156,59,.45);
 
 }
