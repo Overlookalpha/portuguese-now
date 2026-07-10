@@ -293,17 +293,17 @@ footer{
     padding:120px 20px 80px;
 }
 
-.hero-content{
+.courses-hero .hero-content{
     max-width:800px;
 }
 
-.hero-content h1{
+.courses-hero .hero-content h1{
     font-size:3rem;
     margin-bottom:20px;
     font-weight:700;
 }
 
-.hero-content p{
+.courses-hero .hero-content p{
     font-size:1.2rem;
     line-height:1.8;
     margin-bottom:35px;
@@ -901,4 +901,38 @@ position:static;
     gap:20px;
     flex-wrap:wrap;
 
+}
+
+/* =======================================
+   DASHBOARD HERO
+======================================= */
+
+.hero-badge{
+    display:inline-block;
+    background:#009c3b;
+    color:#fff;
+    padding:8px 18px;
+    border-radius:30px;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:25px;
+}
+
+.hero-subtitle{
+    font-size:24px;
+    margin-top:15px;
+}
+
+.hero-info{
+    font-size:18px;
+    color:#f1f1f1;
+    margin-bottom:35px;
+}
+
+.hero-content{
+    max-width:700px;
+    background:rgba(0,0,0,.35);
+    backdrop-filter:blur(8px);
+    padding:50px;
+    border-radius:24px;
 }
