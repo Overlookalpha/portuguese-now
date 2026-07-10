@@ -342,6 +342,8 @@ document.getElementById("currentLessonName");
 const continueButton =
 document.getElementById("continueButton");
 
+const heroContinueButton =
+document.getElementById("heroContinueButton");
 if(lessonTitle && lessonName && continueButton){
 
     lessonTitle.textContent =
@@ -351,6 +353,13 @@ if(lessonTitle && lessonName && continueButton){
         currentLesson.title;
 
     continueButton.href =
+        currentLesson.page;
+
+}
+
+if(heroContinueButton){
+
+    heroContinueButton.href =
         currentLesson.page;
 
 }
