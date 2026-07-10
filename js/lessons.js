@@ -41,3 +41,45 @@ const lessons = {
     }
 
 };
+
+// =======================================
+// Lesson 1 Quiz
+// =======================================
+
+function checkLesson1Quiz() {
+
+    const answer = document.querySelector('input[name="quiz"]:checked');
+
+    if (!answer) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (answer.parentElement.textContent.includes("26")) {
+        alert("✅ Correct!");
+    } else {
+        alert("❌ Incorrect. Try again.");
+    }
+
+}
+
+// =======================================
+// Lesson 2 Quiz
+// =======================================
+
+function checkLesson2Quiz() {
+
+    const answer = document.querySelector('input[name="quiz"]:checked');
+
+    if (!answer) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (answer.parentElement.textContent.includes("CH")) {
+        alert("✅ Correct!");
+    } else {
+        alert("❌ Incorrect. The correct answer is CH.");
+    }
+
+}
