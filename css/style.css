@@ -1049,3 +1049,19 @@ position:static;
     box-shadow:0 15px 35px rgba(0,156,59,.45);
 
 }
+
+/* =======================================
+   GLOBAL CONTAINER
+======================================= */
+
+.container{
+
+    width:100%;
+
+    max-width:1200px;
+
+    margin:0 auto;
+
+    padding:0 20px;
+
+}
