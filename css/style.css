@@ -1119,3 +1119,26 @@ position:static;
     border-radius:20px;
 
 }
+
+.about-hero{
+
+    background:
+        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+        url("../images/about-bg.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    color:white;
+
+    min-height:600px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:140px 20px;
+
+}
