@@ -286,3 +286,35 @@ if(progressBar && progressText){
     progressText.textContent = progress + "% Completed";
 
 }
+
+/* ===========================
+   Continue Learning
+=========================== */
+
+const currentLesson = {
+    number: 8,
+    title: "Introducing Yourself",
+    page: "lesson8.html"
+};
+
+const lessonTitle =
+document.getElementById("currentLessonTitle");
+
+const lessonName =
+document.getElementById("currentLessonName");
+
+const continueButton =
+document.getElementById("continueButton");
+
+if(lessonTitle && lessonName && continueButton){
+
+    lessonTitle.textContent =
+        "Lesson " + currentLesson.number;
+
+    lessonName.textContent =
+        currentLesson.title;
+
+    continueButton.href =
+        currentLesson.page;
+
+}
