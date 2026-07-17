@@ -61,6 +61,17 @@ onAuthStateChanged(auth, async (user) => {
         currentLessonName.textContent = "Current Lesson";
     }
 
+const nextLessonTitle = document.getElementById("nextLessonTitle");
+const nextLessonName = document.getElementById("nextLessonName");
+
+if (nextLessonTitle) {
+    nextLessonTitle.textContent = "Lesson " + (data.currentLesson + 1);
+}
+
+if (nextLessonName) {
+    nextLessonName.textContent = "Next Lesson";
+}
+    
     // Botões Continuar
     const continueButton = document.getElementById("continueButton");
 
