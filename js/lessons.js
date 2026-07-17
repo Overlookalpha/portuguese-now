@@ -29,3 +29,37 @@ const lessons = {
     }
 
 };
+
+const listeningQuestions = [
+
+{
+audio:"Casa",
+options:["Casa","Cama","Carro","Copo"],
+correct:0
+},
+
+{
+audio:"Janela",
+options:["Porta","Janela","Mesa","Livro"],
+correct:1
+},
+
+{
+audio:"Rua",
+options:["Rua","Casa","Escola","Praia"],
+correct:0
+},
+
+{
+audio:"Livro",
+options:["Livro","Caneta","Bola","Carro"],
+correct:0
+},
+
+{
+audio:"Gato",
+options:["Cachorro","Gato","Pássaro","Peixe"],
+correct:1
+}
+
+];
