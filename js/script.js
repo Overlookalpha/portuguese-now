@@ -28,18 +28,6 @@ function speakLetter(text) {
 
 }
 
-// =======================================
-// Save Lesson Progress
-// =======================================
-
-function completeLesson(lesson) {
-
-    localStorage.setItem(
-        "lesson" + lesson + "Completed",
-        "true"
-    );
-
-}
 
 // =======================================
 // Check if Lesson Completed
