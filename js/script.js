@@ -9,41 +9,7 @@ console.log("Portuguese Now Loaded!");
    Dashboard Data
 ======================================= */
 
-const dashboardData = {
-
-    studentName: "Student",
-
-    course: "Beginner",
-
-    completedLessons: 8,
-
-    totalLessons: 23,
-
-    currentLesson: {
-
-        number: 8,
-
-        title: "Introducing Yourself",
-
-        page: "lesson8.html"
-
-    },
-
-    nextLesson: {
-
-        number: 9,
-
-        title: "Talking About Your Family",
-
-        page: "lesson9.html"
-
-    }
-
-};
-
-// =======================================
-// Speech
-// =======================================
+let dashboardData = null;
 
 function speakLetter(text) {
 
