@@ -46,7 +46,7 @@ function lessonCompleted(lesson) {
 // Lesson 1 Quiz
 // =======================================
 
-function checkLesson1Quiz() {
+async function checkLesson1Quiz() {
 
     const answer =
         document.querySelector('input[name="quiz"]:checked');
@@ -61,15 +61,13 @@ function checkLesson1Quiz() {
 
     if (answer.parentElement.textContent.includes("26")) {
 
-        completeLesson(1);
+    await completeLesson(1);
 
-        alert("✅ Correct!");
+} else {
 
-    } else {
+    alert("❌ Incorrect.");
 
-        alert("❌ Incorrect.");
-
-    }
+}
 
 }
 
@@ -77,7 +75,7 @@ function checkLesson1Quiz() {
 // Lesson 2 Quiz
 // =======================================
 
-function checkLesson2Quiz() {
+async function checkLesson2Quiz() {
 
     const answer =
         document.querySelector('input[name="quiz"]:checked');
@@ -92,15 +90,13 @@ function checkLesson2Quiz() {
 
     if (answer.parentElement.textContent.includes("CH")) {
 
-        completeLesson(2);
+    await completeLesson(2);
 
-        alert("✅ Correct!");
+} else {
 
-    } else {
+    alert("❌ Incorrect.");
 
-        alert("❌ Incorrect.");
-
-    }
+}
 
 }
 // =======================================
