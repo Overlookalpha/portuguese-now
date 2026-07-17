@@ -289,3 +289,6 @@ if(advancedButton){
 
 }
 
+window.checkLesson1Quiz = checkLesson1Quiz;
+window.checkLesson2Quiz = checkLesson2Quiz;
+window.speakLetter = speakLetter;
