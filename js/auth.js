@@ -13,7 +13,7 @@ onAuthStateChanged(auth, (user) => {
     const titulo = document.querySelector(".hero-content h1");
 
     if (titulo) {
-        titulo.innerHTML = Welcome Back, ${user.displayName || "Student"}! 👋;
+        titulo.innerHTML = `Welcome Back, ${user.displayName || "Student"}! 👋`;
     }
 
 });
