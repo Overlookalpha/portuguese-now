@@ -1,7 +1,11 @@
 import { auth, db } from "./firebase.js";
 
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import {
+    doc,
+    getDoc,
+    updateDoc
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 onAuthStateChanged(auth, async (user) => {
 
@@ -92,6 +96,43 @@ if (nextLessonTitle) {
             "lesson" + data.currentLesson + ".html";
     }
 
+// Próxima lição
+const nextLessonButton = document.getElementById("nextLessonButton");
+
+if (nextLessonButton) {
+
+    if (data.completedLessons.length >= data.currentLesson) {
+
+        nextLessonButton.textContent = "Start Lesson";
+        nextLessonButton.href = "lesson" + (data.currentLesson + 1) + ".html";
+
+    } else {
+
+        nextLessonButton.textContent = "Locked";
+        nextLessonButton.href = "#";
+
+    }
+
+}
+    
     console.log("Dashboard carregado:", data);
 
 });
+
+
+export async function completeLesson(userId, lesson) {
+
+    const docRef = doc(db, "users", userId);
+
+    await updateDoc(docRef, {
+
+        currentLesson: lesson + 1,
+
+        completedLessons: Array.from(
+            { length: lesson },
+            (_, i) => i + 1
+        )
+
+    });
+
+}
