@@ -1,3 +1,4 @@
+import { completeLesson } from "./progress.js";
 // =======================================
 // Portuguese Now
 // Main Script
