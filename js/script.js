@@ -11,6 +11,17 @@ console.log("Portuguese Now Loaded!");
 
 let dashboardData = null;
 
+import { auth, db } from "./firebase.js";
+
+import {
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+import {
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
 function speakLetter(text) {
 
     if (!("speechSynthesis" in window)) {
