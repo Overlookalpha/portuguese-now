@@ -330,4 +330,38 @@ onAuthStateChanged(auth, async (user) => {
 
     console.log(dashboardData);
 
+   const progressBar = document.getElementById("courseProgress");
+const progressText = document.getElementById("progressText");
+const beginnerProgress = document.getElementById("beginnerProgress");
+
+if (progressBar && progressText) {
+    progressBar.value = dashboardData.progress || 0;
+    progressText.textContent = (dashboardData.progress || 0) + "% Completed";
+}
+
+if (beginnerProgress) {
+    beginnerProgress.textContent = (dashboardData.progress || 0) + "% Completed";
+}
+
+const currentLessonTitle = document.getElementById("currentLessonTitle");
+const currentLessonName = document.getElementById("currentLessonName");
+const continueButton = document.getElementById("continueButton");
+const heroContinueButton = document.getElementById("heroContinueButton");
+
+if (currentLessonTitle) {
+    currentLessonTitle.textContent = "Lesson " + dashboardData.currentLesson;
+}
+
+if (currentLessonName) {
+    currentLessonName.textContent = "Current Lesson";
+}
+
+if (continueButton) {
+    continueButton.href = "lesson" + dashboardData.currentLesson + ".html";
+}
+
+if (heroContinueButton) {
+    heroContinueButton.href = "lesson" + dashboardData.currentLesson + ".html";
+}
+
 });
