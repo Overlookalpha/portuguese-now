@@ -15,7 +15,7 @@ onAuthStateChanged(auth, async (user) => {
     const data = docSnap.data();
 
     // Valores padrão para usuário novo
-    data.currentLesson = data.currentLesson || 1;
+    data.currentLesson = Number(data.currentLesson || 1);
     data.completedLessons = data.completedLessons || [];
 
     const percent = Math.round(
@@ -64,12 +64,16 @@ onAuthStateChanged(auth, async (user) => {
 const nextLessonTitle = document.getElementById("nextLessonTitle");
 const nextLessonName = document.getElementById("nextLessonName");
 
-if (nextLessonTitle) {
-    nextLessonTitle.textContent = "Lesson " + (data.currentLesson + 1);
-}
+const nextLesson = data.currentLesson + 1;
 
-if (nextLessonName) {
-    nextLessonName.textContent = "Next Lesson";
+if (nextLessonTitle) {
+    if (nextLesson <= 20) {
+        nextLessonTitle.textContent = "Lesson " + nextLesson;
+        nextLessonName.textContent = "Next Lesson";
+    } else {
+        nextLessonTitle.textContent = "Course Completed";
+        nextLessonName.textContent = "🎉 Congratulations!";
+    }
 }
     
     // Botões Continuar
