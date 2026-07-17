@@ -281,125 +281,15 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-/* ===========================
-   Continue Learning
-=========================== */
 
-const currentLesson =
-    dashboardData.currentLesson;
 
-const lessonTitle =
-document.getElementById("currentLessonTitle");
 
-const lessonName =
-document.getElementById("currentLessonName");
 
-const continueButton =
-document.getElementById("continueButton");
-
-const heroContinueButton =
-document.getElementById("heroContinueButton");
-if(lessonTitle && lessonName && continueButton){
-
-    lessonTitle.textContent =
-        "Lesson " + currentLesson.number;
-
-    lessonName.textContent =
-        currentLesson.title;
-
-    continueButton.href =
-        currentLesson.page;
-
-}
-
-if(heroContinueButton){
-
-    heroContinueButton.href =
-        currentLesson.page;
-
-}
-
-/* ===========================
-   Next Lesson
-=========================== */
-
-const nextLesson =
-    dashboardData.nextLesson;
-
-const nextLessonTitle =
-document.getElementById("nextLessonTitle");
-
-const nextLessonName =
-document.getElementById("nextLessonName");
-
-if(nextLessonTitle && nextLessonName){
-
-    nextLessonTitle.textContent =
-        "Next Lesson " + nextLesson.number;
-
-    nextLessonName.textContent =
-        nextLesson.title;
-
-}
-
-/* ===========================
-   Certificate
-=========================== */
-
-const certificateStatus =
-document.getElementById("certificateStatus");
-
-const certificateButton =
-document.getElementById("certificateButton");
-
-if(certificateStatus && certificateButton){
-
-    if(dashboardData.completedLessons >= dashboardData.totalLessons){
-
-        certificateStatus.textContent =
-        "Congratulations! Your certificate is ready.";
-
-        certificateButton.textContent =
-        "Download Certificate";
-
-        certificateButton.href =
-        "certificate.html";
-
-    }else{
-
-        certificateButton.addEventListener("click",function(e){
-
-            e.preventDefault();
-
-            alert(
-                "Complete the Beginner Course to unlock your certificate."
-            );
-
-        });
-
-    }
-
-}
 
 /* ===========================
    My Courses
 =========================== */
 
-const beginnerProgress =
-document.getElementById("beginnerProgress");
-
-if(beginnerProgress){
-
-    const percent =
-    Math.round(
-        (dashboardData.completedLessons /
-        dashboardData.totalLessons) * 100
-    );
-
-    beginnerProgress.textContent =
-        percent + "% Completed";
-
-}
 
 const intermediateButton =
 document.getElementById("intermediateButton");
