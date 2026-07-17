@@ -34,7 +34,24 @@ const listeningQuestions = [
 
 {
 audio:"Casa",
-options:["Casa","Cama","Carro","Copo"],
+options:[
+    {
+        word:"Casa",
+        image:"images/listening/casa.jpg"
+    },
+    {
+        word:"Cama",
+        image:"images/listening/cama.jpg"
+    },
+    {
+        word:"Carro",
+        image:"images/listening/carro.jpg"
+    },
+    {
+        word:"Copo",
+        image:"images/listening/copo.jpg"
+    }
+],
 correct:0
 },
 
@@ -79,13 +96,15 @@ function loadChallenge() {
 
     question.options.forEach((option, index) => {
 
-        optionsDiv.innerHTML += `
-            <button onclick="checkChallenge(${index})">
-                ${option}
-            </button>
-        `;
+    const word = typeof option === "string" ? option : option.word;
 
-    });
+    optionsDiv.innerHTML += `
+        <button onclick="checkChallenge(${index})">
+            ${word}
+        </button>
+    `;
+
+});
 
     document.getElementById("challengeFeedback").textContent = "";
     document.getElementById("nextChallenge").style.display = "none";
