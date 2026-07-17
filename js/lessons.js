@@ -100,6 +100,47 @@ function playChallengeAudio() {
 
 }
 
+function checkChallenge(selected) {
+
+    const question = listeningQuestions[currentChallenge];
+
+    const feedback = document.getElementById("challengeFeedback");
+
+    if (selected === question.correct) {
+
+        feedback.innerHTML =
+            "✅ Correct! Great job!";
+
+    } else {
+
+        feedback.innerHTML =
+            "❌ Incorrect. Try the next question.";
+
+    }
+
+    document.getElementById("nextChallenge").style.display = "inline-block";
+
+}
+
+function nextChallenge() {
+
+    currentChallenge++;
+
+    if (currentChallenge >= listeningQuestions.length) {
+
+        document.getElementById("challengeBox").innerHTML = `
+            <h2>🎉 Congratulations!</h2>
+            <p>You completed the Listening Challenge.</p>
+        `;
+
+        return;
+
+    }
+
+    loadChallenge();
+
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("challengeBox")) {
