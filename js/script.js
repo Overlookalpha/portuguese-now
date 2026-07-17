@@ -448,3 +448,18 @@ if(advancedButton){
     });
 
 }
+
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user) return;
+
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+
+    if (!docSnap.exists()) return;
+
+    dashboardData = docSnap.data();
+
+    console.log(dashboardData);
+
+});
