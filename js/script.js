@@ -9,19 +9,6 @@ console.log("Portuguese Now Loaded!");
    Dashboard Data
 ======================================= */
 
-let dashboardData = null;
-
-import { auth, db } from "./firebase.js";
-
-import {
-  doc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-
-import {
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-
 function speakLetter(text) {
 
     if (!("speechSynthesis" in window)) {
@@ -317,51 +304,3 @@ if(advancedButton){
 
 }
 
-onAuthStateChanged(auth, async (user) => {
-
-    if (!user) return;
-
-    const docRef = doc(db, "users", user.uid);
-    const docSnap = await getDoc(docRef);
-
-    if (!docSnap.exists()) return;
-
-    dashboardData = docSnap.data();
-
-    console.log(dashboardData);
-
-   const progressBar = document.getElementById("courseProgress");
-const progressText = document.getElementById("progressText");
-const beginnerProgress = document.getElementById("beginnerProgress");
-
-if (progressBar && progressText) {
-    progressBar.value = dashboardData.progress || 0;
-    progressText.textContent = (dashboardData.progress || 0) + "% Completed";
-}
-
-if (beginnerProgress) {
-    beginnerProgress.textContent = (dashboardData.progress || 0) + "% Completed";
-}
-
-const currentLessonTitle = document.getElementById("currentLessonTitle");
-const currentLessonName = document.getElementById("currentLessonName");
-const continueButton = document.getElementById("continueButton");
-const heroContinueButton = document.getElementById("heroContinueButton");
-
-if (currentLessonTitle) {
-    currentLessonTitle.textContent = "Lesson " + dashboardData.currentLesson;
-}
-
-if (currentLessonName) {
-    currentLessonName.textContent = "Current Lesson";
-}
-
-if (continueButton) {
-    continueButton.href = "lesson" + dashboardData.currentLesson + ".html";
-}
-
-if (heroContinueButton) {
-    heroContinueButton.href = "lesson" + dashboardData.currentLesson + ".html";
-}
-
-});
