@@ -99,11 +99,16 @@ function loadChallenge() {
     const word = typeof option === "string" ? option : option.word;
 
     optionsDiv.innerHTML += `
-        <button onclick="checkChallenge(${index})">
-            ${word}
-        </button>
-    `;
+    <div class="challenge-card" onclick="checkChallenge(${index})">
 
+        <div class="challenge-image">
+            📷
+        </div>
+
+        <h3>${word}</h3>
+
+    </div>
+`;
 });
 
     document.getElementById("challengeFeedback").textContent = "";
