@@ -280,28 +280,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-/* ===========================
-   Dashboard Progress
-=========================== */
-
-const progress = Math.round(
-
-    (dashboardData.completedLessons /
-
-     dashboardData.totalLessons) * 100
-
-);
-
-const progressBar = document.getElementById("courseProgress");
-const progressText = document.getElementById("progressText");
-
-if(progressBar && progressText){
-
-    progressBar.value = progress;
-
-    progressText.textContent = progress + "% Completed";
-
-}
 
 /* ===========================
    Continue Learning
