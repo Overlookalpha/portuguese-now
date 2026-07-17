@@ -29,14 +29,18 @@ form.addEventListener("submit", async (e) => {
             displayName: fullName
         });
 
-        await setDoc(doc(db, "users", userCredential.user.uid), {
+       await setDoc(doc(db, "users", userCredential.user.uid), {
     name: fullName,
     email: email,
+
     course: "beginner",
+
     currentLesson: 1,
-    progress: 0,
+
     completedLessons: [],
+
     certificate: false,
+
     createdAt: new Date()
 });
         
