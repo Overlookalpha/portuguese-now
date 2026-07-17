@@ -63,3 +63,47 @@ correct:1
 }
 
 ];
+
+let currentChallenge = 0;
+
+function loadChallenge() {
+
+    const question = listeningQuestions[currentChallenge];
+
+    document.getElementById("challengeQuestion").textContent =
+        `Question ${currentChallenge + 1} of ${listeningQuestions.length}`;
+
+    const optionsDiv = document.querySelector(".challenge-options");
+
+    optionsDiv.innerHTML = "";
+
+    question.options.forEach((option, index) => {
+
+        optionsDiv.innerHTML += `
+            <button onclick="checkChallenge(${index})">
+                ${option}
+            </button>
+        `;
+
+    });
+
+    document.getElementById("challengeFeedback").textContent = "";
+    document.getElementById("nextChallenge").style.display = "none";
+
+}
+
+function playChallengeAudio() {
+
+    const question = listeningQuestions[currentChallenge];
+
+    speakLetter(question.audio);
+
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    if (document.getElementById("challengeBox")) {
+        loadChallenge();
+    }
+
+});
