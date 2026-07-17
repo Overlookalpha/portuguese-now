@@ -148,3 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
+window.checkChallenge = checkChallenge;
+window.playChallengeAudio = playChallengeAudio;
+window.nextChallenge = nextChallenge;
