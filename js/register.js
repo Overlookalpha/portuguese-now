@@ -1,4 +1,6 @@
 import { auth } from "./firebase.js";
+import { db } from "./firebase.js";
+import { doc, setDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 import { createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 const form = document.getElementById("registerForm");
@@ -27,6 +29,17 @@ form.addEventListener("submit", async (e) => {
             displayName: fullName
         });
 
+        await setDoc(doc(db, "users", userCredential.user.uid), {
+    name: fullName,
+    email: email,
+    course: "beginner",
+    currentLesson: 1,
+    progress: 0,
+    completedLessons: [],
+    certificate: false,
+    createdAt: new Date()
+});
+        
         alert("Account created successfully!");
 
         window.location.href = "dashboard.html";
