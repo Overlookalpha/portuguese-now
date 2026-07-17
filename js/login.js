@@ -8,41 +8,52 @@ const loginBtn = document.getElementById("loginBtn");
 const forgotPassword = document.getElementById("forgotPassword");
 
 loginBtn.addEventListener("click", async () => {
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
 
-  if (!email || !password) {
-    alert("Please fill in all fields.");
-    return;
-  }
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
 
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
+    if (!email || !password) {
+        alert("Please fill in all fields.");
+        return;
+    }
 
-    alert("Login successful!");
+    try {
 
-    window.location.href = "dashboard.html";
+        await signInWithEmailAndPassword(auth, email, password);
 
-  } catch (error) {
-    alert("Invalid email or password.");
-    console.error(error);
-  }
+        window.location.href = "dashboard.html";
+
+    } catch (error) {
+
+        alert("Invalid email or password.");
+
+        console.error(error);
+
+    }
+
 });
 
 forgotPassword.addEventListener("click", async (e) => {
-  e.preventDefault();
 
-  const email = document.getElementById("email").value.trim();
+    e.preventDefault();
 
-  if (!email) {
-    alert("Enter your email first.");
-    return;
-  }
+    const email = document.getElementById("email").value.trim();
 
-  try {
-    await sendPasswordResetEmail(auth, email);
-    alert("Password reset email sent.");
-  } catch (error) {
-    alert(error.message);
-  }
+    if (!email) {
+        alert("Enter your email first.");
+        return;
+    }
+
+    try {
+
+        await sendPasswordResetEmail(auth, email);
+
+        alert("Password reset email sent.");
+
+    } catch (error) {
+
+        alert(error.message);
+
+    }
+
 });
