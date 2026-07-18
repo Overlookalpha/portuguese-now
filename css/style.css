@@ -1177,3 +1177,12 @@ position:static;
     font-size:22px;
     color:#222;
 }
+
+.flag-icon{
+    width:22px;
+    height:16px;
+    object-fit:cover;
+    vertical-align:middle;
+    margin-right:8px;
+    border-radius:2px;
+}
