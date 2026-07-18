@@ -49,34 +49,7 @@ function lessonCompleted(lesson) {
 function checkLesson1Quiz() {
     // O quiz da Lesson 1 agora é controlado pelo lessons.js
 }
-// =======================================
-// Lesson 2 Quiz
-// =======================================
 
-async function checkLesson2Quiz() {
-
-    const answer =
-        document.querySelector('input[name="quiz"]:checked');
-
-    if (!answer) {
-
-        alert("Please select an answer.");
-
-        return;
-
-    }
-
-    if (answer.parentElement.textContent.includes("CH")) {
-
-    await completeLesson(2);
-
-} else {
-
-    alert("❌ Incorrect.");
-
-}
-
-}
 // =======================================
 // Load Lesson Information
 // =======================================
@@ -267,6 +240,5 @@ if(advancedButton){
 
 }
 
-window.checkLesson1Quiz = checkLesson1Quiz;
-window.checkLesson2Quiz = checkLesson2Quiz;
+
 window.speakLetter = speakLetter;
