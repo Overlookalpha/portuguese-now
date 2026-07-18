@@ -37,19 +37,19 @@ audio:"Casa",
 options:[
     {
         word:"Casa",
-        image:"images/listening/casa.jpg"
+        emoji:"🏠"
     },
     {
         word:"Cama",
-        image:"images/listening/cama.jpg"
+        emoji:"🛏️"
     },
     {
         word:"Carro",
-        image:"images/listening/carro.jpg"
+        emoji:"🚗"
     },
     {
         word:"Copo",
-        image:"images/listening/copo.jpg"
+        emoji:"🥤"
     }
 ],
 correct:0
@@ -98,11 +98,13 @@ function loadChallenge() {
 
     const word = typeof option === "string" ? option : option.word;
 
+     const emoji = typeof option === "string" ? "❓" : option.emoji;
+        
     optionsDiv.innerHTML += `
     <div class="challenge-card" onclick="checkChallenge(${index})">
 
         <div class="challenge-image">
-            📷
+    ${emoji}
         </div>
 
         <h3>${word}</h3>
