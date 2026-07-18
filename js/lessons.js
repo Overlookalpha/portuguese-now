@@ -100,8 +100,8 @@ options:[
     }
 ],
 correct:0
-} 
-   ,
+}, 
+   
 {
 audio:"Livro",
 options:[
