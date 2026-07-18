@@ -46,31 +46,9 @@ function lessonCompleted(lesson) {
 // Lesson 1 Quiz
 // =======================================
 
-async function checkLesson1Quiz() {
-
-    const answer =
-        document.querySelector('input[name="quiz"]:checked');
-
-    if (!answer) {
-
-        alert("Please select an answer.");
-
-        return;
-
-    }
-
-    if (answer.parentElement.textContent.includes("26")) {
-
-    await completeLesson(1);
-
-} else {
-
-    alert("❌ Incorrect.");
-
+function checkLesson1Quiz() {
+    // O quiz da Lesson 1 agora é controlado pelo lessons.js
 }
-
-}
-
 // =======================================
 // Lesson 2 Quiz
 // =======================================
