@@ -78,7 +78,7 @@ options:[
 correct:1
 },
 
-  ,
+  
 {
 audio:"Rua",
 options:[
