@@ -331,7 +331,7 @@ let currentQuizQuestion = 0;
 
 function loadQuiz() {
 
-    const container = document.getElementById("quizContainer");
+    const container = document.getElementById("quizQuestions");
 
     if (!container) return;
 
