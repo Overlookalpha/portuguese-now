@@ -100,7 +100,30 @@ options:[
     }
 ],
 correct:0
-}  
+} 
+   ,
+{
+audio:"Livro",
+options:[
+    {
+        word:"Livro",
+        emoji:"📚"
+    },
+    {
+        word:"Caneta",
+        emoji:"🖊️"
+    },
+    {
+        word:"Bola",
+        emoji:"⚽"
+    },
+    {
+        word:"Carro",
+        emoji:"🚗"
+    }
+],
+correct:0
+} 
 ];
 
 let currentChallenge = 0;
