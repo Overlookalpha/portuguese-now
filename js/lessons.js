@@ -408,6 +408,7 @@ function checkLesson1Quiz() {
     `;
 
     document.getElementById("quizResult").innerHTML = "";
+    document.getElementById("checkAnswerBtn").style.display = "none";
 }
 
     }, 1000);
