@@ -77,6 +77,30 @@ options:[
 ],
 correct:1
 },
+
+  ,
+{
+audio:"Rua",
+options:[
+    {
+        word:"Rua",
+        emoji:"🛣️"
+    },
+    {
+        word:"Casa",
+        emoji:"🏠"
+    },
+    {
+        word:"Escola",
+        emoji:"🏫"
+    },
+    {
+        word:"Praia",
+        emoji:"🏖️"
+    }
+],
+correct:0
+}  
 ];
 
 let currentChallenge = 0;
