@@ -57,28 +57,26 @@ correct:0
 
 {
 audio:"Janela",
-options:["Porta","Janela","Mesa","Livro"],
+options:[
+    {
+        word:"Porta",
+        emoji:"🚪"
+    },
+    {
+        word:"Janela",
+        emoji:"🪟"
+    },
+    {
+        word:"Mesa",
+        emoji:"🪑"
+    },
+    {
+        word:"Livro",
+        emoji:"📚"
+    }
+],
 correct:1
 },
-
-{
-audio:"Rua",
-options:["Rua","Casa","Escola","Praia"],
-correct:0
-},
-
-{
-audio:"Livro",
-options:["Livro","Caneta","Bola","Carro"],
-correct:0
-},
-
-{
-audio:"Gato",
-options:["Cachorro","Gato","Pássaro","Peixe"],
-correct:1
-}
-
 ];
 
 let currentChallenge = 0;
