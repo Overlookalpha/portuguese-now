@@ -78,7 +78,6 @@ options:[
 correct:1
 },
 
-  
 {
 audio:"Rua",
 options:[
@@ -100,8 +99,8 @@ options:[
     }
 ],
 correct:0
-}, 
-   
+},
+
 {
 audio:"Livro",
 options:[
@@ -123,7 +122,31 @@ options:[
     }
 ],
 correct:0
-} 
+},
+
+{
+audio:"Gato",
+options:[
+    {
+        word:"Cachorro",
+        emoji:"🐶"
+    },
+    {
+        word:"Gato",
+        emoji:"🐱"
+    },
+    {
+        word:"Pássaro",
+        emoji:"🐦"
+    },
+    {
+        word:"Peixe",
+        emoji:"🐟"
+    }
+],
+correct:1
+}
+
 ];
 
 let currentChallenge = 0;
