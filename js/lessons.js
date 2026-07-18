@@ -387,16 +387,41 @@ function checkLesson1Quiz() {
 
         } else {
 
-            document.getElementById("quizContainer").innerHTML = `
-                <h2>🎉 Quiz Completed!</h2>
-                <p>You scored ${quizScore} out of ${lesson1Quiz.length}.</p>
-            `;
+    document.getElementById("quizContainer").innerHTML = `
+        <h2>🎉 Lesson 1 Completed!</h2>
 
-            document.querySelector('.hero-button').style.display = "none";
-        }
+        <p><strong>Correct:</strong> ${quizScore}</p>
+        <p><strong>Incorrect:</strong> ${lesson1Quiz.length - quizScore}</p>
+        <p><strong>Score:</strong> ${Math.round((quizScore / lesson1Quiz.length) * 100)}%</p>
+
+        <br>
+
+        <button class="hero-button" onclick="location.reload()">
+            🔄 Retake Quiz
+        </button>
+
+        <br><br>
+
+        <button class="hero-button" onclick="finishLesson1()">
+            ➜ Continue to Lesson 2
+        </button>
+    `;
+
+    document.getElementById("quizResult").innerHTML = "";
+}
 
     }, 1000);
 
 }
 
 window.checkLesson1Quiz = checkLesson1Quiz;
+
+async function finishLesson1() {
+
+    const { completeLesson } = await import("./progress.js");
+
+    await completeLesson(1);
+
+}
+
+window.finishLesson1 = finishLesson1;
