@@ -1179,10 +1179,8 @@ position:static;
 }
 
 .flag-icon{
-    width:22px;
-    height:16px;
-    object-fit:cover;
+    width:26px;
+    height:auto;
     vertical-align:middle;
-    margin-right:8px;
-    border-radius:2px;
+    margin-right:10px;
 }
