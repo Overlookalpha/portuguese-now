@@ -357,3 +357,46 @@ function loadQuiz() {
 document.addEventListener("DOMContentLoaded", () => {
     loadQuiz();
 });
+
+let quizScore = 0;
+
+function checkLesson1Quiz() {
+
+    const selected = document.querySelector('input[name="quiz"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (parseInt(selected.value) === lesson1Quiz[currentQuizQuestion].correct) {
+        quizScore++;
+        document.getElementById("quizResult").innerHTML = "✅ Correct!";
+    } else {
+        document.getElementById("quizResult").innerHTML = "❌ Incorrect!";
+    }
+
+    setTimeout(() => {
+
+        currentQuizQuestion++;
+
+        if (currentQuizQuestion < lesson1Quiz.length) {
+
+            loadQuiz();
+            document.getElementById("quizResult").innerHTML = "";
+
+        } else {
+
+            document.getElementById("quizContainer").innerHTML = `
+                <h2>🎉 Quiz Completed!</h2>
+                <p>You scored ${quizScore} out of ${lesson1Quiz.length}.</p>
+            `;
+
+            document.querySelector('.hero-button').style.display = "none";
+        }
+
+    }, 1000);
+
+}
+
+window.checkLesson1Quiz = checkLesson1Quiz;
