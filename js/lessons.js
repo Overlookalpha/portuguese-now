@@ -564,12 +564,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("quizContainer")) {
 
-        if (window.location.pathname.includes("lesson2")) {
+        if (window.location.pathname.includes("lesson3")) {
+
+            loadLesson3Quiz();
+
+        } else if (window.location.pathname.includes("lesson2")) {
+
             loadLesson2Quiz();
+
         } else {
+
             loadQuiz();
+
         }
 
+    }
+
+    if (document.getElementById("challengeBox")) {
+        loadChallenge();
     }
 
 });
