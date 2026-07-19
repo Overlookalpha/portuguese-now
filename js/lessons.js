@@ -841,10 +841,15 @@ function checkLesson3Quiz() {
                 </button>
             `;
 
-            document.getElementById("quizResult").innerHTML = "";
+           const result = document.getElementById("quizResult");
+if (result) {
+    result.innerHTML = "";
+}
 
-            const btn = document.getElementById("checkAnswerBtn");
-            if (btn) btn.style.display = "none";
+const btn = document.getElementById("checkAnswerBtn");
+if (btn) {
+    btn.style.display = "none";
+}
         }
 
     }, 1000);
