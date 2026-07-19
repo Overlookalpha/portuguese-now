@@ -455,7 +455,17 @@ function loadQuiz() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    loadQuiz();
+
+    if (document.getElementById("quizContainer")) {
+
+        if (window.location.pathname.includes("lesson2")) {
+            loadLesson2Quiz();
+        } else {
+            loadQuiz();
+        }
+
+    }
+
 });
 
 let quizScore = 0;
