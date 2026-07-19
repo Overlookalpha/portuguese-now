@@ -68,10 +68,12 @@ function loadLessonData() {
     const subtitle = document.getElementById("lessonSubtitle");
 
     if (title) {
-        title.innerHTML =
-            "🇧🇷 Lesson " + lesson.id + " - " + lesson.title;
-    }
-
+    title.innerHTML =
+        '<img src="images/brazil.png" class="flag-icon" alt="Brazil"> Lesson ' +
+        lesson.id +
+        ' - ' +
+        lesson.title;
+}
     if (subtitle) {
         subtitle.innerHTML = lesson.subtitle;
     }
