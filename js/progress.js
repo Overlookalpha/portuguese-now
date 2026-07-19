@@ -20,7 +20,7 @@ export async function completeLesson(lesson) {
     });
 
     alert("🎉 Lesson completed!");
-
+    console.log("Indo para:", `lesson${lesson + 1}.html`);
    window.location.href = `lesson${lesson + 1}.html`;
 
 }
