@@ -190,7 +190,23 @@ footer{
 }
 
 .logo{
-    height:55px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    flex-shrink:0;
+}
+
+.logo h2{
+    font-size:32px;
+    margin:0;
+    white-space:nowrap;
+}
+
+.logo span{
+    display:block;
+    font-size:14px;
+    color:#666;
+    margin-top:4px;
 }
 
 
