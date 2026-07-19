@@ -21,6 +21,6 @@ export async function completeLesson(lesson) {
 
     alert("🎉 Lesson completed!");
 
-   window.location.href = "lesson2.html";
+   window.location.href = `lesson${lesson + 1}.html`;
 
 }
