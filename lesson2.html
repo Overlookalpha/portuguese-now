@@ -538,49 +538,22 @@ Quick Quiz
 
 </h2>
 
-<div class="course-card">
+<div id="quizContainer" class="course-card">
 
-<p>
+    <div id="quizQuestions"></div>
 
-Which letter combination sounds similar to the "sh" sound in English?
+    <br>
 
-</p>
+    <button
+        id="checkAnswerBtn"
+        class="hero-button"
+        onclick="checkLesson2Quiz()">
+        Check Answer
+    </button>
 
-<label>
+    <br><br>
 
-<input type="radio" name="quiz">
-
-NH
-
-</label>
-
-<br><br>
-
-<label>
-
-<input type="radio" name="quiz">
-
-CH
-
-</label>
-
-<br><br>
-
-<label>
-
-<input type="radio" name="quiz">
-
-LH
-
-</label>
-
-<br><br>
-
-<button class="hero-button" onclick="checkLesson2Quiz()">
-    Check Answer
-</button>
-
-</div>
+    <div id="quizResult"></div>
 
 </div>
 
