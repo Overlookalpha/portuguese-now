@@ -364,54 +364,27 @@ Read all greetings aloud and practice your pronunciation.
 <div class="container">
 
 <h2 class="section-title">
-
 Quick Quiz
-
 </h2>
 
-<div class="course-card">
+<div id="quizContainer" class="course-card">
 
-<p>
+    <div id="quizQuestions"></div>
 
-Which greeting is commonly used in the afternoon?
+    <br>
 
-</p>
+    <button
+        id="checkAnswerBtn"
+        class="hero-button"
+        onclick="checkLesson3Quiz()">
 
-<label>
+        Check Answer
 
-<input type="radio" name="quiz">
+    </button>
 
-Bom dia
+    <br><br>
 
-</label>
-
-<br><br>
-
-<label>
-
-<input type="radio" name="quiz">
-
-Boa tarde
-
-</label>
-
-<br><br>
-
-<label>
-
-<input type="radio" name="quiz">
-
-Boa noite
-
-</label>
-
-<br><br>
-
-<button class="hero-button">
-
-Check Answer
-
-</button>
+    <div id="quizResult"></div>
 
 </div>
 
