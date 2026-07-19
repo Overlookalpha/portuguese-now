@@ -18,15 +18,27 @@ const lessons = {
 
     lesson2: {
 
-        id: 2,
-        module: 1,
-        title: "Brazilian Pronunciation",
-        subtitle: "Learn the main sounds used in Brazilian Portuguese.",
-        duration: "20 min",
-        progress: 10,
-        next: "lesson3.html"
+    id: 2,
+    module: 1,
+    title: "Brazilian Pronunciation",
+    subtitle: "Learn the main sounds used in Brazilian Portuguese.",
+    duration: "20 min",
+    progress: 10,
+    next: "lesson3.html"
 
-    }
+},
+
+lesson3: {
+
+    id: 3,
+    module: 1,
+    title: "Greetings",
+    subtitle: "Learn the most common greetings used in Brazil.",
+    duration: "20 min",
+    progress: 15,
+    next: "lesson4.html"
+
+}
 
 };
 
@@ -319,6 +331,100 @@ options:[
 "Study once a month",
 "Only read"
 ],
+correct:0
+}
+
+];
+
+const lesson3Quiz = [
+
+{
+question:"How do you say 'Hello' in Portuguese?",
+options:["Olá","Tchau","Obrigado"],
+correct:0
+},
+
+{
+question:"Which greeting is commonly used with friends?",
+options:["Oi","Boa tarde","Boa noite"],
+correct:0
+},
+
+{
+question:"What does 'Bom dia' mean?",
+options:["Good evening","Good morning","Goodbye"],
+correct:1
+},
+
+{
+question:"When do you normally say 'Boa tarde'?",
+options:["Morning","Afternoon","Late night"],
+correct:1
+},
+
+{
+question:"When is 'Boa noite' used?",
+options:["Only in the morning","In the evening or before bed","Only at noon"],
+correct:1
+},
+
+{
+question:"How do you say 'Goodbye'?",
+options:["Até amanhã","Tchau","Olá"],
+correct:1
+},
+
+{
+question:"What does 'Até logo' mean?",
+options:["See you later","Good morning","Thank you"],
+correct:0
+},
+
+{
+question:"What does 'Até amanhã' mean?",
+options:["See you tomorrow","See you tonight","Good afternoon"],
+correct:0
+},
+
+{
+question:"Which greeting is suitable in almost every situation?",
+options:["Oi","Olá","Tchau"],
+correct:1
+},
+
+{
+question:"'Oi' is considered:",
+options:["Formal","Informal","Old-fashioned"],
+correct:1
+},
+
+{
+question:"Which greeting is used after lunch?",
+options:["Bom dia","Boa tarde","Boa noite"],
+correct:1
+},
+
+{
+question:"Brazilians are generally:",
+options:["Reserved","Friendly","Silent"],
+correct:1
+},
+
+{
+question:"What usually helps make a good first impression?",
+options:["Ignoring people","Using the correct greeting","Speaking loudly"],
+correct:1
+},
+
+{
+question:"How should you improve your greetings?",
+options:["Practice every day","Only study grammar","Never speak aloud"],
+correct:0
+},
+
+{
+question:"Greetings are important because:",
+options:["They start conversations","They replace grammar","They are optional"],
 correct:0
 }
 
@@ -640,3 +746,107 @@ async function finishLesson2() {
 }
 
 window.finishLesson2 = finishLesson2;
+
+// =======================================
+// Lesson 3 Quiz
+// =======================================
+
+let currentLesson3Question = 0;
+let lesson3Score = 0;
+
+function loadLesson3Quiz() {
+
+    const container = document.getElementById("quizQuestions");
+
+    if (!container) return;
+
+    const question = lesson3Quiz[currentLesson3Question];
+
+    let html = `
+        <h3>Question ${currentLesson3Question + 1} of ${lesson3Quiz.length}</h3>
+        <p>${question.question}</p>
+    `;
+
+    question.options.forEach((option, index) => {
+
+        html += `
+            <label>
+                <input type="radio" name="lesson3quiz" value="${index}">
+                ${option}
+            </label><br><br>
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+}
+
+function checkLesson3Quiz() {
+
+    const selected = document.querySelector('input[name="lesson3quiz"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (parseInt(selected.value) === lesson3Quiz[currentLesson3Question].correct) {
+        lesson3Score++;
+        document.getElementById("quizResult").innerHTML = "✅ Correct!";
+    } else {
+        document.getElementById("quizResult").innerHTML = "❌ Incorrect!";
+    }
+
+    setTimeout(() => {
+
+        currentLesson3Question++;
+
+        if (currentLesson3Question < lesson3Quiz.length) {
+
+            loadLesson3Quiz();
+            document.getElementById("quizResult").innerHTML = "";
+
+        } else {
+
+            document.getElementById("quizContainer").innerHTML = `
+                <h2>🎉 Lesson 3 Completed!</h2>
+
+                <p><strong>Correct:</strong> ${lesson3Score}</p>
+                <p><strong>Incorrect:</strong> ${lesson3Quiz.length - lesson3Score}</p>
+                <p><strong>Score:</strong> ${Math.round((lesson3Score / lesson3Quiz.length) * 100)}%</p>
+
+                <br>
+
+                <button class="hero-button" onclick="location.reload()">
+                    🔄 Retake Quiz
+                </button>
+
+                <br><br>
+
+                <button class="hero-button" onclick="finishLesson3()">
+                    ➜ Continue to Lesson 4
+                </button>
+            `;
+
+            document.getElementById("quizResult").innerHTML = "";
+
+            const btn = document.getElementById("checkAnswerBtn");
+            if (btn) btn.style.display = "none";
+        }
+
+    }, 1000);
+
+}
+
+window.checkLesson3Quiz = checkLesson3Quiz;
+
+async function finishLesson3() {
+
+    const { completeLesson } = await import("./progress.js");
+
+    await completeLesson(3);
+
+}
+
+window.finishLesson3 = finishLesson3;
