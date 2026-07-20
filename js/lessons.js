@@ -38,6 +38,18 @@ lesson3: {
     progress: 15,
     next: "lesson4.html"
 
+},
+
+lesson4: {
+
+    id: 4,
+    module: 1,
+    title: "Introducing Yourself",
+    subtitle: "Learn how to introduce yourself in Brazilian Portuguese.",
+    duration: "20 min",
+    progress: 20,
+    next: "lesson5.html"
+
 }
 
 };
@@ -429,6 +441,100 @@ correct:0
 }
 
 ];
+
+const lesson4Quiz = [
+
+{
+question:"How do you say 'My name is...' in Portuguese?",
+options:["Meu nome é...","Eu moro em...","Eu sou de..."],
+correct:0
+},
+
+{
+question:"How do you say 'I am...'?",
+options:["Eu sou...","Eu falo...","Eu moro..."],
+correct:0
+},
+
+{
+question:"How do you say 'I am from...'?",
+options:["Eu moro em...","Eu sou de...","Meu nome é..."],
+correct:1
+},
+
+{
+question:"How do you say 'I live in...'?",
+options:["Eu moro em...","Eu sou de...","Eu falo..."],
+correct:0
+},
+
+{
+question:"How do you say 'I speak English'?",
+options:["Eu falo inglês.","Eu moro em inglês.","Meu inglês é."],
+correct:0
+},
+
+{
+question:"How do you say 'I am learning Portuguese'?",
+options:["Estou aprendendo português.","Eu ensino português.","Eu gosto de português."],
+correct:0
+},
+
+{
+question:"How do you ask 'What is your name?'",
+options:["Qual é o seu nome?","Onde você mora?","Quantos anos você tem?"],
+correct:0
+},
+
+{
+question:"How do you ask 'Where are you from?'",
+options:["De onde você é?","Onde você mora?","Qual é o seu nome?"],
+correct:0
+},
+
+{
+question:"How do you ask 'Where do you live?'",
+options:["Onde você mora?","Como você está?","De onde você é?"],
+correct:0
+},
+
+{
+question:"How do you ask 'How old are you?'",
+options:["Quantos anos você tem?","Qual é o seu nome?","Você fala inglês?"],
+correct:0
+},
+
+{
+question:"Brazilians usually introduce themselves using:",
+options:["Their first name","Their last name only","A nickname only"],
+correct:0
+},
+
+{
+question:"Which sentence means 'I live in São Paulo'?",
+options:["Eu moro em São Paulo.","Eu sou de São Paulo.","Meu nome é São Paulo."],
+correct:0
+},
+
+{
+question:"Which sentence means 'I am from Brazil'?",
+options:["Eu sou do Brasil.","Eu moro no Brasil.","Eu falo Brasil."],
+correct:0
+},
+
+{
+question:"A good introduction should be:",
+options:["Polite and friendly","Very loud","Very fast"],
+correct:0
+},
+
+{
+question:"The best way to improve introductions is:",
+options:["Practice speaking every day","Only memorize grammar","Never speak aloud"],
+correct:0
+}
+
+];
 let currentChallenge = 0;
 
 
@@ -564,19 +670,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("quizContainer")) {
 
-        if (window.location.pathname.includes("lesson3")) {
+        if (window.location.pathname.includes("lesson4")) {
 
-            loadLesson3Quiz();
+    loadLesson4Quiz();
 
-        } else if (window.location.pathname.includes("lesson2")) {
+} else if (window.location.pathname.includes("lesson3")) {
 
-            loadLesson2Quiz();
+    loadLesson3Quiz();
 
-        } else {
+} else if (window.location.pathname.includes("lesson2")) {
 
-            loadQuiz();
+    loadLesson2Quiz();
 
-        }
+} else {
+
+    loadQuiz();
+
+}
 
     }
 
@@ -867,3 +977,112 @@ async function finishLesson3() {
 }
 
 window.finishLesson3 = finishLesson3;
+
+// =======================================
+// Lesson 4 Quiz
+// =======================================
+
+let currentLesson4Question = 0;
+let lesson4Score = 0;
+
+function loadLesson4Quiz() {
+
+    const container = document.getElementById("quizQuestions");
+
+    if (!container) return;
+
+    const question = lesson4Quiz[currentLesson4Question];
+
+    let html = `
+        <h3>Question ${currentLesson4Question + 1} of ${lesson4Quiz.length}</h3>
+        <p>${question.question}</p>
+    `;
+
+    question.options.forEach((option, index) => {
+
+        html += `
+            <label>
+                <input type="radio" name="lesson4quiz" value="${index}">
+                ${option}
+            </label><br><br>
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+}
+
+function checkLesson4Quiz() {
+
+    const selected = document.querySelector('input[name="lesson4quiz"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (parseInt(selected.value) === lesson4Quiz[currentLesson4Question].correct) {
+        lesson4Score++;
+        document.getElementById("quizResult").innerHTML = "✅ Correct!";
+    } else {
+        document.getElementById("quizResult").innerHTML = "❌ Incorrect!";
+    }
+
+    setTimeout(() => {
+
+        currentLesson4Question++;
+
+        if (currentLesson4Question < lesson4Quiz.length) {
+
+            loadLesson4Quiz();
+            document.getElementById("quizResult").innerHTML = "";
+
+        } else {
+
+            document.getElementById("quizContainer").innerHTML = `
+                <h2>🎉 Lesson 4 Completed!</h2>
+
+                <p><strong>Correct:</strong> ${lesson4Score}</p>
+                <p><strong>Incorrect:</strong> ${lesson4Quiz.length - lesson4Score}</p>
+                <p><strong>Score:</strong> ${Math.round((lesson4Score / lesson4Quiz.length) * 100)}%</p>
+
+                <br>
+
+                <button class="hero-button" onclick="location.reload()">
+                    🔄 Retake Quiz
+                </button>
+
+                <br><br>
+
+                <button class="hero-button" onclick="finishLesson4()">
+                    ➜ Continue to Lesson 5
+                </button>
+            `;
+
+            const result = document.getElementById("quizResult");
+            if (result) {
+                result.innerHTML = "";
+            }
+
+            const btn = document.getElementById("checkAnswerBtn");
+            if (btn) {
+                btn.style.display = "none";
+            }
+        }
+
+    }, 1000);
+
+}
+
+window.checkLesson4Quiz = checkLesson4Quiz;
+
+async function finishLesson4() {
+
+    const { completeLesson } = await import("./progress.js");
+
+    await completeLesson(4);
+
+}
+
+window.finishLesson4 = finishLesson4;
