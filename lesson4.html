@@ -372,60 +372,32 @@ Onde você mora?
 
 <h2 class="section-title">
 
-Quick Quiz
+📝 Final Quiz
 
 </h2>
 
-<div class="course-card">
+<div class="course-card" id="quizContainer">
 
-<p>
+<div id="quizQuestions"></div>
 
-How do you say "My name is..." in Portuguese?
+<br>
 
-</p>
-
-<label>
-
-<input type="radio" name="quiz">
-
-Eu moro em...
-
-</label>
-
-<br><br>
-
-<label>
-
-<input type="radio" name="quiz">
-
-Meu nome é...
-
-</label>
-
-<br><br>
-
-<label>
-
-<input type="radio" name="quiz">
-
-Eu sou de...
-
-</label>
-
-<br><br>
-
-<button class="hero-button">
+<button
+id="checkAnswerBtn"
+class="hero-button"
+onclick="checkLesson4Quiz()">
 
 Check Answer
 
 </button>
+
+<p id="quizResult"></p>
 
 </div>
 
 </div>
 
 </section>
-
 <section class="section light">
 
 <div class="container">
