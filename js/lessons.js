@@ -807,49 +807,49 @@ correct:0
 },
 
 {
-question:"How do you say Tuesday?",
+question:"How do you say Tuesday in Portuguese?",
 options:["Terça-feira","Quarta-feira","Quinta-feira"],
 correct:0
 },
 
 {
-question:"How do you say Friday?",
+question:"How do you say Friday in Portuguese?",
 options:["Quinta-feira","Sexta-feira","Sábado"],
 correct:1
 },
 
 {
-question:"How do you say Sunday?",
+question:"How do you say Sunday in Portuguese?",
 options:["Domingo","Sábado","Segunda-feira"],
 correct:0
 },
 
 {
-question:"Which month is 'Janeiro'?",
-options:["January","June","July"],
+question:"How do you say January in Portuguese?",
+options:["Janeiro","Junho","Julho"],
 correct:0
 },
 
 {
-question:"Which month is 'Março'?",
-options:["March","May","April"],
+question:"How do you say March in Portuguese?",
+options:["Março","Maio","Abril"],
 correct:0
 },
 
 {
-question:"Which month is 'Julho'?",
-options:["June","July","August"],
+question:"How do you say July in Portuguese?",
+options:["Junho","Julho","Agosto"],
 correct:1
 },
 
 {
-question:"Which month is 'Dezembro'?",
-options:["November","December","October"],
+question:"How do you say December in Portuguese?",
+options:["Novembro","Dezembro","Outubro"],
 correct:1
 },
 
 {
-question:"How do you say 'Today is Monday'?",
+question:"How do you say 'Today is Monday' in Portuguese?",
 options:[
 "Hoje é segunda-feira.",
 "Hoje é domingo.",
@@ -859,7 +859,7 @@ correct:0
 },
 
 {
-question:"How do you say 'My birthday is in February'?",
+question:"How do you say 'My birthday is in February' in Portuguese?",
 options:[
 "Meu aniversário é em fevereiro.",
 "Meu aniversário é em março.",
@@ -869,37 +869,7 @@ correct:0
 },
 
 {
-question:"In Portuguese, days of the week are usually written with:",
-options:[
-"Capital letters",
-"Lowercase letters",
-"Only abbreviations"
-],
-correct:1
-},
-
-{
-question:"What comes after Wednesday?",
-options:[
-"Tuesday",
-"Thursday",
-"Friday"
-],
-correct:1
-},
-
-{
-question:"What comes before Sunday?",
-options:[
-"Friday",
-"Saturday",
-"Monday"
-],
-correct:1
-},
-
-{
-question:"How do you say August?",
+question:"How do you say August in Portuguese?",
 options:[
 "Agosto",
 "Abril",
@@ -909,11 +879,41 @@ correct:0
 },
 
 {
-question:"How do you say October?",
+question:"How do you say October in Portuguese?",
 options:[
 "Outubro",
 "Novembro",
 "Setembro"
+],
+correct:0
+},
+
+{
+question:"How do you say Wednesday in Portuguese?",
+options:[
+"Quarta-feira",
+"Quinta-feira",
+"Terça-feira"
+],
+correct:0
+},
+
+{
+question:"How do you say Saturday in Portuguese?",
+options:[
+"Sábado",
+"Domingo",
+"Sexta-feira"
+],
+correct:0
+},
+
+{
+question:"How do you say November in Portuguese?",
+options:[
+"Novembro",
+"Dezembro",
+"Outubro"
 ],
 correct:0
 }
