@@ -95,13 +95,12 @@ lesson8: {
 lesson9: {
     id: 9,
     module: 1,
-    title: "Family",
-    subtitle: "Learn family members and relationships.",
+    title: "Food & Drinks",
+    subtitle: "Learn common food and drink vocabulary.",
     duration: "20 min",
     progress: 45,
     next: "lesson10.html"
 },
-
 lesson10: {
     id: 10,
     module: 1,
@@ -1037,6 +1036,140 @@ correct:0
 }
 
 ];
+
+// =======================================
+// Lesson 8 Quiz
+// =======================================
+
+const lesson8Quiz = [
+
+{
+question:"How do you say 'Father' in Portuguese?",
+options:["Pai","Mãe","Filho"],
+correct:0
+},
+
+{
+question:"How do you say 'Mother'?",
+options:["Pai","Mãe","Irmã"],
+correct:1
+},
+
+{
+question:"How do you say 'Brother'?",
+options:["Primo","Irmão","Tio"],
+correct:1
+},
+
+{
+question:"How do you say 'Sister'?",
+options:["Irmã","Filha","Avó"],
+correct:0
+},
+
+{
+question:"How do you say 'Grandmother'?",
+options:["Avó","Tia","Prima"],
+correct:0
+},
+
+{
+question:"How do you say 'Grandfather'?",
+options:["Pai","Avô","Filho"],
+correct:1
+},
+
+{
+question:"What does 'Minha mãe' mean?",
+options:[
+"My mother",
+"My father",
+"My sister"
+],
+correct:0
+},
+
+{
+question:"What does 'Meu pai' mean?",
+options:[
+"My father",
+"My uncle",
+"My brother"
+],
+correct:0
+},
+
+{
+question:"Which sentence means 'I have one brother'?",
+options:[
+"Eu tenho um irmão.",
+"Eu tenho uma irmã.",
+"Meu irmão é alto."
+],
+correct:0
+},
+
+{
+question:"How do you say 'Family'?",
+options:[
+"Família",
+"Casa",
+"Parente"
+],
+correct:0
+},
+
+{
+question:"How do you say 'Uncle'?",
+options:[
+"Tio",
+"Tia",
+"Primo"
+],
+correct:0
+},
+
+{
+question:"How do you say 'Aunt'?",
+options:[
+"Tia",
+"Tio",
+"Avó"
+],
+correct:0
+},
+
+{
+question:"Which possessive is used with 'mãe'?",
+options:[
+"Meu",
+"Minha",
+"Meus"
+],
+correct:1
+},
+
+{
+question:"Which possessive is used with 'pai'?",
+options:[
+"Minha",
+"Meu",
+"Minhas"
+],
+correct:1
+},
+
+{
+question:"Which sentence is correct?",
+options:[
+"Minha família é grande.",
+"Meu família é grande.",
+"Minha família são grande."
+],
+correct:0
+}
+
+];
 let currentChallenge = 0;
 
 
@@ -1172,12 +1305,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("quizContainer")) {
 
-       if (window.location.pathname.includes("lesson7")) {
+       if (window.location.pathname.includes("lesson8")) {
+
+    loadLesson8Quiz();
+
+} else if (window.location.pathname.includes("lesson7")) {
 
     loadLesson7Quiz();
 
 } else if (window.location.pathname.includes("lesson6")) {
-
     loadLesson6Quiz();
 
 } else if (window.location.pathname.includes("lesson5")) {
@@ -1941,3 +2077,115 @@ async function finishLesson7() {
 }
 
 window.finishLesson7 = finishLesson7;
+
+// =======================================
+// Lesson 8 Quiz
+// =======================================
+
+let currentLesson8Question = 0;
+let lesson8Score = 0;
+
+function loadLesson8Quiz() {
+
+    const container = document.getElementById("quizQuestions");
+
+    if (!container) return;
+
+    const question = lesson8Quiz[currentLesson8Question];
+
+    let html = `
+        <h3>Question ${currentLesson8Question + 1} of ${lesson8Quiz.length}</h3>
+        <p>${question.question}</p>
+    `;
+
+    question.options.forEach((option, index) => {
+
+        html += `
+            <label>
+                <input type="radio" name="lesson8quiz" value="${index}">
+                ${option}
+            </label><br><br>
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+}
+
+function checkLesson8Quiz() {
+
+    const selected = document.querySelector('input[name="lesson8quiz"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (parseInt(selected.value) === lesson8Quiz[currentLesson8Question].correct) {
+
+        lesson8Score++;
+        document.getElementById("quizResult").innerHTML = "✅ Correct!";
+
+    } else {
+
+        document.getElementById("quizResult").innerHTML = "❌ Incorrect!";
+
+    }
+
+    setTimeout(() => {
+
+        currentLesson8Question++;
+
+        if (currentLesson8Question < lesson8Quiz.length) {
+
+            loadLesson8Quiz();
+            document.getElementById("quizResult").innerHTML = "";
+
+        } else {
+
+            document.getElementById("quizContainer").innerHTML = `
+                <h2>🎉 Lesson 8 Completed!</h2>
+
+                <p><strong>Correct:</strong> ${lesson8Score}</p>
+                <p><strong>Incorrect:</strong> ${lesson8Quiz.length - lesson8Score}</p>
+                <p><strong>Score:</strong> ${Math.round((lesson8Score / lesson8Quiz.length) * 100)}%</p>
+
+                <br>
+
+                <button class="hero-button" onclick="location.reload()">
+                    🔄 Retake Quiz
+                </button>
+
+                <br><br>
+
+                <button class="hero-button" onclick="finishLesson8()">
+                    ➜ Continue to Lesson 9
+                </button>
+            `;
+
+            const result = document.getElementById("quizResult");
+            if (result) result.innerHTML = "";
+
+            const btn = document.getElementById("checkAnswerBtn");
+            if (btn) btn.style.display = "none";
+
+        }
+
+    }, 1000);
+
+}
+
+window.checkLesson8Quiz = checkLesson8Quiz;
+
+async function finishLesson8() {
+
+    const { completeLesson } = await import("./progress.js");
+
+    await completeLesson(8);
+
+    window.location.href = "lesson9.html";
+
+}
+
+window.finishLesson8 = finishLesson8;
