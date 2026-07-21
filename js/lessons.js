@@ -1593,108 +1593,108 @@ window.finishLesson5 = finishLesson5;
 // Lesson 6 Quiz
 // =======================================
 
+let currentLesson6Question = 0;
+let lesson6Score = 0;
+
 function loadLesson6Quiz() {
 
     const container = document.getElementById("quizQuestions");
 
     if (!container) return;
 
-    container.innerHTML = "";
+    const question = lesson6Quiz[currentLesson6Question];
 
-    lesson6Quiz.forEach((q, index) => {
+    let html = `
+        <h3>Question ${currentLesson6Question + 1} of ${lesson6Quiz.length}</h3>
+        <p>${question.question}</p>
+    `;
 
-        let html = `
-            <div class="quiz-question">
+    question.options.forEach((option, index) => {
 
-                <h3>${index + 1}. ${q.question}</h3>
+        html += `
+            <label>
+                <input type="radio" name="lesson6quiz" value="${index}">
+                ${option}
+            </label><br><br>
         `;
 
-        q.options.forEach((option, i) => {
+    });
 
-            html += `
-                <label>
+    container.innerHTML = html;
 
-                    <input
-                        type="radio"
-                        name="q${index}"
-                        value="${i}">
+}
 
-                    ${option}
+function checkLesson6Quiz() {
 
-                </label><br>
+    const selected = document.querySelector('input[name="lesson6quiz"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (parseInt(selected.value) === lesson6Quiz[currentLesson6Question].correct) {
+
+        lesson6Score++;
+        document.getElementById("quizResult").innerHTML = "✅ Correct!";
+
+    } else {
+
+        document.getElementById("quizResult").innerHTML = "❌ Incorrect!";
+
+    }
+
+    setTimeout(() => {
+
+        currentLesson6Question++;
+
+        if (currentLesson6Question < lesson6Quiz.length) {
+
+            loadLesson6Quiz();
+            document.getElementById("quizResult").innerHTML = "";
+
+        } else {
+
+            document.getElementById("quizContainer").innerHTML = `
+                <h2>🎉 Lesson 6 Completed!</h2>
+
+                <p><strong>Correct:</strong> ${lesson6Score}</p>
+                <p><strong>Incorrect:</strong> ${lesson6Quiz.length - lesson6Score}</p>
+                <p><strong>Score:</strong> ${Math.round((lesson6Score / lesson6Quiz.length) * 100)}%</p>
+
+                <br>
+
+                <button class="hero-button" onclick="location.reload()">
+                    🔄 Retake Quiz
+                </button>
+
+                <br><br>
+
+                <button class="hero-button" onclick="finishLesson6()">
+                    ➜ Continue to Lesson 7
+                </button>
             `;
 
-        });
+            const result = document.getElementById("quizResult");
+            if (result) {
+                result.innerHTML = "";
+            }
 
-        html += `<br></div>`;
-
-        container.innerHTML += html;
-
-    });
-
-}
-
-async function checkLesson6Quiz() {
-
-    let correct = 0;
-
-    lesson6Quiz.forEach((q, index) => {
-
-        const answer = document.querySelector(
-            `input[name="q${index}"]:checked`
-        );
-
-        if (answer && Number(answer.value) === q.correct) {
-            correct++;
+            const btn = document.getElementById("checkAnswerBtn");
+            if (btn) {
+                btn.style.display = "none";
+            }
         }
 
-    });
-
-    const wrong = lesson6Quiz.length - correct;
-    const score = Math.round((correct / lesson6Quiz.length) * 100);
-
-    const result = document.getElementById("quizResult");
-
-    result.innerHTML = `
-
-<h2>🎉 Lesson 6 Completed!</h2>
-
-<p><strong>Correct:</strong> ${correct}</p>
-
-<p><strong>Incorrect:</strong> ${wrong}</p>
-
-<p><strong>Score:</strong> ${score}%</p>
-
-<button
-class="hero-button"
-onclick="location.reload()">
-
-Retake Quiz
-
-</button>
-
-<br><br>
-
-<button
-class="hero-button"
-onclick="finishLesson6()">
-
-Continue to Lesson 7 →
-
-</button>
-
-`;
+    }, 1000);
 
 }
 
-// =======================================
-// Finish Lesson 6
-// =======================================
+window.checkLesson6Quiz = checkLesson6Quiz;
 
 async function finishLesson6() {
 
-    const { completeLesson } =
-        await import("./progress.js");
+    const { completeLesson } = await import("./progress.js");
 
     await completeLesson(6);
 
