@@ -50,7 +50,7 @@ lesson4: {
     progress: 20,
     next: "lesson5.html"
 
-}
+},
 
 lesson5: {
     id: 5,
