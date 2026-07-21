@@ -1453,6 +1453,8 @@ async function finishLesson5() {
 
     await completeLesson(5);
 
+    window.location.href = "lesson6.html";
+
 }
 
 window.finishLesson5 = finishLesson5;
