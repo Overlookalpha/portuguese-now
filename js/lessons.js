@@ -75,8 +75,8 @@ lesson6: {
 lesson7: {
     id: 7,
     module: 1,
-    title: "colors",
-    subtitle: "Learn months, dates and birthdays.",
+    title: "Colors",
+    subtitle: "Learn the most common colors in Brazilian Portuguese.",
     duration: "20 min",
     progress: 35,
     next: "lesson8.html"
@@ -85,8 +85,8 @@ lesson7: {
 lesson8: {
     id: 8,
     module: 1,
-    title: "family",
-    subtitle: "Learn the most common colors in Brazilian Portuguese.",
+    title: "Family",
+    subtitle: "Learn family members and relationships.",
     duration: "20 min",
     progress: 40,
     next: "lesson9.html"
@@ -919,6 +919,124 @@ correct:0
 }
 
 ];
+
+// =======================================
+// Lesson 7 Quiz
+// =======================================
+
+const lesson7Quiz = [
+
+{
+question:"How do you say 'Red' in Portuguese?",
+options:["Azul","Vermelho","Verde"],
+correct:1
+},
+
+{
+question:"How do you say 'Blue'?",
+options:["Azul","Roxo","Cinza"],
+correct:0
+},
+
+{
+question:"How do you say 'Green'?",
+options:["Verde","Amarelo","Branco"],
+correct:0
+},
+
+{
+question:"How do you say 'Yellow'?",
+options:["Laranja","Amarelo","Roxo"],
+correct:1
+},
+
+{
+question:"How do you say 'Black'?",
+options:["Preto","Branco","Cinza"],
+correct:0
+},
+
+{
+question:"How do you say 'White'?",
+options:["Cinza","Branco","Rosa"],
+correct:1
+},
+
+{
+question:"How do you say 'Pink'?",
+options:["Rosa","Marrom","Azul"],
+correct:0
+},
+
+{
+question:"How do you say 'Brown'?",
+options:["Marrom","Verde","Preto"],
+correct:0
+},
+
+{
+question:"How do you say 'Orange'?",
+options:["Laranja","Roxo","Cinza"],
+correct:0
+},
+
+{
+question:"How do you say 'Purple'?",
+options:["Roxo","Azul","Preto"],
+correct:0
+},
+
+{
+question:"What color is the sky?",
+options:[
+"O céu é azul.",
+"O céu é verde.",
+"O céu é preto."
+],
+correct:0
+},
+
+{
+question:"What color is the grass?",
+options:[
+"A grama é verde.",
+"A grama é azul.",
+"A grama é branca."
+],
+correct:0
+},
+
+{
+question:"What color is a banana?",
+options:[
+"Amarela",
+"Preta",
+"Roxa"
+],
+correct:0
+},
+
+{
+question:"Which sentence is correct?",
+options:[
+"Meu carro é preto.",
+"Meu carro é verdeu.",
+"Meu carro é azulado."
+],
+correct:0
+},
+
+{
+question:"Which color appears on the Brazilian flag?",
+options:[
+"Verde",
+"Roxo",
+"Rosa"
+],
+correct:0
+}
+
+];
 let currentChallenge = 0;
 
 
@@ -1054,7 +1172,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("quizContainer")) {
 
-       if (window.location.pathname.includes("lesson6")) {
+       if (window.location.pathname.includes("lesson7")) {
+
+    loadLesson7Quiz();
+
+} else if (window.location.pathname.includes("lesson6")) {
 
     loadLesson6Quiz();
 
@@ -1703,3 +1825,119 @@ async function finishLesson6() {
 }
 
 window.finishLesson6 = finishLesson6;
+
+// =======================================
+// Lesson 7 Quiz
+// =======================================
+
+let currentLesson7Question = 0;
+let lesson7Score = 0;
+
+function loadLesson7Quiz() {
+
+    const container = document.getElementById("quizQuestions");
+
+    if (!container) return;
+
+    const question = lesson7Quiz[currentLesson7Question];
+
+    let html = `
+        <h3>Question ${currentLesson7Question + 1} of ${lesson7Quiz.length}</h3>
+        <p>${question.question}</p>
+    `;
+
+    question.options.forEach((option, index) => {
+
+        html += `
+            <label>
+                <input type="radio" name="lesson7quiz" value="${index}">
+                ${option}
+            </label><br><br>
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+}
+
+function checkLesson7Quiz() {
+
+    const selected = document.querySelector('input[name="lesson7quiz"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (parseInt(selected.value) === lesson7Quiz[currentLesson7Question].correct) {
+
+        lesson7Score++;
+        document.getElementById("quizResult").innerHTML = "✅ Correct!";
+
+    } else {
+
+        document.getElementById("quizResult").innerHTML = "❌ Incorrect!";
+
+    }
+
+    setTimeout(() => {
+
+        currentLesson7Question++;
+
+        if (currentLesson7Question < lesson7Quiz.length) {
+
+            loadLesson7Quiz();
+            document.getElementById("quizResult").innerHTML = "";
+
+        } else {
+
+            document.getElementById("quizContainer").innerHTML = `
+                <h2>🎉 Lesson 7 Completed!</h2>
+
+                <p><strong>Correct:</strong> ${lesson7Score}</p>
+                <p><strong>Incorrect:</strong> ${lesson7Quiz.length - lesson7Score}</p>
+                <p><strong>Score:</strong> ${Math.round((lesson7Score / lesson7Quiz.length) * 100)}%</p>
+
+                <br>
+
+                <button class="hero-button" onclick="location.reload()">
+                    🔄 Retake Quiz
+                </button>
+
+                <br><br>
+
+                <button class="hero-button" onclick="finishLesson7()">
+                    ➜ Continue to Lesson 8
+                </button>
+            `;
+
+            const result = document.getElementById("quizResult");
+            if (result) {
+                result.innerHTML = "";
+            }
+
+            const btn = document.getElementById("checkAnswerBtn");
+            if (btn) {
+                btn.style.display = "none";
+            }
+
+        }
+
+    }, 1000);
+
+}
+
+window.checkLesson7Quiz = checkLesson7Quiz;
+
+async function finishLesson7() {
+
+    const { completeLesson } = await import("./progress.js");
+
+    await completeLesson(7);
+
+    window.location.href = "lesson8.html";
+
+}
+
+window.finishLesson7 = finishLesson7;
