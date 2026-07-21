@@ -1170,6 +1170,136 @@ correct:0
 }
 
 ];
+
+// =======================================
+// Lesson 9 Quiz
+// =======================================
+
+const lesson9Quiz = [
+
+{
+question:"How do you say 'Water' in Portuguese?",
+options:["Água","Leite","Suco"],
+correct:0
+},
+
+{
+question:"How do you say 'Coffee'?",
+options:["Café","Chá","Suco"],
+correct:0
+},
+
+{
+question:"How do you say 'Bread'?",
+options:["Pão","Bolo","Queijo"],
+correct:0
+},
+
+{
+question:"How do you say 'Rice'?",
+options:["Arroz","Feijão","Carne"],
+correct:0
+},
+
+{
+question:"How do you say 'Beans'?",
+options:["Frango","Feijão","Peixe"],
+correct:1
+},
+
+{
+question:"How do you say 'Chicken'?",
+options:["Carne","Frango","Peixe"],
+correct:1
+},
+
+{
+question:"How do you say 'Fruit'?",
+options:["Fruta","Legume","Salada"],
+correct:0
+},
+
+{
+question:"What does 'Eu gosto de café.' mean?",
+options:[
+"I like coffee.",
+"I want coffee.",
+"I drink coffee."
+],
+correct:0
+},
+
+{
+question:"What does 'Eu quero água.' mean?",
+options:[
+"I want water.",
+"I like water.",
+"I have water."
+],
+correct:0
+},
+
+{
+question:"How do you say 'Juice'?",
+options:[
+"Suco",
+"Leite",
+"Café"
+],
+correct:0
+},
+
+{
+question:"How do you say 'Milk'?",
+options:[
+"Leite",
+"Água",
+"Bebida"
+],
+correct:0
+},
+
+{
+question:"Which sentence is correct?",
+options:[
+"Eu gosto de arroz.",
+"Eu gosto arroz.",
+"Eu gosto no arroz."
+],
+correct:0
+},
+
+{
+question:"Which food is traditional in Brazil?",
+options:[
+"Arroz e feijão",
+"Pizza",
+"Sushi"
+],
+correct:0
+},
+
+{
+question:"How do you say 'Cake'?",
+options:[
+"Bolo",
+"Pão",
+"Doce"
+],
+correct:0
+},
+
+{
+question:"How do you say 'Ice cream'?",
+options:[
+"Sorvete",
+"Bolo",
+"Fruta"
+],
+correct:0
+}
+
+];
 let currentChallenge = 0;
 
 
@@ -1305,7 +1435,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("quizContainer")) {
 
-       if (window.location.pathname.includes("lesson8")) {
+       if (window.location.pathname.includes("lesson9")) {
+
+    loadLesson9Quiz();
+
+} else if (window.location.pathname.includes("lesson8")) {
 
     loadLesson8Quiz();
 
@@ -2189,3 +2323,119 @@ async function finishLesson8() {
 }
 
 window.finishLesson8 = finishLesson8;
+
+// =======================================
+// Lesson 9 Quiz
+// =======================================
+
+let currentLesson9Question = 0;
+let lesson9Score = 0;
+
+function loadLesson9Quiz() {
+
+    const container = document.getElementById("quizQuestions");
+
+    if (!container) return;
+
+    const question = lesson9Quiz[currentLesson9Question];
+
+    let html = `
+        <h3>Question ${currentLesson9Question + 1} of ${lesson9Quiz.length}</h3>
+        <p>${question.question}</p>
+    `;
+
+    question.options.forEach((option, index) => {
+
+        html += `
+            <label>
+                <input type="radio" name="lesson9quiz" value="${index}">
+                ${option}
+            </label><br><br>
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+}
+
+function checkLesson9Quiz() {
+
+    const selected = document.querySelector('input[name="lesson9quiz"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (parseInt(selected.value) === lesson9Quiz[currentLesson9Question].correct) {
+
+        lesson9Score++;
+        document.getElementById("quizResult").innerHTML = "✅ Correct!";
+
+    } else {
+
+        document.getElementById("quizResult").innerHTML = "❌ Incorrect!";
+
+    }
+
+    setTimeout(() => {
+
+        currentLesson9Question++;
+
+        if (currentLesson9Question < lesson9Quiz.length) {
+
+            loadLesson9Quiz();
+            document.getElementById("quizResult").innerHTML = "";
+
+        } else {
+
+            document.getElementById("quizContainer").innerHTML = `
+                <h2>🎉 Lesson 9 Completed!</h2>
+
+                <p><strong>Correct:</strong> ${lesson9Score}</p>
+                <p><strong>Incorrect:</strong> ${lesson9Quiz.length - lesson9Score}</p>
+                <p><strong>Score:</strong> ${Math.round((lesson9Score / lesson9Quiz.length) * 100)}%</p>
+
+                <br>
+
+                <button class="hero-button" onclick="location.reload()">
+                    🔄 Retake Quiz
+                </button>
+
+                <br><br>
+
+                <button class="hero-button" onclick="finishLesson9()">
+                    ➜ Continue to Lesson 10
+                </button>
+            `;
+
+            const result = document.getElementById("quizResult");
+            if (result) {
+                result.innerHTML = "";
+            }
+
+            const btn = document.getElementById("checkAnswerBtn");
+            if (btn) {
+                btn.style.display = "none";
+            }
+
+        }
+
+    }, 1000);
+
+}
+
+window.checkLesson9Quiz = checkLesson9Quiz;
+
+async function finishLesson9() {
+
+    const { completeLesson } = await import("./progress.js");
+
+    await completeLesson(9);
+
+    window.location.href = "lesson10.html";
+
+}
+
+window.finishLesson9 = finishLesson9;
