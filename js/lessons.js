@@ -1454,6 +1454,156 @@ correct:0
 }
 
 ];
+
+// =======================================
+// Lesson 11 Quiz
+// =======================================
+
+const lesson11Quiz = [
+
+{
+question:"How do you say 'Store' in Portuguese?",
+options:["Loja","Casa","Escola"],
+correct:0
+},
+
+{
+question:"What does 'Preço' mean?",
+options:["Bag","Price","Receipt"],
+correct:1
+},
+
+{
+question:"How do you ask 'How much does it cost?'",
+options:[
+"Quanto custa?",
+"Como vai?",
+"Onde fica?"
+],
+correct:0
+},
+
+{
+question:"What does 'Caro' mean?",
+options:[
+"Cheap",
+"Expensive",
+"Large"
+],
+correct:1
+},
+
+{
+question:"What does 'Barato' mean?",
+options:[
+"Cheap",
+"Expensive",
+"Heavy"
+],
+correct:0
+},
+
+{
+question:"How do you ask for a discount?",
+options:[
+"Tem desconto?",
+"Tem café?",
+"Tem água?"
+],
+correct:0
+},
+
+{
+question:"What does 'Eu vou levar.' mean?",
+options:[
+"I'll take it.",
+"I'll come back.",
+"I don't want it."
+],
+correct:0
+},
+
+{
+question:"How do you say 'Credit card'?",
+options:[
+"Cartão de crédito",
+"Dinheiro",
+"Recibo"
+],
+correct:0
+},
+
+{
+question:"What does 'Recibo' mean?",
+options:[
+"Receipt",
+"Bag",
+"Store"
+],
+correct:0
+},
+
+{
+question:"How do you say 'Bag'?",
+options:[
+"Sacola",
+"Mesa",
+"Conta"
+],
+correct:0
+},
+
+{
+question:"What is the Portuguese word for 'Size'?",
+options:[
+"Tamanho",
+"Preço",
+"Caro"
+],
+correct:0
+},
+
+{
+question:"What payment method is 'Dinheiro em espécie'?",
+options:[
+"Cash",
+"Pix",
+"Credit card"
+],
+correct:0
+},
+
+{
+question:"In Brazil, shopping malls are commonly called:",
+options:[
+"Shopping",
+"Mercado",
+"Centro"
+],
+correct:0
+},
+
+{
+question:"Which sentence is correct?",
+options:[
+"Posso pagar com cartão?",
+"Posso cartão pagar?",
+"Cartão posso com pagar?"
+],
+correct:0
+},
+
+{
+question:"Which expression is the most polite when buying something?",
+options:[
+"Eu vou levar.",
+"Me dá isso.",
+"Quero agora."
+],
+correct:0
+}
+
+];
 let currentChallenge = 0;
 
 
@@ -1589,7 +1739,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("quizContainer")) {
 
-       if (window.location.pathname.includes("lesson10")) {
+       if (window.location.pathname.includes("lesson11")) {
+
+    loadLesson11Quiz();
+
+} else if (window.location.pathname.includes("lesson10")) {
 
     loadLesson10Quiz();
 
@@ -2713,3 +2867,119 @@ async function finishLesson10() {
 }
 
 window.finishLesson10 = finishLesson10;
+
+// =======================================
+// Lesson 11 Quiz
+// =======================================
+
+let currentLesson11Question = 0;
+let lesson11Score = 0;
+
+function loadLesson11Quiz() {
+
+    const container = document.getElementById("quizQuestions");
+
+    if (!container) return;
+
+    const question = lesson11Quiz[currentLesson11Question];
+
+    let html = `
+        <h3>Question ${currentLesson11Question + 1} of ${lesson11Quiz.length}</h3>
+        <p>${question.question}</p>
+    `;
+
+    question.options.forEach((option, index) => {
+
+        html += `
+            <label>
+                <input type="radio" name="lesson11quiz" value="${index}">
+                ${option}
+            </label><br><br>
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+}
+
+function checkLesson11Quiz() {
+
+    const selected = document.querySelector('input[name="lesson11quiz"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (parseInt(selected.value) === lesson11Quiz[currentLesson11Question].correct) {
+
+        lesson11Score++;
+        document.getElementById("quizResult").innerHTML = "✅ Correct!";
+
+    } else {
+
+        document.getElementById("quizResult").innerHTML = "❌ Incorrect!";
+
+    }
+
+    setTimeout(() => {
+
+        currentLesson11Question++;
+
+        if (currentLesson11Question < lesson11Quiz.length) {
+
+            loadLesson11Quiz();
+            document.getElementById("quizResult").innerHTML = "";
+
+        } else {
+
+            document.getElementById("quizContainer").innerHTML = `
+                <h2>🎉 Lesson 11 Completed!</h2>
+
+                <p><strong>Correct:</strong> ${lesson11Score}</p>
+                <p><strong>Incorrect:</strong> ${lesson11Quiz.length - lesson11Score}</p>
+                <p><strong>Score:</strong> ${Math.round((lesson11Score / lesson11Quiz.length) * 100)}%</p>
+
+                <br>
+
+                <button class="hero-button" onclick="location.reload()">
+                    🔄 Retake Quiz
+                </button>
+
+                <br><br>
+
+                <button class="hero-button" onclick="finishLesson11()">
+                    ➜ Continue to Lesson 12
+                </button>
+            `;
+
+            const result = document.getElementById("quizResult");
+            if (result) {
+                result.innerHTML = "";
+            }
+
+            const btn = document.getElementById("checkAnswerBtn");
+            if (btn) {
+                btn.style.display = "none";
+            }
+
+        }
+
+    }, 1000);
+
+}
+
+window.checkLesson11Quiz = checkLesson11Quiz;
+
+async function finishLesson11() {
+
+    const { completeLesson } = await import("./progress.js");
+
+    await completeLesson(11);
+
+    window.location.href = "lesson12.html";
+
+}
+
+window.finishLesson11 = finishLesson11;
