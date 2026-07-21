@@ -52,6 +52,166 @@ lesson4: {
 
 }
 
+lesson5: {
+    id: 5,
+    module: 1,
+    title: "Numbers",
+    subtitle: "Learn numbers from 0 to 20 in Brazilian Portuguese.",
+    duration: "20 min",
+    progress: 25,
+    next: "lesson6.html"
+},
+
+lesson6: {
+    id: 6,
+    module: 1,
+    title: "Days of the Week",
+    subtitle: "Learn the days of the week in Brazilian Portuguese.",
+    duration: "20 min",
+    progress: 30,
+    next: "lesson7.html"
+},
+
+lesson7: {
+    id: 7,
+    module: 1,
+    title: "Months and Dates",
+    subtitle: "Learn months, dates and birthdays.",
+    duration: "20 min",
+    progress: 35,
+    next: "lesson8.html"
+},
+
+lesson8: {
+    id: 8,
+    module: 1,
+    title: "Colors",
+    subtitle: "Learn the most common colors in Brazilian Portuguese.",
+    duration: "20 min",
+    progress: 40,
+    next: "lesson9.html"
+},
+
+lesson9: {
+    id: 9,
+    module: 1,
+    title: "Family",
+    subtitle: "Learn family members and relationships.",
+    duration: "20 min",
+    progress: 45,
+    next: "lesson10.html"
+},
+
+lesson10: {
+    id: 10,
+    module: 1,
+    title: "Food and Drinks",
+    subtitle: "Learn food, drinks and restaurant vocabulary.",
+    duration: "20 min",
+    progress: 50,
+    next: "lesson11.html"
+},
+
+lesson11: {
+    id: 11,
+    module: 1,
+    title: "At the Restaurant",
+    subtitle: "Learn how to order food in Brazil.",
+    duration: "20 min",
+    progress: 55,
+    next: "lesson12.html"
+},
+
+lesson12: {
+    id: 12,
+    module: 1,
+    title: "Shopping",
+    subtitle: "Learn shopping expressions and prices.",
+    duration: "20 min",
+    progress: 60,
+    next: "lesson13.html"
+},
+
+lesson13: {
+    id: 13,
+    module: 1,
+    title: "Asking for Directions",
+    subtitle: "Learn how to ask and understand directions.",
+    duration: "20 min",
+    progress: 65,
+    next: "lesson14.html"
+},
+
+lesson14: {
+    id: 14,
+    module: 1,
+    title: "Transportation",
+    subtitle: "Learn transportation vocabulary.",
+    duration: "20 min",
+    progress: 70,
+    next: "lesson15.html"
+},
+
+lesson15: {
+    id: 15,
+    module: 1,
+    title: "Time and Schedule",
+    subtitle: "Learn how to tell the time and make appointments.",
+    duration: "20 min",
+    progress: 75,
+    next: "lesson16.html"
+},
+
+lesson16: {
+    id: 16,
+    module: 1,
+    title: "Weather",
+    subtitle: "Learn to talk about the weather.",
+    duration: "20 min",
+    progress: 80,
+    next: "lesson17.html"
+},
+
+lesson17: {
+    id: 17,
+    module: 1,
+    title: "Daily Routine",
+    subtitle: "Learn common daily routine expressions.",
+    duration: "20 min",
+    progress: 85,
+    next: "lesson18.html"
+},
+
+lesson18: {
+    id: 18,
+    module: 1,
+    title: "Present Tense Basics",
+    subtitle: "Learn the basics of the present tense.",
+    duration: "20 min",
+    progress: 90,
+    next: "lesson19.html"
+},
+
+lesson19: {
+    id: 19,
+    module: 1,
+    title: "Common Conversations",
+    subtitle: "Practice real-life conversations.",
+    duration: "20 min",
+    progress: 95,
+    next: "lesson20.html"
+},
+
+lesson20: {
+    id: 20,
+    module: 1,
+    title: "Final Review & Certificate",
+    subtitle: "Review everything you've learned and complete Module 1.",
+    duration: "30 min",
+    progress: 100,
+    next: null
+}
+    
 };
 
 const listeningQuestions = [
@@ -535,6 +695,104 @@ correct:0
 }
 
 ];
+
+// =======================================
+// Lesson 5 Quiz
+// =======================================
+
+const lesson5Quiz = [
+
+{
+question:"How do you say number 0 in Portuguese?",
+options:["Zero","Um","Dez"],
+correct:0
+},
+
+{
+question:"How do you say number 1?",
+options:["Dois","Um","Cinco"],
+correct:1
+},
+
+{
+question:"How do you say number 2?",
+options:["Dois","Três","Quatro"],
+correct:0
+},
+
+{
+question:"How do you say number 3?",
+options:["Cinco","Quatro","Três"],
+correct:2
+},
+
+{
+question:"How do you say number 5?",
+options:["Cinco","Seis","Sete"],
+correct:0
+},
+
+{
+question:"How do you say number 7?",
+options:["Seis","Sete","Oito"],
+correct:1
+},
+
+{
+question:"How do you say number 10?",
+options:["Nove","Onze","Dez"],
+correct:2
+},
+
+{
+question:"Which number is 'Onze'?",
+options:["10","11","12"],
+correct:1
+},
+
+{
+question:"Which number is 'Doze'?",
+options:["11","12","13"],
+correct:1
+},
+
+{
+question:"Which number is 'Treze'?",
+options:["13","14","15"],
+correct:0
+},
+
+{
+question:"How do you say number 15?",
+options:["Treze","Quatorze","Quinze"],
+correct:2
+},
+
+{
+question:"Which number is 'Dezessete'?",
+options:["16","17","18"],
+correct:1
+},
+
+{
+question:"Which number is 'Dezoito'?",
+options:["17","18","19"],
+correct:1
+},
+
+{
+question:"Which number is 'Dezenove'?",
+options:["18","19","20"],
+correct:1
+},
+
+{
+question:"How do you say number 20?",
+options:["Dezenove","Vinte","Trinta"],
+correct:1
+}
+
+];
 let currentChallenge = 0;
 
 
@@ -670,7 +928,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("quizContainer")) {
 
-        if (window.location.pathname.includes("lesson4")) {
+       if (window.location.pathname.includes("lesson5")) {
+
+    loadLesson5Quiz();
+
+} else if (window.location.pathname.includes("lesson4")) {
 
     loadLesson4Quiz();
 
@@ -687,7 +949,6 @@ document.addEventListener("DOMContentLoaded", () => {
     loadQuiz();
 
 }
-
     }
 
     if (document.getElementById("challengeBox")) {
@@ -1086,3 +1347,112 @@ async function finishLesson4() {
 }
 
 window.finishLesson4 = finishLesson4;
+
+// =======================================
+// Lesson 5 Quiz
+// =======================================
+
+let currentLesson5Question = 0;
+let lesson5Score = 0;
+
+function loadLesson5Quiz() {
+
+    const container = document.getElementById("quizQuestions");
+
+    if (!container) return;
+
+    const question = lesson5Quiz[currentLesson5Question];
+
+    let html = `
+        <h3>Question ${currentLesson5Question + 1} of ${lesson5Quiz.length}</h3>
+        <p>${question.question}</p>
+    `;
+
+    question.options.forEach((option, index) => {
+
+        html += `
+            <label>
+                <input type="radio" name="lesson5quiz" value="${index}">
+                ${option}
+            </label><br><br>
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+}
+
+function checkLesson5Quiz() {
+
+    const selected = document.querySelector('input[name="lesson5quiz"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (parseInt(selected.value) === lesson5Quiz[currentLesson5Question].correct) {
+        lesson5Score++;
+        document.getElementById("quizResult").innerHTML = "✅ Correct!";
+    } else {
+        document.getElementById("quizResult").innerHTML = "❌ Incorrect!";
+    }
+
+    setTimeout(() => {
+
+        currentLesson5Question++;
+
+        if (currentLesson5Question < lesson5Quiz.length) {
+
+            loadLesson5Quiz();
+            document.getElementById("quizResult").innerHTML = "";
+
+        } else {
+
+            document.getElementById("quizContainer").innerHTML = `
+                <h2>🎉 Lesson 5 Completed!</h2>
+
+                <p><strong>Correct:</strong> ${lesson5Score}</p>
+                <p><strong>Incorrect:</strong> ${lesson5Quiz.length - lesson5Score}</p>
+                <p><strong>Score:</strong> ${Math.round((lesson5Score / lesson5Quiz.length) * 100)}%</p>
+
+                <br>
+
+                <button class="hero-button" onclick="location.reload()">
+                    🔄 Retake Quiz
+                </button>
+
+                <br><br>
+
+                <button class="hero-button" onclick="finishLesson5()">
+                    ➜ Continue to Lesson 6
+                </button>
+            `;
+
+            const result = document.getElementById("quizResult");
+            if (result) {
+                result.innerHTML = "";
+            }
+
+            const btn = document.getElementById("checkAnswerBtn");
+            if (btn) {
+                btn.style.display = "none";
+            }
+        }
+
+    }, 1000);
+
+}
+
+window.checkLesson5Quiz = checkLesson5Quiz;
+
+async function finishLesson5() {
+
+    const { completeLesson } = await import("./progress.js");
+
+    await completeLesson(5);
+
+}
+
+window.finishLesson5 = finishLesson5;
