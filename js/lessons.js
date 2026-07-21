@@ -793,6 +793,132 @@ correct:1
 }
 
 ];
+
+// =======================================
+// Lesson 6 Quiz
+// =======================================
+
+const lesson6Quiz = [
+
+{
+question:"How do you say Monday in Portuguese?",
+options:["Segunda-feira","Sexta-feira","Domingo"],
+correct:0
+},
+
+{
+question:"How do you say Tuesday?",
+options:["Terça-feira","Quarta-feira","Quinta-feira"],
+correct:0
+},
+
+{
+question:"How do you say Friday?",
+options:["Quinta-feira","Sexta-feira","Sábado"],
+correct:1
+},
+
+{
+question:"How do you say Sunday?",
+options:["Domingo","Sábado","Segunda-feira"],
+correct:0
+},
+
+{
+question:"Which month is 'Janeiro'?",
+options:["January","June","July"],
+correct:0
+},
+
+{
+question:"Which month is 'Março'?",
+options:["March","May","April"],
+correct:0
+},
+
+{
+question:"Which month is 'Julho'?",
+options:["June","July","August"],
+correct:1
+},
+
+{
+question:"Which month is 'Dezembro'?",
+options:["November","December","October"],
+correct:1
+},
+
+{
+question:"How do you say 'Today is Monday'?",
+options:[
+"Hoje é segunda-feira.",
+"Hoje é domingo.",
+"Hoje é sexta-feira."
+],
+correct:0
+},
+
+{
+question:"How do you say 'My birthday is in February'?",
+options:[
+"Meu aniversário é em fevereiro.",
+"Meu aniversário é em março.",
+"Meu aniversário é em janeiro."
+],
+correct:0
+},
+
+{
+question:"In Portuguese, days of the week are usually written with:",
+options:[
+"Capital letters",
+"Lowercase letters",
+"Only abbreviations"
+],
+correct:1
+},
+
+{
+question:"What comes after Wednesday?",
+options:[
+"Tuesday",
+"Thursday",
+"Friday"
+],
+correct:1
+},
+
+{
+question:"What comes before Sunday?",
+options:[
+"Friday",
+"Saturday",
+"Monday"
+],
+correct:1
+},
+
+{
+question:"How do you say August?",
+options:[
+"Agosto",
+"Abril",
+"Outubro"
+],
+correct:0
+},
+
+{
+question:"How do you say October?",
+options:[
+"Outubro",
+"Novembro",
+"Setembro"
+],
+correct:0
+}
+
+];
 let currentChallenge = 0;
 
 
@@ -928,7 +1054,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("quizContainer")) {
 
-       if (window.location.pathname.includes("lesson5")) {
+       if (window.location.pathname.includes("lesson6")) {
+
+    loadLesson6Quiz();
+
+} else if (window.location.pathname.includes("lesson5")) {
 
     loadLesson5Quiz();
 
@@ -1458,3 +1588,118 @@ async function finishLesson5() {
 }
 
 window.finishLesson5 = finishLesson5;
+
+// =======================================
+// Lesson 6 Quiz
+// =======================================
+
+function loadLesson6Quiz() {
+
+    const container = document.getElementById("quizQuestions");
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    lesson6Quiz.forEach((q, index) => {
+
+        let html = `
+            <div class="quiz-question">
+
+                <h3>${index + 1}. ${q.question}</h3>
+        `;
+
+        q.options.forEach((option, i) => {
+
+            html += `
+                <label>
+
+                    <input
+                        type="radio"
+                        name="q${index}"
+                        value="${i}">
+
+                    ${option}
+
+                </label><br>
+            `;
+
+        });
+
+        html += `<br></div>`;
+
+        container.innerHTML += html;
+
+    });
+
+}
+
+async function checkLesson6Quiz() {
+
+    let correct = 0;
+
+    lesson6Quiz.forEach((q, index) => {
+
+        const answer = document.querySelector(
+            input[name="q${index}"]:checked
+        );
+
+        if (answer && Number(answer.value) === q.correct) {
+            correct++;
+        }
+
+    });
+
+    const wrong = lesson6Quiz.length - correct;
+    const score = Math.round((correct / lesson6Quiz.length) * 100);
+
+    const result = document.getElementById("quizResult");
+
+    result.innerHTML = `
+
+<h2>🎉 Lesson 6 Completed!</h2>
+
+<p><strong>Correct:</strong> ${correct}</p>
+
+<p><strong>Incorrect:</strong> ${wrong}</p>
+
+<p><strong>Score:</strong> ${score}%</p>
+
+<button
+class="hero-button"
+onclick="location.reload()">
+
+Retake Quiz
+
+</button>
+
+<br><br>
+
+<button
+class="hero-button"
+onclick="finishLesson6()">
+
+Continue to Lesson 7 →
+
+</button>
+
+`;
+
+}
+
+// =======================================
+// Finish Lesson 6
+// =======================================
+
+async function finishLesson6() {
+
+    const { completeLesson } =
+        await import("./progress.js");
+
+    await completeLesson(6);
+
+    window.location.href = "lesson7.html";
+
+}
+
+window.finishLesson6 = finishLesson6;
