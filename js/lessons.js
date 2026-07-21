@@ -75,7 +75,7 @@ lesson6: {
 lesson7: {
     id: 7,
     module: 1,
-    title: "Months and Dates",
+    title: "colors",
     subtitle: "Learn months, dates and birthdays.",
     duration: "20 min",
     progress: 35,
@@ -85,7 +85,7 @@ lesson7: {
 lesson8: {
     id: 8,
     module: 1,
-    title: "Colors",
+    title: "family",
     subtitle: "Learn the most common colors in Brazilian Portuguese.",
     duration: "20 min",
     progress: 40,
