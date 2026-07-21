@@ -86,7 +86,8 @@ Days of the Week
 
 <div class="lesson-content">
 
-<h2>📅 Days of the Week</h2>
+<img src="images/brazil.png" class="flag-icon" alt="Brazil Flag">
+Days, Months & Dates
 
 <p>
 
@@ -331,13 +332,25 @@ Repeat these sentences aloud:
 
 <ul class="lesson-list">
 
-<li>🔊 Hoje é segunda-feira.</li>
+<li>
+<button class="audio-button" onclick="speakLetter('Hoje é segunda-feira')">🔊</button>
+Hoje é segunda-feira.
+</li>
 
-<li>🔊 Amanhã é terça-feira.</li>
+<li>
+<button class="audio-button" onclick="speakLetter('Amanhã é terça-feira')">🔊</button>
+Amanhã é terça-feira.
+</li>
 
-<li>🔊 Meu aniversário é em julho.</li>
+<li>
+<button class="audio-button" onclick="speakLetter('Meu aniversário é em julho')">🔊</button>
+Meu aniversário é em julho.
+</li>
 
-<li>🔊 Hoje é dez de julho.</li>
+<li>
+<button class="audio-button" onclick="speakLetter('Hoje é dez de julho')">🔊</button>
+Hoje é dez de julho.
+</li>
 
 </ul>
 
@@ -363,8 +376,35 @@ Repeat these sentences aloud:
 
 <li>📖 Lesson 6 - Days & Months</li>
 
-</ul>
+<li>🔒 Lesson 7 - Colors</li>
 
+<li>🔒 Lesson 8 - Family</li>
+
+<li>🔒 Lesson 9 - Food & Drinks</li>
+
+<li>🔒 Lesson 10 - At the Restaurant</li>
+
+<li>🔒 Lesson 11 - Shopping</li>
+
+<li>🔒 Lesson 12 - Asking for Directions</li>
+
+<li>🔒 Lesson 13 - Transportation</li>
+
+<li>🔒 Lesson 14 - Time</li>
+
+<li>🔒 Lesson 15 - Weather</li>
+
+<li>🔒 Lesson 16 - Daily Routine</li>
+
+<li>🔒 Lesson 17 - Present Tense</li>
+
+<li>🔒 Lesson 18 - Common Conversations</li>
+
+<li>🔒 Lesson 19 - Brazilian Culture</li>
+
+<li>🔒 Lesson 20 - Final Review</li>
+
+</ul>
 </aside>
 
 </section>
@@ -442,51 +482,22 @@ Quick Quiz
 
 <p>
 
-How do you say "Friday" in Portuguese?
+<div id="quizContainer">
 
-</p>
+<div id="quizQuestions"></div>
 
-<label>
+<p id="quizResult"></p>
 
-<input type="radio" name="quiz">
-
-Quinta-feira
-
-</label>
-
-<br><br>
-
-<label>
-
-<input type="radio" name="quiz">
-
-Sexta-feira
-
-</label>
-
-<br><br>
-
-<label>
-
-<input type="radio" name="quiz">
-
-Sábado
-
-</label>
-
-<br><br>
-
-<button class="hero-button">
+<button
+id="checkAnswerBtn"
+class="hero-button"
+onclick="checkLesson6Quiz()">
 
 Check Answer
 
 </button>
 
 </div>
-
-</div>
-
-</section>
 
 <section class="section light">
 
