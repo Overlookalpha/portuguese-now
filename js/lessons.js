@@ -1641,7 +1641,7 @@ async function checkLesson6Quiz() {
     lesson6Quiz.forEach((q, index) => {
 
         const answer = document.querySelector(
-            input[name="q${index}"]:checked
+            `input[name="q${index}"]:checked`
         );
 
         if (answer && Number(answer.value) === q.correct) {
