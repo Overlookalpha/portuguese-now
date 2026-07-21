@@ -1300,6 +1300,160 @@ correct:0
 }
 
 ];
+
+// =======================================
+// Lesson 10 Quiz
+// =======================================
+
+const lesson10Quiz = [
+
+{
+question:"How do you say 'Restaurant' in Portuguese?",
+options:["Restaurante","Mercado","Cozinha"],
+correct:0
+},
+
+{
+question:"How do you ask for the menu?",
+options:[
+"O cardápio, por favor.",
+"A conta, por favor.",
+"Eu quero café."
+],
+correct:0
+},
+
+{
+question:"How do you ask for the bill?",
+options:[
+"A conta, por favor.",
+"O cardápio, por favor.",
+"Mais água."
+],
+correct:0
+},
+
+{
+question:"What does 'Garçom' mean?",
+options:[
+"Customer",
+"Waiter",
+"Cook"
+],
+correct:1
+},
+
+{
+question:"What does 'Mesa' mean?",
+options:[
+"Chair",
+"Kitchen",
+"Table"
+],
+correct:2
+},
+
+{
+question:"How do you say 'I would like...'?",
+options:[
+"Eu gostaria de...",
+"Eu gosto de...",
+"Eu tenho..."
+],
+correct:0
+},
+
+{
+question:"What does 'Por favor' mean?",
+options:[
+"Please",
+"Thank you",
+"You're welcome"
+],
+correct:0
+},
+
+{
+question:"How do you say 'Dessert'?",
+options:[
+"Sobremesa",
+"Salada",
+"Bebida"
+],
+correct:0
+},
+
+{
+question:"What is a 'Prato Feito (PF)'?",
+options:[
+"A traditional Brazilian meal",
+"A dessert",
+"A drink"
+],
+correct:0
+},
+
+{
+question:"Which sentence is correct?",
+options:[
+"Eu gostaria de um café.",
+"Eu gostaria um café.",
+"Eu café gostaria."
+],
+correct:0
+},
+
+{
+question:"How do you say 'Thank you'?",
+options:[
+"Obrigado",
+"Por favor",
+"Conta"
+],
+correct:0
+},
+
+{
+question:"How do you say 'Juice'?",
+options:[
+"Suco",
+"Café",
+"Leite"
+],
+correct:0
+},
+
+{
+question:"What does 'Boa noite' mean?",
+options:[
+"Good morning",
+"Good afternoon",
+"Good evening"
+],
+correct:2
+},
+
+{
+question:"How does the waiter ask 'Anything else?'",
+options:[
+"Mais alguma coisa?",
+"Qual é seu nome?",
+"Quanto custa?"
+],
+correct:0
+},
+
+{
+question:"Which expression is the most polite when ordering?",
+options:[
+"Eu gostaria de...",
+"Me dá...",
+"Quero isso."
+],
+correct:0
+}
+
+];
 let currentChallenge = 0;
 
 
@@ -1435,7 +1589,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("quizContainer")) {
 
-       if (window.location.pathname.includes("lesson9")) {
+       if (window.location.pathname.includes("lesson10")) {
+
+    loadLesson10Quiz();
+
+} else if (window.location.pathname.includes("lesson9")) {
 
     loadLesson9Quiz();
 
@@ -2439,3 +2597,119 @@ async function finishLesson9() {
 }
 
 window.finishLesson9 = finishLesson9;
+
+// =======================================
+// Lesson 10 Quiz
+// =======================================
+
+let currentLesson10Question = 0;
+let lesson10Score = 0;
+
+function loadLesson10Quiz() {
+
+    const container = document.getElementById("quizQuestions");
+
+    if (!container) return;
+
+    const question = lesson10Quiz[currentLesson10Question];
+
+    let html = `
+        <h3>Question ${currentLesson10Question + 1} of ${lesson10Quiz.length}</h3>
+        <p>${question.question}</p>
+    `;
+
+    question.options.forEach((option, index) => {
+
+        html += `
+            <label>
+                <input type="radio" name="lesson10quiz" value="${index}">
+                ${option}
+            </label><br><br>
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+}
+
+function checkLesson10Quiz() {
+
+    const selected = document.querySelector('input[name="lesson10quiz"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (parseInt(selected.value) === lesson10Quiz[currentLesson10Question].correct) {
+
+        lesson10Score++;
+        document.getElementById("quizResult").innerHTML = "✅ Correct!";
+
+    } else {
+
+        document.getElementById("quizResult").innerHTML = "❌ Incorrect!";
+
+    }
+
+    setTimeout(() => {
+
+        currentLesson10Question++;
+
+        if (currentLesson10Question < lesson10Quiz.length) {
+
+            loadLesson10Quiz();
+            document.getElementById("quizResult").innerHTML = "";
+
+        } else {
+
+            document.getElementById("quizContainer").innerHTML = `
+                <h2>🎉 Lesson 10 Completed!</h2>
+
+                <p><strong>Correct:</strong> ${lesson10Score}</p>
+                <p><strong>Incorrect:</strong> ${lesson10Quiz.length - lesson10Score}</p>
+                <p><strong>Score:</strong> ${Math.round((lesson10Score / lesson10Quiz.length) * 100)}%</p>
+
+                <br>
+
+                <button class="hero-button" onclick="location.reload()">
+                    🔄 Retake Quiz
+                </button>
+
+                <br><br>
+
+                <button class="hero-button" onclick="finishLesson10()">
+                    ➜ Continue to Lesson 11
+                </button>
+            `;
+
+            const result = document.getElementById("quizResult");
+            if (result) {
+                result.innerHTML = "";
+            }
+
+            const btn = document.getElementById("checkAnswerBtn");
+            if (btn) {
+                btn.style.display = "none";
+            }
+
+        }
+
+    }, 1000);
+
+}
+
+window.checkLesson10Quiz = checkLesson10Quiz;
+
+async function finishLesson10() {
+
+    const { completeLesson } = await import("./progress.js");
+
+    await completeLesson(10);
+
+    window.location.href = "lesson11.html";
+
+}
+
+window.finishLesson10 = finishLesson10;
