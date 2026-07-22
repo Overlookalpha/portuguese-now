@@ -1750,6 +1750,124 @@ correct:0
 }
 
 ];
+
+// =======================================
+// Lesson 13 Quiz
+// =======================================
+
+const lesson13Quiz = [
+
+{
+question:"How do you say 'Bus' in Portuguese?",
+options:["Ônibus","Carro","Trem"],
+correct:0
+},
+
+{
+question:"What is 'Metrô'?",
+options:["Subway","Taxi","Airport"],
+correct:0
+},
+
+{
+question:"How do you say 'Taxi'?",
+options:["Táxi","Trem","Passagem"],
+correct:0
+},
+
+{
+question:"What does 'Aeroporto' mean?",
+options:["Airport","Bus stop","Station"],
+correct:0
+},
+
+{
+question:"How do you say 'Bus stop'?",
+options:["Ponto de ônibus","Estação","Rua"],
+correct:0
+},
+
+{
+question:"What does 'Passagem' mean?",
+options:["Ticket","Driver","Road"],
+correct:0
+},
+
+{
+question:"How do you say 'Driver'?",
+options:["Motorista","Passageiro","Policial"],
+correct:0
+},
+
+{
+question:"What does 'Trem' mean?",
+options:["Train","Truck","Bus"],
+correct:0
+},
+
+{
+question:"What does 'Bicicleta' mean?",
+options:["Bicycle","Motorcycle","Car"],
+correct:0
+},
+
+{
+question:"How do you say 'Car'?",
+options:["Carro","Táxi","Ônibus"],
+correct:0
+},
+
+{
+question:"How do you ask 'Where is the bus stop?'",
+options:[
+"Onde fica o ponto de ônibus?",
+"Onde fica o aeroporto?",
+"Quanto custa?"
+],
+correct:0
+},
+
+{
+question:"How do you ask 'How much is the ticket?'",
+options:[
+"Quanto custa a passagem?",
+"Onde fica o metrô?",
+"Preciso de um táxi."
+],
+correct:0
+},
+
+{
+question:"Which sentence means 'I need a taxi'?",
+options:[
+"Preciso de um táxi.",
+"Vou de ônibus.",
+"Cadê o motorista?"
+],
+correct:0
+},
+
+{
+question:"Which transportation app is widely used in Brazil?",
+options:[
+"Uber",
+"WhatsApp",
+"Instagram"
+],
+correct:0
+},
+
+{
+question:"Which word means 'Station'?",
+options:[
+"Estação",
+"Esquina",
+"Centro"
+],
+correct:0
+}
+
+];
 let currentChallenge = 0;
 
 
@@ -1885,7 +2003,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("quizContainer")) {
 
-      if (window.location.pathname.includes("lesson12")) {
+     if (window.location.pathname.includes("lesson13")) {
+
+    loadLesson13Quiz();
+
+} else if (window.location.pathname.includes("lesson12")) {
 
     loadLesson12Quiz();
 
@@ -3245,3 +3367,115 @@ async function finishLesson12() {
 }
 
 window.finishLesson12 = finishLesson12;
+
+// =======================================
+// Lesson 13 Quiz
+// =======================================
+
+let currentLesson13Question = 0;
+let lesson13Score = 0;
+
+function loadLesson13Quiz() {
+
+    const container = document.getElementById("quizQuestions");
+
+    if (!container) return;
+
+    const question = lesson13Quiz[currentLesson13Question];
+
+    let html = `
+        <h3>Question ${currentLesson13Question + 1} of ${lesson13Quiz.length}</h3>
+        <p>${question.question}</p>
+    `;
+
+    question.options.forEach((option, index) => {
+
+        html += `
+            <label>
+                <input type="radio" name="lesson13quiz" value="${index}">
+                ${option}
+            </label><br><br>
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+}
+
+function checkLesson13Quiz() {
+
+    const selected = document.querySelector('input[name="lesson13quiz"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (parseInt(selected.value) === lesson13Quiz[currentLesson13Question].correct) {
+
+        lesson13Score++;
+        document.getElementById("quizResult").innerHTML = "✅ Correct!";
+
+    } else {
+
+        document.getElementById("quizResult").innerHTML = "❌ Incorrect!";
+
+    }
+
+    setTimeout(() => {
+
+        currentLesson13Question++;
+
+        if (currentLesson13Question < lesson13Quiz.length) {
+
+            loadLesson13Quiz();
+            document.getElementById("quizResult").innerHTML = "";
+
+        } else {
+
+            document.getElementById("quizContainer").innerHTML = `
+                <h2>🎉 Lesson 13 Completed!</h2>
+
+                <p><strong>Correct:</strong> ${lesson13Score}</p>
+                <p><strong>Incorrect:</strong> ${lesson13Quiz.length - lesson13Score}</p>
+                <p><strong>Score:</strong> ${Math.round((lesson13Score / lesson13Quiz.length) * 100)}%</p>
+
+                <br>
+
+                <button class="hero-button" onclick="location.reload()">
+                    🔄 Retake Quiz
+                </button>
+
+                <br><br>
+
+                <button class="hero-button" onclick="finishLesson13()">
+                    ➜ Continue to Lesson 14
+                </button>
+            `;
+
+            const result = document.getElementById("quizResult");
+            if (result) result.innerHTML = "";
+
+            const btn = document.getElementById("checkAnswerBtn");
+            if (btn) btn.style.display = "none";
+
+        }
+
+    }, 1000);
+
+}
+
+window.checkLesson13Quiz = checkLesson13Quiz;
+
+async function finishLesson13() {
+
+    const { completeLesson } = await import("./progress.js");
+
+    await completeLesson(13);
+
+    window.location.href = "lesson14.html";
+
+}
+
+window.finishLesson13 = finishLesson13;
