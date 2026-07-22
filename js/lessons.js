@@ -114,8 +114,8 @@ lesson10: {
 lesson11: {
     id: 11,
     module: 1,
-    title: "At the Restaurant",
-    subtitle: "Learn how to order food in Brazil.",
+    title: "Shopping",
+    subtitle: "Learn shopping expressions and prices.",
     duration: "20 min",
     progress: 55,
     next: "lesson12.html"
@@ -124,8 +124,8 @@ lesson11: {
 lesson12: {
     id: 12,
     module: 1,
-    title: "Shopping",
-    subtitle: "Learn shopping expressions and prices.",
+    title: "Asking for Directions",
+    subtitle: "Learn how to ask and understand directions.",
     duration: "20 min",
     progress: 60,
     next: "lesson13.html"
@@ -134,8 +134,8 @@ lesson12: {
 lesson13: {
     id: 13,
     module: 1,
-    title: "Asking for Directions",
-    subtitle: "Learn how to ask and understand directions.",
+    title: "Transportation",
+    subtitle: "Learn transportation vocabulary.",
     duration: "20 min",
     progress: 65,
     next: "lesson14.html"
@@ -1604,6 +1604,152 @@ correct:0
 }
 
 ];
+
+// =======================================
+// Lesson 12 Quiz
+// =======================================
+
+const lesson12Quiz = [
+
+{
+question:"How do you say 'Street' in Portuguese?",
+options:["Rua","Loja","Praça"],
+correct:0
+},
+
+{
+question:"What does 'Direita' mean?",
+options:["Left","Right","Straight"],
+correct:1
+},
+
+{
+question:"What does 'Esquerda' mean?",
+options:["Left","Right","Near"],
+correct:0
+},
+
+{
+question:"How do you ask 'Where is...?'",
+options:[
+"Onde fica...?",
+"Quanto custa?",
+"Como vai?"
+],
+correct:0
+},
+
+{
+question:"What does 'Em frente' mean?",
+options:[
+"Straight ahead",
+"Turn left",
+"Go back"
+],
+correct:0
+},
+
+{
+question:"What does 'Perto' mean?",
+options:[
+"Near",
+"Far",
+"Fast"
+],
+correct:0
+},
+
+{
+question:"What does 'Longe' mean?",
+options:[
+"Near",
+"Far",
+"Corner"
+],
+correct:1
+},
+
+{
+question:"How do you say 'Traffic light'?",
+options:[
+"Semáforo",
+"Esquina",
+"Mapa"
+],
+correct:0
+},
+
+{
+question:"How do you say 'Address'?",
+options:[
+"Endereço",
+"Rua",
+"Centro"
+],
+correct:0
+},
+
+{
+question:"How do you ask politely for help?",
+options:[
+"Pode me ajudar?",
+"Me ajuda!",
+"Anda logo!"
+],
+correct:0
+},
+
+{
+question:"What does 'Centro' mean?",
+options:[
+"Downtown",
+"Airport",
+"Hotel"
+],
+correct:0
+},
+
+{
+question:"What does 'Mapa' mean?",
+options:[
+"Map",
+"Bus",
+"Street"
+],
+correct:0
+},
+
+{
+question:"What should you say before asking a stranger for directions?",
+options:[
+"Com licença",
+"Tchau",
+"Boa noite"
+],
+correct:0
+},
+
+{
+question:"Which expression means 'Is it far?'",
+options:[
+"É longe?",
+"É barato?",
+"É bonito?"
+],
+correct:0
+},
+
+{
+question:"Which sentence is correct?",
+options:[
+"Siga em frente.",
+"Frente siga em.",
+"Em siga frente."
+],
+correct:0
+}
+
+];
 let currentChallenge = 0;
 
 
@@ -1739,14 +1885,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("quizContainer")) {
 
-       if (window.location.pathname.includes("lesson11")) {
+      if (window.location.pathname.includes("lesson12")) {
+
+    loadLesson12Quiz();
+
+} else if (window.location.pathname.includes("lesson11")) {
 
     loadLesson11Quiz();
 
 } else if (window.location.pathname.includes("lesson10")) {
 
     loadLesson10Quiz();
-
+   
 } else if (window.location.pathname.includes("lesson9")) {
 
     loadLesson9Quiz();
@@ -2983,3 +3133,115 @@ async function finishLesson11() {
 }
 
 window.finishLesson11 = finishLesson11;
+
+// =======================================
+// Lesson 12 Quiz
+// =======================================
+
+let currentLesson12Question = 0;
+let lesson12Score = 0;
+
+function loadLesson12Quiz() {
+
+    const container = document.getElementById("quizQuestions");
+
+    if (!container) return;
+
+    const question = lesson12Quiz[currentLesson12Question];
+
+    let html = `
+        <h3>Question ${currentLesson12Question + 1} of ${lesson12Quiz.length}</h3>
+        <p>${question.question}</p>
+    `;
+
+    question.options.forEach((option, index) => {
+
+        html += `
+            <label>
+                <input type="radio" name="lesson12quiz" value="${index}">
+                ${option}
+            </label><br><br>
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+}
+
+function checkLesson12Quiz() {
+
+    const selected = document.querySelector('input[name="lesson12quiz"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (parseInt(selected.value) === lesson12Quiz[currentLesson12Question].correct) {
+
+        lesson12Score++;
+        document.getElementById("quizResult").innerHTML = "✅ Correct!";
+
+    } else {
+
+        document.getElementById("quizResult").innerHTML = "❌ Incorrect!";
+
+    }
+
+    setTimeout(() => {
+
+        currentLesson12Question++;
+
+        if (currentLesson12Question < lesson12Quiz.length) {
+
+            loadLesson12Quiz();
+            document.getElementById("quizResult").innerHTML = "";
+
+        } else {
+
+            document.getElementById("quizContainer").innerHTML = `
+                <h2>🎉 Lesson 12 Completed!</h2>
+
+                <p><strong>Correct:</strong> ${lesson12Score}</p>
+                <p><strong>Incorrect:</strong> ${lesson12Quiz.length - lesson12Score}</p>
+                <p><strong>Score:</strong> ${Math.round((lesson12Score / lesson12Quiz.length) * 100)}%</p>
+
+                <br>
+
+                <button class="hero-button" onclick="location.reload()">
+                    🔄 Retake Quiz
+                </button>
+
+                <br><br>
+
+                <button class="hero-button" onclick="finishLesson12()">
+                    ➜ Continue to Lesson 13
+                </button>
+            `;
+
+            const result = document.getElementById("quizResult");
+            if (result) result.innerHTML = "";
+
+            const btn = document.getElementById("checkAnswerBtn");
+            if (btn) btn.style.display = "none";
+
+        }
+
+    }, 1000);
+
+}
+
+window.checkLesson12Quiz = checkLesson12Quiz;
+
+async function finishLesson12() {
+
+    const { completeLesson } = await import("./progress.js");
+
+    await completeLesson(12);
+
+    window.location.href = "lesson13.html";
+
+}
+
+window.finishLesson12 = finishLesson12;
