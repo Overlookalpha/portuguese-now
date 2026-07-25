@@ -2029,60 +2029,60 @@ correct:0
 
 const lesson15Quiz = [
 
-    {
-        question: "How do you say 'It's sunny' in Portuguese?",
-        options: [
-            "Está ensolarado.",
-            "Está chovendo.",
-            "Está ventando.",
-            "Está nevando."
-        ],
-        answer: 0
-    },
+{
+    question: "How do you say 'It's sunny' in Portuguese?",
+    options: [
+        "Está ensolarado.",
+        "Está chovendo.",
+        "Está ventando.",
+        "Está nevando."
+    ],
+    correct: 0
+},
 
-    {
-        question: "What does 'Está chovendo' mean?",
-        options: [
-            "It's windy.",
-            "It's raining.",
-            "It's cloudy.",
-            "It's hot."
-        ],
-        answer: 1
-    },
+{
+    question: "What does 'Está chovendo' mean?",
+    options: [
+        "It's windy.",
+        "It's raining.",
+        "It's cloudy.",
+        "It's hot."
+    ],
+    correct: 1
+},
 
-    {
-        question: "How do you ask 'How's the weather?'",
-        options: [
-            "Que horas são?",
-            "Onde fica?",
-            "Como está o tempo?",
-            "Quanto custa?"
-        ],
-        answer: 2
-    },
+{
+    question: "How do you ask 'How's the weather?'",
+    options: [
+        "Que horas são?",
+        "Onde fica?",
+        "Como está o tempo?",
+        "Quanto custa?"
+    ],
+    correct: 2
+},
 
-    {
-        question: "What does 'Está nublado' mean?",
-        options: [
-            "It's cloudy.",
-            "It's sunny.",
-            "It's cold.",
-            "It's snowing."
-        ],
-        answer: 0
-    },
+{
+    question: "What does 'Está nublado' mean?",
+    options: [
+        "It's cloudy.",
+        "It's sunny.",
+        "It's cold.",
+        "It's snowing."
+    ],
+    correct: 0
+},
 
-    {
-        question: "What does 'Está frio' mean?",
-        options: [
-            "It's hot.",
-            "It's windy.",
-            "It's cold.",
-            "It's raining."
-        ],
-        answer: 2
-    }
+{
+    question: "What does 'Está frio' mean?",
+    options: [
+        "It's hot.",
+        "It's windy.",
+        "It's cold.",
+        "It's raining."
+    ],
+    correct: 2
+}
 
 ];
 let currentChallenge = 0;
