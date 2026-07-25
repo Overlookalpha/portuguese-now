@@ -1868,6 +1868,164 @@ correct:0
 }
 
 ];
+
+// =======================================
+// Lesson 14 Quiz
+// =======================================
+
+const lesson14Quiz = [
+
+{
+question:"How do you ask 'What time is it?'",
+options:[
+"Que horas são?",
+"Como vai?",
+"Onde fica?"
+],
+correct:0
+},
+
+{
+question:"How do you say 'One o'clock'?",
+options:[
+"É uma hora.",
+"São uma hora.",
+"Uma horas."
+],
+correct:0
+},
+
+{
+question:"What does 'Relógio' mean?",
+options:[
+"Clock",
+"Schedule",
+"Minute"
+],
+correct:0
+},
+
+{
+question:"What does 'Manhã' mean?",
+options:[
+"Morning",
+"Afternoon",
+"Night"
+],
+correct:0
+},
+
+{
+question:"What does 'Tarde' mean?",
+options:[
+"Morning",
+"Afternoon",
+"Night"
+],
+correct:1
+},
+
+{
+question:"What does 'Noite' mean?",
+options:[
+"Night",
+"Morning",
+"Noon"
+],
+correct:0
+},
+
+{
+question:"How do you say 'Appointment'?",
+options:[
+"Compromisso",
+"Calendário",
+"Agenda"
+],
+correct:0
+},
+
+{
+question:"How do you say 'Schedule'?",
+options:[
+"Horário",
+"Hora",
+"Relógio"
+],
+correct:0
+},
+
+{
+question:"Complete: 'Nos vemos às cinco.'",
+options:[
+"See you at five.",
+"See you tomorrow.",
+"It's five o'clock."
+],
+correct:0
+},
+
+{
+question:"Which sentence is correct?",
+options:[
+"Meu compromisso é às oito.",
+"Meu compromisso oito é.",
+"Compromisso meu oito."
+],
+correct:0
+},
+
+{
+question:"How do Brazilians usually tell time in everyday conversations?",
+options:[
+"12-hour format",
+"Only 24-hour format",
+"Only military time"
+],
+correct:0
+},
+
+{
+question:"How do you say 'Minute'?",
+options:[
+"Minuto",
+"Segundo",
+"Hora"
+],
+correct:0
+},
+
+{
+question:"How do you say 'Second'?",
+options:[
+"Segundo",
+"Hora",
+"Relógio"
+],
+correct:0
+},
+
+{
+question:"Which phrase asks for the time?",
+options:[
+"Que horas são?",
+"Qual é seu nome?",
+"Onde mora?"
+],
+correct:0
+},
+
+{
+question:"Which sentence is correct?",
+options:[
+"São três horas.",
+"É três horas.",
+"Três hora."
+],
+correct:0
+}
+
+];
 let currentChallenge = 0;
 
 
@@ -2003,12 +2161,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("quizContainer")) {
 
-     if (window.location.pathname.includes("lesson13")) {
+     if (window.location.pathname.includes("lesson14")) {
+
+    loadLesson14Quiz();
+
+} else if (window.location.pathname.includes("lesson13")) {
 
     loadLesson13Quiz();
 
 } else if (window.location.pathname.includes("lesson12")) {
-
     loadLesson12Quiz();
 
 } else if (window.location.pathname.includes("lesson11")) {
@@ -3479,3 +3640,115 @@ async function finishLesson13() {
 }
 
 window.finishLesson13 = finishLesson13;
+
+// =======================================
+// Lesson 14 Quiz
+// =======================================
+
+let currentLesson14Question = 0;
+let lesson14Score = 0;
+
+function loadLesson14Quiz() {
+
+    const container = document.getElementById("quizQuestions");
+
+    if (!container) return;
+
+    const question = lesson14Quiz[currentLesson14Question];
+
+    let html = `
+        <h3>Question ${currentLesson14Question + 1} of ${lesson14Quiz.length}</h3>
+        <p>${question.question}</p>
+    `;
+
+    question.options.forEach((option, index) => {
+
+        html += `
+            <label>
+                <input type="radio" name="lesson14quiz" value="${index}">
+                ${option}
+            </label><br><br>
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+}
+
+function checkLesson14Quiz() {
+
+    const selected = document.querySelector('input[name="lesson14quiz"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (parseInt(selected.value) === lesson14Quiz[currentLesson14Question].correct) {
+
+        lesson14Score++;
+        document.getElementById("quizResult").innerHTML = "✅ Correct!";
+
+    } else {
+
+        document.getElementById("quizResult").innerHTML = "❌ Incorrect!";
+
+    }
+
+    setTimeout(() => {
+
+        currentLesson14Question++;
+
+        if (currentLesson14Question < lesson14Quiz.length) {
+
+            loadLesson14Quiz();
+            document.getElementById("quizResult").innerHTML = "";
+
+        } else {
+
+            document.getElementById("quizContainer").innerHTML = `
+                <h2>🎉 Lesson 14 Completed!</h2>
+
+                <p><strong>Correct:</strong> ${lesson14Score}</p>
+                <p><strong>Incorrect:</strong> ${lesson14Quiz.length - lesson14Score}</p>
+                <p><strong>Score:</strong> ${Math.round((lesson14Score / lesson14Quiz.length) * 100)}%</p>
+
+                <br>
+
+                <button class="hero-button" onclick="location.reload()">
+                    🔄 Retake Quiz
+                </button>
+
+                <br><br>
+
+                <button class="hero-button" onclick="finishLesson14()">
+                    ➜ Continue to Lesson 15
+                </button>
+            `;
+
+            const result = document.getElementById("quizResult");
+            if (result) result.innerHTML = "";
+
+            const btn = document.getElementById("checkAnswerBtn");
+            if (btn) btn.style.display = "none";
+
+        }
+
+    }, 1000);
+
+}
+
+window.checkLesson14Quiz = checkLesson14Quiz;
+
+async function finishLesson14() {
+
+    const { completeLesson } = await import("./progress.js");
+
+    await completeLesson(14);
+
+    window.location.href = "lesson15.html";
+
+}
+
+window.finishLesson14 = finishLesson14;
