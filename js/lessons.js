@@ -2082,6 +2082,116 @@ const lesson15Quiz = [
         "It's raining."
     ],
     correct: 2
+},
+
+{
+    question: "How do you say 'The sun' in Portuguese?",
+    options: [
+        "Lua",
+        "Sol",
+        "Vento",
+        "Nuvem"
+    ],
+    correct: 1
+},
+
+{
+    question: "What does 'Quente' mean?",
+    options: [
+        "Cold",
+        "Windy",
+        "Hot",
+        "Cloudy"
+    ],
+    correct: 2
+},
+
+{
+    question: "How do you say 'Wind' in Portuguese?",
+    options: [
+        "Vento",
+        "Chuva",
+        "Sol",
+        "Frio"
+    ],
+    correct: 0
+},
+
+{
+    question: "What does 'Tempestade' mean?",
+    options: [
+        "Storm",
+        "Sunny",
+        "Cloud",
+        "Rainbow"
+    ],
+    correct: 0
+},
+
+{
+    question: "How do you say 'It's hot' in Portuguese?",
+    options: [
+        "Está frio.",
+        "Está quente.",
+        "Está nublado.",
+        "Está ventando."
+    ],
+    correct: 1
+},
+
+{
+    question: "What does 'Nuvem' mean?",
+    options: [
+        "Sun",
+        "Rain",
+        "Cloud",
+        "Wind"
+    ],
+    correct: 2
+},
+
+{
+    question: "How do you say 'Rain' in Portuguese?",
+    options: [
+        "Sol",
+        "Chuva",
+        "Vento",
+        "Frio"
+    ],
+    correct: 1
+},
+
+{
+    question: "What is the Portuguese word for 'Cloudy'?",
+    options: [
+        "Ensolarado",
+        "Tempestade",
+        "Nublado",
+        "Quente"
+    ],
+    correct: 2
+},
+
+{
+    question: "How do you say 'It's raining' in Portuguese?",
+    options: [
+        "Está chovendo.",
+        "Está ensolarado.",
+        "Está frio.",
+        "Está ventando."
+    ],
+    correct: 0
+},
+
+{
+    question: "Which expression means 'Today it's sunny'?",
+    options: [
+        "Hoje está ensolarado.",
+        "Hoje está frio.",
+        "Hoje está chovendo.",
+        "Hoje está ventando."
+    ],
+    correct: 0
 }
 
 ];
