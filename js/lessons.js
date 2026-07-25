@@ -2026,6 +2026,65 @@ correct:0
 }
 
 ];
+
+const lesson15Quiz = [
+
+    {
+        question: "How do you say 'It's sunny' in Portuguese?",
+        options: [
+            "Está ensolarado.",
+            "Está chovendo.",
+            "Está ventando.",
+            "Está nevando."
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What does 'Está chovendo' mean?",
+        options: [
+            "It's windy.",
+            "It's raining.",
+            "It's cloudy.",
+            "It's hot."
+        ],
+        answer: 1
+    },
+
+    {
+        question: "How do you ask 'How's the weather?'",
+        options: [
+            "Que horas são?",
+            "Onde fica?",
+            "Como está o tempo?",
+            "Quanto custa?"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "What does 'Está nublado' mean?",
+        options: [
+            "It's cloudy.",
+            "It's sunny.",
+            "It's cold.",
+            "It's snowing."
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What does 'Está frio' mean?",
+        options: [
+            "It's hot.",
+            "It's windy.",
+            "It's cold.",
+            "It's raining."
+        ],
+        answer: 2
+    }
+
+];
 let currentChallenge = 0;
 
 
@@ -2161,11 +2220,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("quizContainer")) {
 
-     if (window.location.pathname.includes("lesson14")) {
+     if (window.location.pathname.includes("lesson15")) {
+
+    loadLesson15Quiz();
+
+} else if (window.location.pathname.includes("lesson14")) {
 
     loadLesson14Quiz();
 
 } else if (window.location.pathname.includes("lesson13")) {
+
+    loadLesson13Quiz();
 
     loadLesson13Quiz();
 
@@ -3752,3 +3817,116 @@ async function finishLesson14() {
 }
 
 window.finishLesson14 = finishLesson14;
+
+
+// =======================================
+// Lesson 15 Quiz
+// =======================================
+
+let currentLesson15Question = 0;
+let lesson15Score = 0;
+
+function loadLesson15Quiz() {
+
+    const container = document.getElementById("quizQuestions");
+
+    if (!container) return;
+
+    const question = lesson15Quiz[currentLesson15Question];
+
+    let html = `
+        <h3>Question ${currentLesson15Question + 1} of ${lesson15Quiz.length}</h3>
+        <p>${question.question}</p>
+    `;
+
+    question.options.forEach((option, index) => {
+
+        html += `
+            <label>
+                <input type="radio" name="lesson15quiz" value="${index}">
+                ${option}
+            </label><br><br>
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+}
+
+function checkLesson15Quiz() {
+
+    const selected = document.querySelector('input[name="lesson15quiz"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (parseInt(selected.value) === lesson15Quiz[currentLesson15Question].correct) {
+
+        lesson15Score++;
+        document.getElementById("quizResult").innerHTML = "✅ Correct!";
+
+    } else {
+
+        document.getElementById("quizResult").innerHTML = "❌ Incorrect!";
+
+    }
+
+    setTimeout(() => {
+
+        currentLesson15Question++;
+
+        if (currentLesson15Question < lesson15Quiz.length) {
+
+            loadLesson15Quiz();
+            document.getElementById("quizResult").innerHTML = "";
+
+        } else {
+
+            document.getElementById("quizContainer").innerHTML = `
+                <h2>🎉 Lesson 15 Completed!</h2>
+
+                <p><strong>Correct:</strong> ${lesson15Score}</p>
+                <p><strong>Incorrect:</strong> ${lesson15Quiz.length - lesson15Score}</p>
+                <p><strong>Score:</strong> ${Math.round((lesson15Score / lesson15Quiz.length) * 100)}%</p>
+
+                <br>
+
+                <button class="hero-button" onclick="location.reload()">
+                    🔄 Retake Quiz
+                </button>
+
+                <br><br>
+
+                <button class="hero-button" onclick="finishLesson15()">
+                    ➜ Continue to Lesson 16
+                </button>
+            `;
+
+            const result = document.getElementById("quizResult");
+            if (result) result.innerHTML = "";
+
+            const btn = document.getElementById("checkAnswerBtn");
+            if (btn) btn.style.display = "none";
+
+        }
+
+    }, 1000);
+
+}
+
+window.checkLesson15Quiz = checkLesson15Quiz;
+
+async function finishLesson15() {
+
+    const { completeLesson } = await import("./progress.js");
+
+    await completeLesson(15);
+
+    window.location.href = "lesson16.html";
+
+}
+
+window.finishLesson15 = finishLesson15;
