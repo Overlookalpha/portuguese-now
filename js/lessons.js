@@ -2232,7 +2232,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadLesson13Quiz();
 
-    loadLesson13Quiz();
 
 } else if (window.location.pathname.includes("lesson12")) {
     loadLesson12Quiz();
