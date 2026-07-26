@@ -2195,6 +2195,176 @@ const lesson15Quiz = [
 }
 
 ];
+
+
+const lesson16Quiz = [
+
+{
+    question:"What does 'Acordar' mean?",
+    options:[
+        "To wake up",
+        "To go to bed",
+        "To work",
+        "To study"
+    ],
+    correct:0
+},
+
+{
+    question:"How do you say 'I wake up at 7 a.m.'?",
+    options:[
+        "Eu acordo às sete.",
+        "Eu durmo às sete.",
+        "Eu almoço às sete.",
+        "Eu estudo às sete."
+    ],
+    correct:0
+},
+
+{
+    question:"What does 'Tomar café da manhã' mean?",
+    options:[
+        "To have breakfast",
+        "To have lunch",
+        "To have dinner",
+        "To drink coffee only"
+    ],
+    correct:0
+},
+
+{
+    question:"How do you say 'I go to work'?",
+    options:[
+        "Eu vou ao trabalho.",
+        "Eu volto para casa.",
+        "Eu vou dormir.",
+        "Eu estudo português."
+    ],
+    correct:0
+},
+
+{
+    question:"What does 'Almoçar' mean?",
+    options:[
+        "To have lunch",
+        "To have dinner",
+        "To wake up",
+        "To study"
+    ],
+    correct:0
+},
+
+{
+    question:"How do you say 'I study Portuguese every day'?",
+    options:[
+        "Eu estudo português todos os dias.",
+        "Eu durmo todos os dias.",
+        "Eu acordo português.",
+        "Eu trabalho português."
+    ],
+    correct:0
+},
+
+{
+    question:"What does 'Trabalhar' mean?",
+    options:[
+        "To work",
+        "To sleep",
+        "To eat",
+        "To drive"
+    ],
+    correct:0
+},
+
+{
+    question:"How do you say 'I arrive home'?",
+    options:[
+        "Eu chego em casa.",
+        "Eu acordo em casa.",
+        "Eu almoço em casa.",
+        "Eu estudo em casa."
+    ],
+    correct:0
+},
+
+{
+    question:"What does 'Jantar' mean?",
+    options:[
+        "To have dinner",
+        "To have breakfast",
+        "To have lunch",
+        "To walk"
+    ],
+    correct:0
+},
+
+{
+    question:"How do you say 'I watch TV at night'?",
+    options:[
+        "Eu assisto TV à noite.",
+        "Eu vejo trabalho.",
+        "Eu estudo TV.",
+        "Eu durmo TV."
+    ],
+    correct:0
+},
+
+{
+    question:"What does 'Dormir' mean?",
+    options:[
+        "To sleep",
+        "To wake up",
+        "To study",
+        "To eat"
+    ],
+    correct:0
+},
+
+{
+    question:"Which expression means 'Every day'?",
+    options:[
+        "Todos os dias",
+        "Toda noite",
+        "Hoje cedo",
+        "Na semana passada"
+    ],
+    correct:0
+},
+
+{
+    question:"How do you say 'I go to bed'?",
+    options:[
+        "Eu vou para a cama.",
+        "Eu vou ao trabalho.",
+        "Eu vou à escola.",
+        "Eu vou ao mercado."
+    ],
+    correct:0
+},
+
+{
+    question:"What does 'Rotina diária' mean?",
+    options:[
+        "Daily routine",
+        "Weekend trip",
+        "Work schedule",
+        "Free time"
+    ],
+    correct:0
+},
+
+{
+    question:"Which sentence is correct?",
+    options:[
+        "Eu acordo cedo todos os dias.",
+        "Eu cedo acordo dias todos.",
+        "Acordo eu todos cedo.",
+        "Todos acordo dias cedo."
+    ],
+    correct:0
+}
+
+];
 let currentChallenge = 0;
 
 
@@ -2330,7 +2500,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("quizContainer")) {
 
-     if (window.location.pathname.includes("lesson15")) {
+    if (window.location.pathname.includes("lesson16")) {
+
+    loadLesson16Quiz();
+
+} else if (window.location.pathname.includes("lesson15")) {
 
     loadLesson15Quiz();
 
@@ -4039,3 +4213,115 @@ async function finishLesson15() {
 }
 
 window.finishLesson15 = finishLesson15;
+
+// =======================================
+// Lesson 16 Quiz
+// =======================================
+
+let currentLesson16Question = 0;
+let lesson16Score = 0;
+
+function loadLesson16Quiz() {
+
+    const container = document.getElementById("quizQuestions");
+
+    if (!container) return;
+
+    const question = lesson16Quiz[currentLesson16Question];
+
+    let html = `
+        <h3>Question ${currentLesson16Question + 1} of ${lesson16Quiz.length}</h3>
+        <p>${question.question}</p>
+    `;
+
+    question.options.forEach((option, index) => {
+
+        html += `
+            <label>
+                <input type="radio" name="lesson16quiz" value="${index}">
+                ${option}
+            </label><br><br>
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+}
+
+function checkLesson16Quiz() {
+
+    const selected = document.querySelector('input[name="lesson16quiz"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (parseInt(selected.value) === lesson16Quiz[currentLesson16Question].correct) {
+
+        lesson16Score++;
+        document.getElementById("quizResult").innerHTML = "✅ Correct!";
+
+    } else {
+
+        document.getElementById("quizResult").innerHTML = "❌ Incorrect!";
+
+    }
+
+    setTimeout(() => {
+
+        currentLesson16Question++;
+
+        if (currentLesson16Question < lesson16Quiz.length) {
+
+            loadLesson16Quiz();
+            document.getElementById("quizResult").innerHTML = "";
+
+        } else {
+
+            document.getElementById("quizContainer").innerHTML = `
+                <h2>🎉 Lesson 16 Completed!</h2>
+
+                <p><strong>Correct:</strong> ${lesson16Score}</p>
+                <p><strong>Incorrect:</strong> ${lesson16Quiz.length - lesson16Score}</p>
+                <p><strong>Score:</strong> ${Math.round((lesson16Score / lesson16Quiz.length) * 100)}%</p>
+
+                <br>
+
+                <button class="hero-button" onclick="location.reload()">
+                    🔄 Retake Quiz
+                </button>
+
+                <br><br>
+
+                <button class="hero-button" onclick="finishLesson16()">
+                    ➜ Continue to Lesson 17
+                </button>
+            `;
+
+            const result = document.getElementById("quizResult");
+            if (result) result.innerHTML = "";
+
+            const btn = document.getElementById("checkAnswerBtn");
+            if (btn) btn.style.display = "none";
+
+        }
+
+    }, 1000);
+
+}
+
+window.checkLesson16Quiz = checkLesson16Quiz;
+
+async function finishLesson16() {
+
+    const { completeLesson } = await import("./progress.js");
+
+    await completeLesson(16);
+
+    window.location.href = "lesson17.html";
+
+}
+
+window.finishLesson16 = finishLesson16;
