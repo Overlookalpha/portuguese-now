@@ -2532,7 +2532,7 @@ options: [
 ],
 correct: 2
 }
-
+];
 let currentChallenge = 0;
 
 
