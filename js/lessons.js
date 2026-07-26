@@ -2365,6 +2365,174 @@ const lesson16Quiz = [
 }
 
 ];
+
+const lesson17Quiz = [
+
+{
+question: "How do you say 'I speak Portuguese'?",
+options: [
+"Eu fala português",
+"Eu falo português",
+"Eu falar português",
+"Eu falando português"
+],
+correct: 1
+},
+
+{
+question: "What is the infinitive of 'I eat'?",
+options: [
+"Comer",
+"Come",
+"Comendo",
+"Comi"
+],
+correct: 0
+},
+
+{
+question: "Complete: Nós __ português.",
+options: [
+"fala",
+"falam",
+"falamos",
+"falar"
+],
+correct: 2
+},
+
+{
+question: "Which verb means 'to live'?",
+options: [
+"Beber",
+"Ler",
+"Morar",
+"Abrir"
+],
+correct: 2
+},
+
+{
+question: "Complete: Ela __ café todas as manhãs.",
+options: [
+"bebe",
+"beber",
+"bebo",
+"bebemos"
+],
+correct: 0
+},
+
+{
+question: "What is the correct form?",
+options: [
+"Eu estudar português.",
+"Eu estudo português.",
+"Eu estuda português.",
+"Eu estudamos português."
+],
+correct: 1
+},
+
+{
+question: "Complete: Eles __ em Portugal.",
+options: [
+"mora",
+"morar",
+"moram",
+"moramos"
+],
+correct: 2
+},
+
+{
+question: "Which verb means 'to work'?",
+options: [
+"Trabalhar",
+"Estudar",
+"Aprender",
+"Escrever"
+],
+correct: 0
+},
+
+{
+question: "Complete: Você __ inglês.",
+options: [
+"estuda",
+"estudamos",
+"estudo",
+"estudar"
+],
+correct: 0
+},
+
+{
+question: "What does 'Abrir' mean?",
+options: [
+"To close",
+"To open",
+"To read",
+"To write"
+],
+correct: 1
+},
+
+{
+question: "Complete: Nós __ muito.",
+options: [
+"trabalhamos",
+"trabalha",
+"trabalham",
+"trabalhar"
+],
+correct: 0
+},
+
+{
+question: "Which sentence is correct?",
+options: [
+"Eu bebe água.",
+"Eu beber água.",
+"Eu bebo água.",
+"Eu bebemos água."
+],
+correct: 2
+},
+
+{
+question: "Complete: Ela __ cartas.",
+options: [
+"escreve",
+"escrever",
+"escrevo",
+"escrevemos"
+],
+correct: 0
+},
+
+{
+question: "Complete: Eu __ muito todos os dias.",
+options: [
+"aprender",
+"aprende",
+"aprendo",
+"aprendemos"
+],
+correct: 2
+},
+
+{
+question: "Which sentence is in the Present Tense?",
+options: [
+"Eu falei português.",
+"Eu vou falar português.",
+"Eu falo português.",
+"Eu falaria português."
+],
+correct: 2
+}
+
 let currentChallenge = 0;
 
 
@@ -2500,7 +2668,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("quizContainer")) {
 
-    if (window.location.pathname.includes("lesson16")) {
+    if (window.location.pathname.includes("lesson17")) {
+
+    loadLesson17Quiz();
+
+} else if (window.location.pathname.includes("lesson16")) {
 
     loadLesson16Quiz();
 
@@ -4325,3 +4497,115 @@ async function finishLesson16() {
 }
 
 window.finishLesson16 = finishLesson16;
+
+// =======================================
+// Lesson 17 Quiz
+// =======================================
+
+let currentLesson17Question = 0;
+let lesson17Score = 0;
+
+function loadLesson17Quiz() {
+
+    const container = document.getElementById("quizQuestions");
+
+    if (!container) return;
+
+    const question = lesson17Quiz[currentLesson17Question];
+
+    let html = `
+        <h3>Question ${currentLesson17Question + 1} of ${lesson17Quiz.length}</h3>
+        <p>${question.question}</p>
+    `;
+
+    question.options.forEach((option, index) => {
+
+        html += `
+            <label>
+                <input type="radio" name="lesson17quiz" value="${index}">
+                ${option}
+            </label><br><br>
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+}
+
+function checkLesson17Quiz() {
+
+    const selected = document.querySelector('input[name="lesson17quiz"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (parseInt(selected.value) === lesson17Quiz[currentLesson17Question].correct) {
+
+        lesson17Score++;
+        document.getElementById("quizResult").innerHTML = "✅ Correct!";
+
+    } else {
+
+        document.getElementById("quizResult").innerHTML = "❌ Incorrect!";
+
+    }
+
+    setTimeout(() => {
+
+        currentLesson17Question++;
+
+        if (currentLesson17Question < lesson17Quiz.length) {
+
+            loadLesson17Quiz();
+            document.getElementById("quizResult").innerHTML = "";
+
+        } else {
+
+            document.getElementById("quizContainer").innerHTML = `
+                <h2>🎉 Lesson 17 Completed!</h2>
+
+                <p><strong>Correct:</strong> ${lesson17Score}</p>
+                <p><strong>Incorrect:</strong> ${lesson17Quiz.length - lesson17Score}</p>
+                <p><strong>Score:</strong> ${Math.round((lesson17Score / lesson17Quiz.length) * 100)}%</p>
+
+                <br>
+
+                <button class="hero-button" onclick="location.reload()">
+                    🔄 Retake Quiz
+                </button>
+
+                <br><br>
+
+                <button class="hero-button" onclick="finishLesson17()">
+                    ➜ Continue to Lesson 18
+                </button>
+            `;
+
+            const result = document.getElementById("quizResult");
+            if (result) result.innerHTML = "";
+
+            const btn = document.getElementById("checkAnswerBtn");
+            if (btn) btn.style.display = "none";
+
+        }
+
+    }, 1000);
+
+}
+
+window.checkLesson17Quiz = checkLesson17Quiz;
+
+async function finishLesson17() {
+
+    const { completeLesson } = await import("./progress.js");
+
+    await completeLesson(17);
+
+    window.location.href = "lesson18.html";
+
+}
+
+window.finishLesson17 = finishLesson17;
