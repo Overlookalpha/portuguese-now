@@ -2706,6 +2706,179 @@ correct: 0
 }
 
 ];
+
+// =======================================
+// Lesson 19 Quiz
+// =======================================
+
+const lesson19Quiz = [
+
+{
+question:"What is 'Carnaval'?",
+options:[
+"Carnival",
+"Christmas",
+"Easter",
+"New Year"
+],
+correct:0
+},
+
+{
+question:"What does 'Churrasco' mean?",
+options:[
+"Soup",
+"Barbecue",
+"Dessert",
+"Pizza"
+],
+correct:1
+},
+
+{
+question:"Which sport is very popular in Brazil?",
+options:[
+"Baseball",
+"Football",
+"Hockey",
+"Rugby"
+],
+correct:1
+},
+
+{
+question:"What does 'Praia' mean?",
+options:[
+"Beach",
+"Mountain",
+"River",
+"Forest"
+],
+correct:0
+},
+
+{
+question:"What does 'Café' mean?",
+options:[
+"Tea",
+"Milk",
+"Coffee",
+"Juice"
+],
+correct:2
+},
+
+{
+question:"What does 'Música' mean?",
+options:[
+"Music",
+"Dance",
+"Movie",
+"Book"
+],
+correct:0
+},
+
+{
+question:"What does 'Família' mean?",
+options:[
+"Friends",
+"Family",
+"School",
+"Work"
+],
+correct:1
+},
+
+{
+question:"Brazilians are generally known for being:",
+options:[
+"Cold",
+"Friendly",
+"Silent",
+"Serious"
+],
+correct:1
+},
+
+{
+question:"Which celebration is famous in Brazil?",
+options:[
+"Carnival",
+"Halloween",
+"Thanksgiving",
+"Oktoberfest"
+],
+correct:0
+},
+
+{
+question:"What drink is part of everyday Brazilian life?",
+options:[
+"Coffee",
+"Wine",
+"Beer",
+"Tea"
+],
+correct:0
+},
+
+{
+question:"Which sentence is correct?",
+options:[
+"O futebol é muito popular.",
+"O futebol muito popular.",
+"Futebol é popular muito.",
+"Popular futebol muito."
+],
+correct:0
+},
+
+{
+question:"Brazil is famous for its:",
+options:[
+"Culture",
+"Snow",
+"Castles",
+"Deserts"
+],
+correct:0
+},
+
+{
+question:"What does 'Hospitalidade' mean?",
+options:[
+"Hospitality",
+"Hospital",
+"Hotel",
+"History"
+],
+correct:0
+},
+
+{
+question:"Family is considered:",
+options:[
+"Very important",
+"Not important",
+"Only for children",
+"Optional"
+],
+correct:0
+},
+
+{
+question:"Learning about culture helps you:",
+options:[
+"Speak more naturally",
+"Forget vocabulary",
+"Stop practicing",
+"Translate less"
+],
+correct:0
+}
+
+];
 let currentChallenge = 0;
 
 
@@ -2839,14 +3012,17 @@ function loadQuiz() {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    if (document.getElementById("quizContainer")) {
+        if (document.getElementById("quizContainer")) {
 
-        if (window.location.pathname.includes("lesson18")) {
+    if (window.location.pathname.includes("lesson19")) {
 
-            loadLesson18Quiz();
+        loadLesson19Quiz();
 
-        } else if (window.location.pathname.includes("lesson17")) {
+    } else if (window.location.pathname.includes("lesson18")) {
 
+        loadLesson18Quiz();
+
+    } else if (window.location.pathname.includes("lesson17")) {
             loadLesson17Quiz();
 
         } else if (window.location.pathname.includes("lesson16")) {
@@ -4900,3 +5076,115 @@ async function finishLesson18() {
 }
 
 window.finishLesson18 = finishLesson18;
+
+// =======================================
+// Lesson 19 Quiz
+// =======================================
+
+let currentLesson19Question = 0;
+let lesson19Score = 0;
+
+function loadLesson19Quiz() {
+
+    const container = document.getElementById("quizQuestions");
+
+    if (!container) return;
+
+    const question = lesson19Quiz[currentLesson19Question];
+
+    let html = `
+        <h3>Question ${currentLesson19Question + 1} of ${lesson19Quiz.length}</h3>
+        <p>${question.question}</p>
+    `;
+
+    question.options.forEach((option, index) => {
+
+        html += `
+            <label>
+                <input type="radio" name="lesson19quiz" value="${index}">
+                ${option}
+            </label><br><br>
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+}
+
+function checkLesson19Quiz() {
+
+    const selected = document.querySelector('input[name="lesson19quiz"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (parseInt(selected.value) === lesson19Quiz[currentLesson19Question].correct) {
+
+        lesson19Score++;
+        document.getElementById("quizResult").innerHTML = "✅ Correct!";
+
+    } else {
+
+        document.getElementById("quizResult").innerHTML = "❌ Incorrect!";
+
+    }
+
+    setTimeout(() => {
+
+        currentLesson19Question++;
+
+        if (currentLesson19Question < lesson19Quiz.length) {
+
+            loadLesson19Quiz();
+            document.getElementById("quizResult").innerHTML = "";
+
+        } else {
+
+            document.getElementById("quizContainer").innerHTML = `
+                <h2>🎉 Lesson 19 Completed!</h2>
+
+                <p><strong>Correct:</strong> ${lesson19Score}</p>
+                <p><strong>Incorrect:</strong> ${lesson19Quiz.length - lesson19Score}</p>
+                <p><strong>Score:</strong> ${Math.round((lesson19Score / lesson19Quiz.length) * 100)}%</p>
+
+                <br>
+
+                <button class="hero-button" onclick="location.reload()">
+                    🔄 Retake Quiz
+                </button>
+
+                <br><br>
+
+                <button class="hero-button" onclick="finishLesson19()">
+                    ➜ Continue to Lesson 20
+                </button>
+            `;
+
+            const result = document.getElementById("quizResult");
+            if (result) result.innerHTML = "";
+
+            const btn = document.getElementById("checkAnswerBtn");
+            if (btn) btn.style.display = "none";
+
+        }
+
+    }, 1000);
+
+}
+
+window.checkLesson19Quiz = checkLesson19Quiz;
+
+async function finishLesson19() {
+
+    const { completeLesson } = await import("./progress.js");
+
+    await completeLesson(19);
+
+    window.location.href = "lesson20.html";
+
+}
+
+window.finishLesson19 = finishLesson19;
