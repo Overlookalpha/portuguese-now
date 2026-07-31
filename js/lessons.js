@@ -2533,6 +2533,179 @@ options: [
 correct: 2
 }
 ];
+
+// =======================================
+// Lesson 18 Quiz
+// =======================================
+
+const lesson18Quiz = [
+
+{
+question: "How do you ask 'How are you?' in Portuguese?",
+options: [
+"Como você está?",
+"Qual é o seu nome?",
+"De onde você é?",
+"Até amanhã!"
+],
+correct: 0
+},
+
+{
+question: "What does 'Estou muito bem.' mean?",
+options: [
+"I'm very well.",
+"I'm tired.",
+"I'm from Brazil.",
+"I'm hungry."
+],
+correct: 0
+},
+
+{
+question: "How do you say 'Nice to meet you'?",
+options: [
+"Prazer em conhecer você.",
+"Bom dia.",
+"Até logo.",
+"Com licença."
+],
+correct: 0
+},
+
+{
+question: "How do you ask 'Where are you from?'",
+options: [
+"Onde você mora?",
+"De onde você é?",
+"Como você está?",
+"O que você faz?"
+],
+correct: 1
+},
+
+{
+question: "Complete: Eu _ do Brasil.",
+options: [
+"estou",
+"sou",
+"tenho",
+"vou"
+],
+correct: 1
+},
+
+{
+question: "Which expression means 'See you tomorrow'?",
+options: [
+"Até amanhã.",
+"Boa tarde.",
+"Tudo bem.",
+"Obrigado."
+],
+correct: 0
+},
+
+{
+question: "How do you answer 'Como você está?'",
+options: [
+"Estou bem.",
+"Até amanhã.",
+"Bom dia.",
+"Sou do Brasil."
+],
+correct: 0
+},
+
+{
+question: "What does 'O prazer é meu.' mean?",
+options: [
+"The pleasure is mine.",
+"Good afternoon.",
+"See you soon.",
+"I'm fine."
+],
+correct: 0
+},
+
+{
+question: "Complete: __ conhecer você.",
+options: [
+"Prazer em",
+"Obrigado",
+"Bom dia",
+"Até logo"
+],
+correct: 0
+},
+
+{
+question: "Which expression is used to say goodbye?",
+options: [
+"Até mais.",
+"Como vai?",
+"Qual é seu nome?",
+"De onde você é?"
+],
+correct: 0
+},
+
+{
+question: "What does 'Bom dia' mean?",
+options: [
+"Good morning.",
+"Good night.",
+"See you later.",
+"Goodbye."
+],
+correct: 0
+},
+
+{
+question: "Which sentence is correct?",
+options: [
+"Eu sou do Brasil.",
+"Eu Brasil sou.",
+"Sou eu Brasil.",
+"Brasil eu sou."
+],
+correct: 0
+},
+
+{
+question: "How do Brazilians usually start a conversation?",
+options: [
+"By greeting the other person.",
+"By talking about money.",
+"By staying silent.",
+"By saying goodbye."
+],
+correct: 0
+},
+
+{
+question: "Complete: Até __.",
+options: [
+"amanhã",
+"Brasil",
+"trabalho",
+"café"
+],
+correct: 0
+},
+
+{
+question: "Which conversation sounds the most natural?",
+options: [
+"— Como você está? — Estou muito bem!",
+"— Até amanhã! — Bom dia!",
+"— De onde você é? — Até logo!",
+"— Bom dia! — Tchau, ontem!"
+],
+correct: 0
+}
+
+];
 let currentChallenge = 0;
 
 
@@ -2668,7 +2841,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("quizContainer")) {
 
-    if (window.location.pathname.includes("lesson17")) {
+    if (window.location.pathname.includes("lesson18")) {
+
+    loadLesson18Quiz();
+
+} else if (window.location.pathname.includes("lesson17")) {
 
     loadLesson17Quiz();
 
@@ -2679,6 +2856,8 @@ document.addEventListener("DOMContentLoaded", () => {
 } else if (window.location.pathname.includes("lesson15")) {
 
     loadLesson15Quiz();
+
+}
 
 } else if (window.location.pathname.includes("lesson14")) {
 
@@ -4609,3 +4788,115 @@ async function finishLesson17() {
 }
 
 window.finishLesson17 = finishLesson17;
+
+// =======================================
+// Lesson 18 Quiz
+// =======================================
+
+let currentLesson18Question = 0;
+let lesson18Score = 0;
+
+function loadLesson18Quiz() {
+
+    const container = document.getElementById("quizQuestions");
+
+    if (!container) return;
+
+    const question = lesson18Quiz[currentLesson18Question];
+
+    let html = `
+        <h3>Question ${currentLesson18Question + 1} of ${lesson18Quiz.length}</h3>
+        <p>${question.question}</p>
+    `;
+
+    question.options.forEach((option, index) => {
+
+        html += `
+            <label>
+                <input type="radio" name="lesson18quiz" value="${index}">
+                ${option}
+            </label><br><br>
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+}
+
+function checkLesson18Quiz() {
+
+    const selected = document.querySelector('input[name="lesson18quiz"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (parseInt(selected.value) === lesson18Quiz[currentLesson18Question].correct) {
+
+        lesson18Score++;
+        document.getElementById("quizResult").innerHTML = "✅ Correct!";
+
+    } else {
+
+        document.getElementById("quizResult").innerHTML = "❌ Incorrect!";
+
+    }
+
+    setTimeout(() => {
+
+        currentLesson18Question++;
+
+        if (currentLesson18Question < lesson18Quiz.length) {
+
+            loadLesson18Quiz();
+            document.getElementById("quizResult").innerHTML = "";
+
+        } else {
+
+            document.getElementById("quizContainer").innerHTML = `
+                <h2>🎉 Lesson 18 Completed!</h2>
+
+                <p><strong>Correct:</strong> ${lesson18Score}</p>
+                <p><strong>Incorrect:</strong> ${lesson18Quiz.length - lesson18Score}</p>
+                <p><strong>Score:</strong> ${Math.round((lesson18Score / lesson18Quiz.length) * 100)}%</p>
+
+                <br>
+
+                <button class="hero-button" onclick="location.reload()">
+                    🔄 Retake Quiz
+                </button>
+
+                <br><br>
+
+                <button class="hero-button" onclick="finishLesson18()">
+                    ➜ Continue to Lesson 19
+                </button>
+            `;
+
+            const result = document.getElementById("quizResult");
+            if (result) result.innerHTML = "";
+
+            const btn = document.getElementById("checkAnswerBtn");
+            if (btn) btn.style.display = "none";
+
+        }
+
+    }, 1000);
+
+}
+
+window.checkLesson18Quiz = checkLesson18Quiz;
+
+async function finishLesson18() {
+
+    const { completeLesson } = await import("./progress.js");
+
+    await completeLesson(18);
+
+    window.location.href = "lesson19.html";
+
+}
+
+window.finishLesson18 = finishLesson18;
