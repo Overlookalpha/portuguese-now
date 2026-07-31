@@ -2915,7 +2915,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadQuiz();
 
 }
-    }
+    
 
     if (document.getElementById("challengeBox")) {
         loadChallenge();
