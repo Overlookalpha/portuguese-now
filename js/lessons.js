@@ -2879,6 +2879,175 @@ correct:0
 }
 
 ];
+
+const lesson20Quiz = [
+
+{
+    question: "What is the Portuguese word for 'Good morning'?",
+    options: [
+        "Bom dia",
+        "Boa noite",
+        "Boa tarde",
+        "Olá"
+    ],
+    correct: 0
+},
+
+{
+    question: "How do you say 'Thank you' in Portuguese?",
+    options: [
+        "Desculpa",
+        "Obrigado",
+        "Por favor",
+        "Licença"
+    ],
+    correct: 1
+},
+
+{
+    question: "What does 'Eu sou do Brasil.' mean?",
+    options: [
+        "I live in Brazil.",
+        "I like Brazil.",
+        "I am from Brazil.",
+        "I am going to Brazil."
+    ],
+    correct: 2
+},
+
+{
+    question: "Which number means 'Twenty'?",
+    options: [
+        "Doze",
+        "Dez",
+        "Vinte",
+        "Trinta"
+    ],
+    correct: 2
+},
+
+{
+    question: "What color is 'Azul'?",
+    options: [
+        "Green",
+        "Blue",
+        "Yellow",
+        "Red"
+    ],
+    correct: 1
+},
+
+{
+    question: "What does 'Pai' mean?",
+    options: [
+        "Brother",
+        "Mother",
+        "Father",
+        "Grandfather"
+    ],
+    correct: 2
+},
+
+{
+    question: "How do you say 'I would like a coffee'?",
+    options: [
+        "Eu quero água.",
+        "Eu gostaria de um café.",
+        "Eu gosto de café.",
+        "Eu tomo café."
+    ],
+    correct: 1
+},
+
+{
+    question: "Which expression is used to ask for directions?",
+    options: [
+        "Quanto custa?",
+        "Onde fica o banco?",
+        "Que horas são?",
+        "Como você está?"
+    ],
+    correct: 1
+},
+
+{
+    question: "What does 'Ônibus' mean?",
+    options: [
+        "Taxi",
+        "Train",
+        "Bus",
+        "Subway"
+    ],
+    correct: 2
+},
+
+{
+    question: "What is the correct translation of 'Que horas são?'",
+    options: [
+        "Where are you?",
+        "How old are you?",
+        "What time is it?",
+        "What's your name?"
+    ],
+    correct: 2
+},
+
+{
+    question: "How do you say 'I wake up at seven o'clock'?",
+    options: [
+        "Eu durmo às sete horas.",
+        "Eu acordo às sete horas.",
+        "Eu almoço às sete horas.",
+        "Eu trabalho às sete horas."
+    ],
+    correct: 1
+},
+
+{
+    question: "Which verb means 'to speak'?",
+    options: [
+        "Comer",
+        "Abrir",
+        "Falar",
+        "Beber"
+    ],
+    correct: 2
+},
+
+{
+    question: "Someone says 'Como você está?'. What is the best answer?",
+    options: [
+        "Até amanhã.",
+        "Estou bem.",
+        "Boa noite.",
+        "Obrigado."
+    ],
+    correct: 1
+},
+
+{
+    question: "Which event is one of the most famous in Brazil?",
+    options: [
+        "Halloween",
+        "Thanksgiving",
+        "Carnaval",
+        "Oktoberfest"
+    ],
+    correct: 2
+},
+
+{
+    question: "Congratulations! You completed Module 1. How do you say 'See you soon!' in Portuguese?",
+    options: [
+        "Até logo!",
+        "Boa tarde!",
+        "Bom dia!",
+        "Obrigado!"
+    ],
+    correct: 0
+}
+
+];
 let currentChallenge = 0;
 
 
@@ -3014,9 +3183,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (document.getElementById("quizContainer")) {
 
-    if (window.location.pathname.includes("lesson19")) {
+    if (window.location.pathname.includes("lesson20")) {
 
-        loadLesson19Quiz();
+    loadLesson20Quiz();
+
+} else if (window.location.pathname.includes("lesson19")) {
+
+    loadLesson19Quiz();
 
     } else if (window.location.pathname.includes("lesson18")) {
 
@@ -5188,3 +5361,115 @@ async function finishLesson19() {
 }
 
 window.finishLesson19 = finishLesson19;
+
+// =======================================
+// Lesson 20 Quiz
+// =======================================
+
+let currentLesson20Question = 0;
+let lesson20Score = 0;
+
+function loadLesson20Quiz() {
+
+    const container = document.getElementById("quizQuestions");
+
+    if (!container) return;
+
+    const question = lesson20Quiz[currentLesson20Question];
+
+    let html = `
+        <h3>Question ${currentLesson20Question + 1} of ${lesson20Quiz.length}</h3>
+        <p>${question.question}</p>
+    `;
+
+    question.options.forEach((option, index) => {
+
+        html += `
+            <label>
+                <input type="radio" name="lesson20quiz" value="${index}">
+                ${option}
+            </label><br><br>
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+}
+
+function checkLesson20Quiz() {
+
+    const selected = document.querySelector('input[name="lesson20quiz"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (parseInt(selected.value) === lesson20Quiz[currentLesson20Question].correct) {
+
+        lesson20Score++;
+        document.getElementById("quizResult").innerHTML = "✅ Correct!";
+
+    } else {
+
+        document.getElementById("quizResult").innerHTML = "❌ Incorrect!";
+
+    }
+
+    setTimeout(() => {
+
+        currentLesson20Question++;
+
+        if (currentLesson20Question < lesson20Quiz.length) {
+
+            loadLesson20Quiz();
+            document.getElementById("quizResult").innerHTML = "";
+
+        } else {
+
+            document.getElementById("quizContainer").innerHTML = `
+                <h2>🏆 Module 1 Completed!</h2>
+
+                <p><strong>Correct:</strong> ${lesson20Score}</p>
+                <p><strong>Incorrect:</strong> ${lesson20Quiz.length - lesson20Score}</p>
+                <p><strong>Score:</strong> ${Math.round((lesson20Score / lesson20Quiz.length) * 100)}%</p>
+
+                <br>
+
+                <button class="hero-button" onclick="location.reload()">
+                    🔄 Retake Quiz
+                </button>
+
+                <br><br>
+
+                <button class="hero-button" onclick="finishLesson20()">
+                    🎉 Finish Module 1
+                </button>
+            `;
+
+            const result = document.getElementById("quizResult");
+            if (result) result.innerHTML = "";
+
+            const btn = document.getElementById("checkAnswerBtn");
+            if (btn) btn.style.display = "none";
+
+        }
+
+    }, 1000);
+
+}
+
+window.checkLesson20Quiz = checkLesson20Quiz;
+
+async function finishLesson20() {
+
+    const { completeLesson } = await import("./progress.js");
+
+    await completeLesson(20);
+
+    window.location.href = "beginner.html";
+
+}
+
+window.finishLesson20 = finishLesson20;
