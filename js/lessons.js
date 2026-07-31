@@ -2841,81 +2841,81 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("quizContainer")) {
 
-    if (window.location.pathname.includes("lesson18")) {
+        if (window.location.pathname.includes("lesson18")) {
 
-    loadLesson18Quiz();
+            loadLesson18Quiz();
 
-} else if (window.location.pathname.includes("lesson17")) {
+        } else if (window.location.pathname.includes("lesson17")) {
 
-    loadLesson17Quiz();
+            loadLesson17Quiz();
 
-} else if (window.location.pathname.includes("lesson16")) {
+        } else if (window.location.pathname.includes("lesson16")) {
 
-    loadLesson16Quiz();
+            loadLesson16Quiz();
 
-} else if (window.location.pathname.includes("lesson15")) {
+        } else if (window.location.pathname.includes("lesson15")) {
 
-    loadLesson15Quiz();
+            loadLesson15Quiz();
 
-}
+        } else if (window.location.pathname.includes("lesson14")) {
 
-} else if (window.location.pathname.includes("lesson14")) {
+            loadLesson14Quiz();
 
-    loadLesson14Quiz();
+        } else if (window.location.pathname.includes("lesson13")) {
 
-} else if (window.location.pathname.includes("lesson13")) {
+            loadLesson13Quiz();
 
-    loadLesson13Quiz();
+        } else if (window.location.pathname.includes("lesson12")) {
 
+            loadLesson12Quiz();
 
-} else if (window.location.pathname.includes("lesson12")) {
-    loadLesson12Quiz();
+        } else if (window.location.pathname.includes("lesson11")) {
 
-} else if (window.location.pathname.includes("lesson11")) {
+            loadLesson11Quiz();
 
-    loadLesson11Quiz();
+        } else if (window.location.pathname.includes("lesson10")) {
 
-} else if (window.location.pathname.includes("lesson10")) {
+            loadLesson10Quiz();
 
-    loadLesson10Quiz();
-   
-} else if (window.location.pathname.includes("lesson9")) {
+        } else if (window.location.pathname.includes("lesson9")) {
 
-    loadLesson9Quiz();
+            loadLesson9Quiz();
 
-} else if (window.location.pathname.includes("lesson8")) {
+        } else if (window.location.pathname.includes("lesson8")) {
 
-    loadLesson8Quiz();
+            loadLesson8Quiz();
 
-} else if (window.location.pathname.includes("lesson7")) {
+        } else if (window.location.pathname.includes("lesson7")) {
 
-    loadLesson7Quiz();
+            loadLesson7Quiz();
 
-} else if (window.location.pathname.includes("lesson6")) {
-    loadLesson6Quiz();
+        } else if (window.location.pathname.includes("lesson6")) {
 
-} else if (window.location.pathname.includes("lesson5")) {
+            loadLesson6Quiz();
 
-    loadLesson5Quiz();
+        } else if (window.location.pathname.includes("lesson5")) {
 
-} else if (window.location.pathname.includes("lesson4")) {
+            loadLesson5Quiz();
 
-    loadLesson4Quiz();
+        } else if (window.location.pathname.includes("lesson4")) {
 
-} else if (window.location.pathname.includes("lesson3")) {
+            loadLesson4Quiz();
 
-    loadLesson3Quiz();
+        } else if (window.location.pathname.includes("lesson3")) {
 
-} else if (window.location.pathname.includes("lesson2")) {
+            loadLesson3Quiz();
 
-    loadLesson2Quiz();
+        } else if (window.location.pathname.includes("lesson2")) {
 
-} else {
+            loadLesson2Quiz();
 
-    loadQuiz();
+        } else {
 
-}
-    
+            loadQuiz();
+
+        }
+
+    }
 
     if (document.getElementById("challengeBox")) {
         loadChallenge();
