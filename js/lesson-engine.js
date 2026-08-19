@@ -357,19 +357,19 @@ const LessonEngine = {
 
 
     // ===================================
-    // Brazilian Portuguese Speech
-    // ===================================
+// Brazilian Portuguese Speech
+// ===================================
 
-    speak: function(text) {
+speak: function(text) {
 
-        if (!('speechSynthesis' in window)) {
+    if (!('speechSynthesis' in window)) {
 
-            alert(
-                'Audio is not supported by this browser.'
-            );
+        alert('Audio is not supported by this browser.');
 
-            return;
-        }
+        return;
+    }
+
+    const speakNow = function() {
 
         window.speechSynthesis.cancel();
 
@@ -382,10 +382,53 @@ const LessonEngine = {
 
         speech.pitch = 1;
 
+        const voices =
+            window.speechSynthesis.getVoices();
+
+        // Try to find a Brazilian Portuguese voice
+        const brazilianVoice =
+            voices.find(function(voice) {
+
+                return voice.lang === 'pt-BR';
+
+            }) ||
+
+            voices.find(function(voice) {
+
+                return voice.lang.toLowerCase().startsWith('pt');
+
+            });
+
+        if (brazilianVoice) {
+
+            speech.voice = brazilianVoice;
+
+        }
+
         window.speechSynthesis.speak(speech);
+    };
+
+
+    // Some browsers load voices asynchronously
+    const voices =
+        window.speechSynthesis.getVoices();
+
+    if (voices.length > 0) {
+
+        speakNow();
+
+    } else {
+
+        window.speechSynthesis.onvoiceschanged = function() {
+
+            window.speechSynthesis.onvoiceschanged = null;
+
+            speakNow();
+        };
+
     }
 
-};
+},
 
 
 // =======================================
