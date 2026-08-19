@@ -1200,3 +1200,344 @@ position:static;
     vertical-align:middle;
     margin-right:10px;
 }
+
+/* =======================================
+   LESSON AUDIO BUTTONS
+======================================= */
+
+.listen-button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    margin-top:15px;
+
+    padding:11px 20px;
+
+    background:#009739;
+    color:#fff;
+
+    border:none;
+    border-radius:30px;
+
+    font-size:15px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    box-shadow:0 6px 15px rgba(0,0,0,.12);
+
+    transition:all .25s ease;
+}
+
+.listen-button:hover{
+    background:#007a2f;
+    transform:translateY(-2px);
+
+    box-shadow:0 9px 20px rgba(0,0,0,.18);
+}
+
+.listen-button:active{
+    transform:translateY(0);
+    box-shadow:0 4px 10px rgba(0,0,0,.12);
+}
+
+
+/* =======================================
+   VOCABULARY
+======================================= */
+
+.vocabulary-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+    margin-top:25px;
+}
+
+.vocabulary-card{
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    border:1px solid #ececec;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.07);
+
+    text-align:center;
+
+    transition:all .3s ease;
+}
+
+.vocabulary-card:hover{
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 30px rgba(0,0,0,.12);
+
+    border-color:#009739;
+}
+
+.vocabulary-emoji{
+    font-size:45px;
+    margin-bottom:12px;
+}
+
+.vocabulary-card h3{
+    color:#002776;
+    margin-bottom:8px;
+}
+
+.vocabulary-card p{
+    color:#666;
+    margin-bottom:5px;
+}
+
+
+/* =======================================
+   USEFUL EXPRESSIONS
+======================================= */
+
+.expressions-container{
+    display:grid;
+
+    gap:20px;
+
+    margin-top:25px;
+}
+
+.expression-card{
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    border:1px solid #ececec;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+
+    transition:.3s ease;
+}
+
+.expression-card:hover{
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 25px rgba(0,0,0,.1);
+
+    border-color:#009739;
+}
+
+.expression-portuguese{
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#002776;
+
+    margin-bottom:8px;
+}
+
+.expression-english{
+    color:#666;
+
+    font-size:16px;
+
+    line-height:1.6;
+}
+
+
+/* =======================================
+   LISTEN & REPEAT
+======================================= */
+
+.repeat-container{
+    display:grid;
+
+    gap:20px;
+
+    margin-top:25px;
+}
+
+.repeat-card{
+    display:flex;
+
+    gap:20px;
+
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    border:1px solid #ececec;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+
+    transition:.3s ease;
+}
+
+.repeat-card:hover{
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 25px rgba(0,0,0,.1);
+}
+
+.repeat-number{
+    width:45px;
+    height:45px;
+
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#009739;
+    color:#fff;
+
+    border-radius:50%;
+
+    font-weight:700;
+    font-size:18px;
+}
+
+.repeat-content{
+    flex:1;
+}
+
+.repeat-content h3{
+    color:#002776;
+    margin-bottom:8px;
+}
+
+.repeat-content p{
+    color:#666;
+}
+
+.repeat-label{
+    display:block;
+
+    margin-top:12px;
+
+    color:#009739;
+
+    font-size:14px;
+
+    font-weight:600;
+}
+
+
+/* =======================================
+   PRACTICE
+======================================= */
+
+.practice-container{
+    display:grid;
+
+    gap:25px;
+
+    margin-top:25px;
+}
+
+.practice-card{
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    border:1px solid #ececec;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+}
+
+.practice-question{
+    font-size:18px;
+
+    font-weight:700;
+
+    color:#222;
+
+    margin-bottom:20px;
+}
+
+.practice-options{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+}
+
+.practice-option{
+    padding:12px 20px;
+
+    background:#fff;
+
+    color:#002776;
+
+    border:2px solid #009739;
+
+    border-radius:30px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s ease;
+}
+
+.practice-option:hover{
+    background:#009739;
+
+    color:#fff;
+
+    transform:translateY(-2px);
+}
+
+.practice-feedback{
+    margin-top:15px;
+
+    font-weight:700;
+}
+
+
+/* =======================================
+   MOBILE LESSON
+======================================= */
+
+@media(max-width:600px){
+
+    .vocabulary-grid{
+        grid-template-columns:1fr;
+    }
+
+    .repeat-card{
+        flex-direction:column;
+    }
+
+    .repeat-number{
+        width:40px;
+        height:40px;
+    }
+
+    .practice-options{
+        flex-direction:column;
+    }
+
+    .practice-option{
+        width:100%;
+    }
+
+    .listen-button{
+        width:100%;
+    }
+}

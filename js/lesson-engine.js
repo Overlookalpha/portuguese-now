@@ -40,9 +40,8 @@ const LessonEngine = {
 
         container.innerHTML =
             '<div class="lesson-header-content">' +
-
-                '<span class="lesson-module">' +
-                    'Module ' + this.lesson.module +
+                '<span class="lesson-module">Module ' +
+                    this.lesson.module +
                 '</span>' +
 
                 '<h1>' +
@@ -54,7 +53,9 @@ const LessonEngine = {
                 '</p>' +
 
                 '<div class="lesson-meta">' +
-                    '<span>⏱️ ' + this.lesson.duration + '</span>' +
+                    '<span>⏱️ ' +
+                        this.lesson.duration +
+                    '</span>' +
                 '</div>' +
 
             '</div>';
@@ -67,7 +68,8 @@ const LessonEngine = {
 
     renderObjectives: function() {
 
-        const container = document.getElementById('lessonObjectives');
+        const container =
+            document.getElementById('lessonObjectives');
 
         if (!container || !this.lesson.objectives) return;
 
@@ -93,7 +95,8 @@ const LessonEngine = {
 
     renderVocabulary: function() {
 
-        const container = document.getElementById('lessonVocabulary');
+        const container =
+            document.getElementById('lessonVocabulary');
 
         if (!container || !this.lesson.vocabulary) return;
 
@@ -123,9 +126,7 @@ const LessonEngine = {
                         'onclick="LessonEngine.speak(' +
                         JSON.stringify(item.portuguese) +
                         ')">' +
-
                         '🔊 Listen' +
-
                     '</button>' +
 
                 '</div>';
@@ -144,7 +145,8 @@ const LessonEngine = {
 
     renderExpressions: function() {
 
-        const container = document.getElementById('lessonExpressions');
+        const container =
+            document.getElementById('lessonExpressions');
 
         if (!container || !this.lesson.expressions) return;
 
@@ -158,7 +160,8 @@ const LessonEngine = {
                 '<div class="expression-card">' +
 
                     '<div class="expression-portuguese">' +
-                        '🇧🇷 ' + expression.portuguese +
+                        '🇧🇷 ' +
+                        expression.portuguese +
                     '</div>' +
 
                     '<div class="expression-english">' +
@@ -170,9 +173,7 @@ const LessonEngine = {
                         'onclick="LessonEngine.speak(' +
                         JSON.stringify(expression.portuguese) +
                         ')">' +
-
                         '🔊 Listen' +
-
                     '</button>' +
 
                 '</div>';
@@ -191,7 +192,8 @@ const LessonEngine = {
 
     renderListening: function() {
 
-        const container = document.getElementById('lessonListening');
+        const container =
+            document.getElementById('lessonListening');
 
         if (!container || !this.lesson.repeat) return;
 
@@ -217,7 +219,8 @@ const LessonEngine = {
                     '<div class="repeat-content">' +
 
                         '<h3>' +
-                            '🇧🇷 ' + item.portuguese +
+                            '🇧🇷 ' +
+                            item.portuguese +
                         '</h3>' +
 
                         '<p>' +
@@ -229,9 +232,7 @@ const LessonEngine = {
                             'onclick="LessonEngine.speak(' +
                             JSON.stringify(item.portuguese) +
                             ')">' +
-
                             '🔊 Listen' +
-
                         '</button>' +
 
                         '<span class="repeat-label">' +
@@ -256,7 +257,8 @@ const LessonEngine = {
 
     renderListeningChallenge: function() {
 
-        const container = document.getElementById('lessonChallenge');
+        const container =
+            document.getElementById('lessonChallenge');
 
         if (!container || !this.lesson.listening) return;
 
@@ -278,13 +280,13 @@ const LessonEngine = {
 
     renderPractice: function() {
 
-        const container = document.getElementById('lessonPractice');
+        const container =
+            document.getElementById('lessonPractice');
 
         if (!container || !this.lesson.practice) return;
 
         let html =
             '<h2>✏️ Practice</h2>' +
-
             '<div class="practice-container">';
 
         this.lesson.practice.forEach(function(item) {
@@ -307,9 +309,7 @@ const LessonEngine = {
                         index + ', ' +
                         item.correct +
                         ', this)">' +
-
                         option +
-
                     '</button>';
 
             });
@@ -339,7 +339,8 @@ const LessonEngine = {
 
         if (!card) return;
 
-        const feedback = card.querySelector('.practice-feedback');
+        const feedback =
+            card.querySelector('.practice-feedback');
 
         if (!feedback) return;
 
@@ -357,78 +358,77 @@ const LessonEngine = {
 
 
     // ===================================
-// Brazilian Portuguese Speech
-// ===================================
+    // Brazilian Portuguese Speech
+    // ===================================
 
-speak: function(text) {
+    speak: function(text) {
 
-    if (!('speechSynthesis' in window)) {
+        if (!('speechSynthesis' in window)) {
 
-        alert('Audio is not supported by this browser.');
+            alert(
+                'Audio is not supported by this browser.'
+            );
 
-        return;
-    }
-
-    const speakNow = function() {
+            return;
+        }
 
         window.speechSynthesis.cancel();
 
-        const speech =
-            new SpeechSynthesisUtterance(text);
+        const speakNow = function() {
 
-        speech.lang = 'pt-BR';
+            const speech =
+                new SpeechSynthesisUtterance(text);
 
-        speech.rate = 0.85;
+            speech.lang = 'pt-BR';
+            speech.rate = 0.85;
+            speech.pitch = 1;
 
-        speech.pitch = 1;
+            const voices =
+                window.speechSynthesis.getVoices();
+
+            const brazilianVoice =
+                voices.find(function(voice) {
+
+                    return voice.lang === 'pt-BR';
+
+                }) ||
+
+                voices.find(function(voice) {
+
+                    return voice.lang
+                        .toLowerCase()
+                        .startsWith('pt-br');
+
+                });
+
+            if (brazilianVoice) {
+
+                speech.voice = brazilianVoice;
+            }
+
+            window.speechSynthesis.speak(speech);
+        };
 
         const voices =
             window.speechSynthesis.getVoices();
 
-        // Try to find a Brazilian Portuguese voice
-        const brazilianVoice =
-            voices.find(function(voice) {
-
-                return voice.lang === 'pt-BR';
-
-            }) ||
-
-            voices.find(function(voice) {
-
-                return voice.lang.toLowerCase().startsWith('pt');
-
-            });
-
-        if (brazilianVoice) {
-
-            speech.voice = brazilianVoice;
-
-        }
-
-        window.speechSynthesis.speak(speech);
-    };
-
-
-    // Some browsers load voices asynchronously
-    const voices =
-        window.speechSynthesis.getVoices();
-
-    if (voices.length > 0) {
-
-        speakNow();
-
-    } else {
-
-        window.speechSynthesis.onvoiceschanged = function() {
-
-            window.speechSynthesis.onvoiceschanged = null;
+        if (voices.length > 0) {
 
             speakNow();
-        };
 
+        } else {
+
+            window.speechSynthesis.onvoiceschanged =
+                function() {
+
+                    window.speechSynthesis.onvoiceschanged = null;
+
+                    speakNow();
+                };
+        }
     }
 
-},
+};
 
 
 // =======================================
