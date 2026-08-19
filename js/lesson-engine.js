@@ -357,75 +357,50 @@ const LessonEngine = {
     },
 
 
-    // ===================================
+    // =======================================
     // Brazilian Portuguese Speech
-    // ===================================
+    // =======================================
 
     speak: function(text) {
 
-        if (!('speechSynthesis' in window)) {
-
-            alert(
-                'Audio is not supported by this browser.'
-            );
-
+        if (!window.speechSynthesis) {
+            alert("Audio is not supported by this browser.");
             return;
         }
 
-        window.speechSynthesis.cancel();
+        const synth = window.speechSynthesis;
 
-        const speakNow = function() {
+        synth.cancel();
 
-            const speech =
-                new SpeechSynthesisUtterance(text);
+        const utterance = new SpeechSynthesisUtterance(text);
 
-            speech.lang = 'pt-BR';
-            speech.rate = 0.85;
-            speech.pitch = 1;
+        utterance.lang = "pt-BR";
+        utterance.rate = 0.85;
+        utterance.pitch = 1;
+        utterance.volume = 1;
 
-            const voices =
-                window.speechSynthesis.getVoices();
+        const voices = synth.getVoices();
 
-            const brazilianVoice =
-                voices.find(function(voice) {
+        let brazilianVoice = voices.find(function(voice) {
+            return voice.lang === "pt-BR";
+        });
 
-                    return voice.lang === 'pt-BR';
+        if (!brazilianVoice) {
+            brazilianVoice = voices.find(function(voice) {
+                return voice.lang &&
+                    voice.lang.toLowerCase().startsWith("pt");
+            });
+        }
 
-                }) ||
+        if (brazilianVoice) {
+            utterance.voice = brazilianVoice;
+        }
 
-                voices.find(function(voice) {
-
-                    return voice.lang
-                        .toLowerCase()
-                        .startsWith('pt-br');
-
-                });
-
-            if (brazilianVoice) {
-
-                speech.voice = brazilianVoice;
-            }
-
-            window.speechSynthesis.speak(speech);
+        utterance.onerror = function(event) {
+            console.error("Speech error:", event.error);
         };
 
-        const voices =
-            window.speechSynthesis.getVoices();
-
-        if (voices.length > 0) {
-
-            speakNow();
-
-        } else {
-
-            window.speechSynthesis.onvoiceschanged =
-                function() {
-
-                    window.speechSynthesis.onvoiceschanged = null;
-
-                    speakNow();
-                };
-        }
+        synth.speak(utterance);
     }
 
 };
