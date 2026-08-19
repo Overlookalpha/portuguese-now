@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lesson 1 | Portuguese Now</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+<div class="logo">
+
+<h2>
+    <img src="images/brazil.png" width="35" alt="Brazil">
+    Portuguese Now
+</h2>
+
+<span>Learn Brazilian Portuguese Online</span>
+
+</div>
+
+<nav>
+
+<a href="dashboard.html">Dashboard</a>
+
+<a href="beginner.html">Beginner</a>
+
+<a href="courses.html">Courses</a>
+
+<a href="contact.html">Contact</a>
+
+</nav>
+
+<a href="dashboard.html" class="btn-primary">
+
+My Dashboard
+
+</a>
+
+</header>
+
+<section class="lesson-header">
+
+    <div class="container">
+
+        <span class="lesson-badge">
+            Module 1
+        </span>
+
+        <h1 class="lesson-title" id="lessonTitle"></h1>
+
+<p class="lesson-subtitle" id="lessonSubtitle"></p>
+        
+        <div class="lesson-progress">
+
+            <span>Progress</span>
+
+            <progress value="1" max="20"></progress>
+
+            <span>Lesson 1 of 20</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="course-card">
+
+            <h2>👋 Welcome to Lesson 1</h2>
+
+            <p>
+                Welcome to your first Brazilian Portuguese lesson!
+                In this lesson you will learn the complete Brazilian alphabet,
+                how each letter is pronounced, and the differences between
+                Brazilian Portuguese and English.
+            </p>
+
+            <div class="learning-grid">
+
+                <div class="learning-card">
+
+                    <h3>⏱️ Estimated Time</h3>
+
+                    <p>20–25 Minutes</p>
+
+                </div>
+
+                <div class="learning-card">
+
+                    <h3>🎯 Difficulty</h3>
+
+                    <p>Beginner</p>
+
+                </div>
+
+                <div class="learning-card">
+
+                    <h3>📚 Module</h3>
+
+                    <p>Brazilian Alphabet</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section light">
+
+    <div class="container">
+
+        <h2 class="section-title">
+
+            🎯 Learning Objectives
+
+        </h2>
+
+        <div class="course-card">
+
+            <ul class="lesson-list">
+
+                <li>✅ Pronounce the 26 letters of the Brazilian alphabet.</li>
+
+                <li>✅ Recognize the pronunciation differences between English and Portuguese.</li>
+
+                <li>✅ Read your first Brazilian Portuguese words.</li>
+
+                <li>✅ Practice listening and pronunciation.</li>
+
+                <li>✅ Complete your first Portuguese quiz.</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+      
+<section class="lesson-layout">
+
+<div class="lesson-main">
+
+<div class="lesson-content">
+<section class="course-card">
+
+    <h2>🌍 Before We Start</h2>
+
+    <p>
+        Brazilian Portuguese uses the same 26-letter alphabet as English.
+        However, the names and pronunciation of many letters are different.
+        Let's compare a few examples before we begin.
+    </p>
+
+    <table class="alphabet-table">
+
+        <tr>
+            <th>English</th>
+            <th>Brazilian Portuguese</th>
+        </tr>
+
+        <tr>
+            <td>Bee</td>
+            <td>Bê</td>
+        </tr>
+
+        <tr>
+            <td>Dee</td>
+            <td>Dê</td>
+        </tr>
+
+        <tr>
+            <td>Jay</td>
+            <td>Jota</td>
+        </tr>
+
+        <tr>
+            <td>Ex</td>
+            <td>Xis</td>
+        </tr>
+
+        <tr>
+            <td>Ar</td>
+            <td>Erre</td>
+        </tr>
+
+    </table>
+
+    <div class="course-card" style="margin-top:25px;">
+
+        <h3>💡 Did You Know?</h3>
+
+        <p>
+            Even though the alphabet is the same, pronunciation is one of the
+            biggest differences between English and Brazilian Portuguese.
+            Mastering the alphabet first will make reading and speaking much
+            easier throughout this course.
+        </p>
+
+    </div>
+
+</section>
+<h2>🇧🇷 The Brazilian Alphabet</h2>
+
+<p>
+Brazilian Portuguese uses the same 26 letters as English.
+The biggest difference is pronunciation.
+</p>
+
+<table class="alphabet-table">
+
+<tr>
+    <th>Letter</th>
+    <th>Pronunciation</th>
+    <th>Example</th>
+</tr>
+
+<tr>
+    <td>A</td>
+    <td>ah <button class="audio-button" onclick="speakLetter('A... Amor')">🔊</button></td>
+    <td>❤️ Amor (Love)</td>
+</tr>
+
+<tr>
+    <td>B</td>
+    <td>beh <button class="audio-button" onclick="speakLetter('B... Bola')">🔊</button></td>
+    <td>⚽ Bola (Ball)</td>
+</tr>
+
+<tr>
+    <td>C</td>
+    <td>seh <button class="audio-button" onclick="speakLetter('C... Casa')">🔊</button></td>
+    <td>🏠 Casa (House)</td>
+</tr>
+
+<tr>
+    <td>D</td>
+    <td>deh <button class="audio-button" onclick="speakLetter('D... Dado')">🔊</button></td>
+    <td>🎲 Dado (Dice)</td>
+</tr>
+
+<tr>
+    <td>E</td>
+    <td>eh <button class="audio-button" onclick="speakLetter('E... Escola')">🔊</button></td>
+    <td>🏫 Escola (School)</td>
+</tr>
+
+<tr>
+    <td>F</td>
+    <td>eh-fee <button class="audio-button" onclick="speakLetter('F... Família')">🔊</button></td>
+    <td>👨‍👩‍👧‍👦 Família (Family)</td>
+</tr>
+
+<tr>
+    <td>G</td>
+    <td>zheh <button class="audio-button" onclick="speakLetter('G... Gato')">🔊</button></td>
+    <td>🐱 Gato (Cat)</td>
+</tr>
+
+<tr>
+    <td>H</td>
+    <td>ah-gah <button class="audio-button" onclick="speakLetter('H... Hotel')">🔊</button></td>
+    <td>🏨 Hotel</td>
+</tr>
+
+<tr>
+    <td>I</td>
+    <td>ee <button class="audio-button" onclick="speakLetter('I... Igreja')">🔊</button></td>
+    <td>⛪ Igreja (Church)</td>
+</tr>
+
+<tr>
+    <td>J</td>
+    <td>zhoh-tah <button class="audio-button" onclick="speakLetter('J... Janela')">🔊</button></td>
+    <td>🪟 Janela (Window)</td>
+</tr>
+
+<tr>
+    <td>K</td>
+    <td>kah <button class="audio-button" onclick="speakLetter('K... Kiwi')">🔊</button></td>
+    <td>🥝 Kiwi</td>
+</tr>
+
+<tr>
+    <td>L</td>
+    <td>eh-lee <button class="audio-button" onclick="speakLetter('L... Livro')">🔊</button></td>
+    <td>📚 Livro (Book)</td>
+</tr>
+
+<tr>
+    <td>M</td>
+    <td>eh-mee <button class="audio-button" onclick="speakLetter('M... Mãe')">🔊</button></td>
+    <td>👩 Mãe (Mother)</td>
+</tr>
+
+<tr>
+    <td>N</td>
+    <td>eh-nee <button class="audio-button" onclick="speakLetter('N... Navio')">🔊</button></td>
+    <td>🚢 Navio (Ship)</td>
+</tr>
+
+<tr>
+    <td>O</td>
+    <td>oh <button class="audio-button" onclick="speakLetter('O... Olho')">🔊</button></td>
+    <td>👁️ Olho (Eye)</td>
+</tr>
+
+<tr>
+    <td>P</td>
+    <td>peh <button class="audio-button" onclick="speakLetter('P... Pão')">🔊</button></td>
+    <td>🍞 Pão (Bread)</td>
+</tr>
+
+<tr>
+    <td>Q</td>
+    <td>keh <button class="audio-button" onclick="speakLetter('Q... Queijo')">🔊</button></td>
+    <td>🧀 Queijo (Cheese)</td>
+</tr>
+
+<tr>
+    <td>R</td>
+    <td>eh-hee <button class="audio-button" onclick="speakLetter('R... Rua')">🔊</button></td>
+    <td>🛣️ Rua (Street)</td>
+</tr>
+
+<tr>
+    <td>S</td>
+    <td>eh-see <button class="audio-button" onclick="speakLetter('S... Sol')">🔊</button></td>
+    <td>☀️ Sol (Sun)</td>
+</tr>
+
+<tr>
+    <td>T</td>
+    <td>teh <button class="audio-button" onclick="speakLetter('T... Tempo')">🔊</button></td>
+    <td>⏰ Tempo (Time)</td>
+</tr>
+
+<tr>
+    <td>U</td>
+    <td>oo <button class="audio-button" onclick="speakLetter('U... Uva')">🔊</button></td>
+    <td>🍇 Uva (Grape)</td>
+</tr>
+
+<tr>
+    <td>V</td>
+    <td>veh <button class="audio-button" onclick="speakLetter('V... Vida')">🔊</button></td>
+    <td>❤️ Vida (Life)</td>
+</tr>
+
+<tr>
+    <td>W</td>
+    <td>dah-boo-lyoo <button class="audio-button" onclick="speakLetter('W... Website')">🔊</button></td>
+    <td>🌐 Website</td>
+</tr>
+
+<tr>
+    <td>X</td>
+    <td>shees <button class="audio-button" onclick="speakLetter('X... Xícara')">🔊</button></td>
+    <td>☕ Xícara (Cup)</td>
+</tr>
+
+<tr>
+    <td>Y</td>
+    <td>eep-see-lon <button class="audio-button" onclick="speakLetter('Y... Yoga')">🔊</button></td>
+    <td>🧘 Yoga</td>
+</tr>
+
+<tr>
+    <td>Z</td>
+    <td>zeh <button class="audio-button" onclick="speakLetter('Z... Zebra')">🔊</button></td>
+    <td>🦓 Zebra</td>
+</tr>
+</table>
+
+<section class="section">
+
+    <h2>🔠 Brazilian Vowels</h2>
+
+    <p>
+        The five vowels are the foundation of Brazilian Portuguese pronunciation.
+        Unlike English, they usually have consistent sounds.
+        Practice each vowel carefully before moving on.
+    </p>
+
+    <div class="learning-grid">
+
+        <div class="learning-card">
+            <h3>🅰️ A</h3>
+            <p><strong>Sound:</strong> ah</p>
+            <p><strong>Example:</strong> Amor ❤️</p>
+            <p>Love</p>
+            <button class="audio-button"
+                onclick="speakLetter('A... Amor')">🔊 Listen</button>
+        </div>
+
+        <div class="learning-card">
+            <h3>🅴 E</h3>
+            <p><strong>Sound:</strong> eh</p>
+            <p><strong>Example:</strong> Escola 🏫</p>
+            <p>School</p>
+            <button class="audio-button"
+                onclick="speakLetter('E... Escola')">🔊 Listen</button>
+        </div>
+
+        <div class="learning-card">
+            <h3>🅸 I</h3>
+            <p><strong>Sound:</strong> ee</p>
+            <p><strong>Example:</strong> Igreja ⛪</p>
+            <p>Church</p>
+            <button class="audio-button"
+                onclick="speakLetter('I... Igreja')">🔊 Listen</button>
+        </div>
+
+        <div class="learning-card">
+            <h3>🅾️ O</h3>
+            <p><strong>Sound:</strong> oh</p>
+            <p><strong>Example:</strong> Olho 👁️</p>
+            <p>Eye</p>
+            <button class="audio-button"
+                onclick="speakLetter('O... Olho')">🔊 Listen</button>
+        </div>
+
+        <div class="learning-card">
+            <h3>🆄 U</h3>
+            <p><strong>Sound:</strong> oo</p>
+            <p><strong>Example:</strong> Uva 🍇</p>
+            <p>Grape</p>
+            <button class="audio-button"
+                onclick="speakLetter('U... Uva')">🔊 Listen</button>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section light">
+
+    <h2>🔥 Difficult Letters</h2>
+
+    <p>
+        Some Brazilian Portuguese letters are pronounced very differently from English.
+        Here are the ones students usually find the most challenging.
+    </p>
+
+    <div class="learning-grid">
+
+    <div class="learning-card">
+
+        <h3><img src="images/brazil.png" class="flag-icon"> R (Erre)</h3>
+
+        <p>
+            At the beginning of a word, <strong>R</strong> is usually pronounced
+            from the throat, similar to the English <strong>H</strong>.
+        </p>
+
+        <p><strong>Example:</strong> 🛣️ Rua (Street)</p>
+
+        <button class="audio-button" onclick="speakLetter('Rua')">
+            🔊 Listen
+        </button>
+
+    </div>
+
+    <div class="learning-card">
+
+        <h3><img src="images/brazil.png" class="flag-icon"> J (Jota)</h3>
+
+        <p>
+            The letter <strong>J</strong> sounds like the
+            <strong>s</strong> in the English word
+            <strong>measure</strong>.
+        </p>
+
+        <p><strong>Example:</strong> 🪟 Janela (Window)</p>
+
+        <button class="audio-button" onclick="speakLetter('Janela')">
+            🔊 Listen
+        </button>
+
+    </div>
+
+    <div class="learning-card">
+
+        <h3><img src="images/brazil.png" class="flag-icon"> X (Xis)</h3>
+
+        <p>
+            The letter <strong>X</strong> can have different sounds depending on the word.
+        </p>
+
+        <p><strong>Example:</strong> ☕ Xícara (Cup)</p>
+
+        <button class="audio-button" onclick="speakLetter('Xícara')">
+            🔊 Listen
+        </button>
+
+    </div>
+
+    <div class="learning-card">
+
+        <h3><img src="images/brazil.png" class="flag-icon"> H (Agá)</h3>
+
+        <p>
+            The letter <strong>H</strong> is normally silent in Brazilian Portuguese.
+        </p>
+
+        <p><strong>Example:</strong> 🏨 Hotel (Hotel)</p>
+
+        <button class="audio-button" onclick="speakLetter('Hotel')">
+            🔊 Listen
+        </button>
+
+    </div>
+
+    <div class="learning-card">
+
+        <h3><img src="images/brazil.png" class="flag-icon"> G (Gê)</h3>
+
+        <p>
+            Before <strong>E</strong> or <strong>I</strong>, the letter
+            <strong>G</strong> sounds similar to the English sound in
+            <strong>measure</strong>.
+        </p>
+
+        <p><strong>Example:</strong> 🧊 Gelo (Ice)</p>
+
+        <button class="audio-button" onclick="speakLetter('Gelo')">
+            🔊 Listen
+        </button>
+
+    </div>
+
+</div>
+</section>
+
+<section class="section">
+
+<div class="course-card">
+
+<h2>🎧 Listening Challenge</h2>
+
+<p>
+Listen to the pronunciation and choose the correct word.
+This will help train your Brazilian Portuguese listening skills.
+</p>
+
+<div id="challengeBox">
+
+<h3 id="challengeQuestion">
+Question 1 of 5
+</h3>
+
+<button
+class="audio-button"
+onclick="playChallengeAudio()">
+🔊 Play Audio
+</button>
+
+<div class="challenge-options">
+
+<button onclick="checkChallenge(0)">
+Casa
+</button>
+
+<button onclick="checkChallenge(1)">
+Cama
+</button>
+
+<button onclick="checkChallenge(2)">
+Carro
+</button>
+
+<button onclick="checkChallenge(3)">
+Copo
+</button>
+
+</div>
+
+<p id="challengeFeedback"></p>
+
+<button
+id="nextChallenge"
+class="hero-button"
+onclick="nextChallenge()"
+style="display:none;">
+
+Next Question →
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+      
+ <div class="course-card">
+
+    <h3>💡 Pronunciation Tip</h3>
+
+    <p>
+        Although Brazilian Portuguese uses the same alphabet as English,
+        many letters have completely different names and sounds.
+        Practice saying each letter aloud before moving on to the next lesson.
+    </p>
+
+</div>   
+</div>
+
+</div>
+
+<aside class="lesson-sidebar">
+
+<h3>📚 Module 1</h3>
+
+<ul id="lessonMenu">
+
+<li id="lesson1Item">📖 Lesson 1 - Brazilian Alphabet</li>
+
+<li id="lesson2Item">🔒 Lesson 2 - Pronunciation</li>
+
+<li>🔒 Lesson 3 - Greetings</li>
+
+<li>🔒 Lesson 4 - Introducing Yourself</li>
+
+</ul>
+
+</aside>
+</section>
+
+<section class="section light">
+
+<div class="container">
+
+<h2 class="section-title">
+
+Lesson Notes
+
+</h2>
+
+<p>
+
+The Brazilian alphabet contains 26 letters, just like English.
+
+However, pronunciation is different.
+
+In this lesson you will learn:
+
+</p>
+
+<ul class="lesson-list">
+
+<li>Alphabet pronunciation</li>
+
+<li>Brazilian sounds</li>
+
+<li>Common mistakes</li>
+
+<li>Listening practice</li>
+
+</ul>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="container">
+
+<h2 class="section-title">
+
+Practice
+
+</h2>
+
+<div class="learning-grid">
+
+<div class="learning-card">
+
+<h3>Exercise 1</h3>
+
+<p>
+
+Repeat the alphabet aloud.
+
+</p>
+
+</div>
+
+<div class="learning-card">
+
+<h3>Exercise 2</h3>
+
+<p>
+
+Match each letter with its pronunciation.
+
+</p>
+
+</div>
+
+<div class="learning-card">
+
+<h3>Exercise 3</h3>
+
+<p>
+
+Listen and repeat.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section light">
+
+<div class="container">
+
+<h2 class="section-title">
+
+Quiz
+
+</h2>
+
+<div class="course-card">
+
+<div id="quizContainer">
+
+    <div id="quizQuestions"></div>
+
+    <br>
+
+    <button
+        id="checkAnswerBtn"
+        type="button"
+        class="hero-button"
+        onclick="checkLesson1Quiz()">
+        Check Answer
+    </button>
+
+    <p id="quizResult"></p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="lesson-navigation">
+
+    <div class="container">
+
+        <a href="beginner.html" class="hero-button">
+            ← Back to Course
+        </a>
+
+        <a href="lesson2.html" class="hero-button">
+    Next Lesson →
+</a>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+
+<div class="container">
+
+<h3>Portuguese Now</h3>
+
+<p>
+
+Learn Brazilian Portuguese Online
+
+</p>
+
+<p>
+
+© 2026 Portuguese Now
+
+</p>
+
+</div>
+
+</footer>
+
+<p id="quizResult"></p>
+
+<script src="js/lessons.js"></script>
+<script type="module" src="js/script.js"></script>
+
+</body>
+
+</html>

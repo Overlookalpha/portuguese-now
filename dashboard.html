@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard | Portuguese Now</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+<div class="logo">
+
+<h2>🇧🇷 Portuguese Now</h2>
+
+<span>Learn Brazilian Portuguese Online</span>
+
+</div>
+
+<nav>
+
+<a href="dashboard.html" class="active">Dashboard</a>
+
+<a href="courses.html">Courses</a>
+
+<a href="about.html">About</a>
+
+<a href="contact.html">Contact</a>
+
+</nav>
+
+<a href="index.html" class="btn-primary">
+
+Logout
+
+</a>
+
+</header>
+
+<section class="hero">
+  
+<div class="hero-content">
+
+    <h1>Welcome Back, Student! 👋</h1>
+
+    <p class="hero-subtitle">
+        Ready to continue your Brazilian Portuguese journey?
+    </p>
+
+    <p class="hero-info">
+        Your next lesson is waiting for you.
+    </p>
+
+   <a id="heroContinueButton"
+   href="lesson8.html"
+   class="btn-primary">
+
+    ▶️ Continue Learning
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="container">
+
+<h2 class="section-title">
+
+Your Progress
+
+</h2>
+
+<div class="progress-card">
+
+    <h3>📚 Beginner Course</h3>
+
+    <progress id="courseProgress" value="0" max="100"></progress>
+
+    <p id="progressText">Loading...</p>
+
+    <small>
+        Keep going! Every lesson brings you closer to fluency.
+    </small>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section light">
+
+<div class="container">
+
+<h2 class="section-title">
+
+Continue Learning
+
+</h2>
+
+<div class="courses-grid">
+
+<div class="course-card">
+
+    <h3 id="currentLessonTitle">Loading...</h3>
+
+    <p id="currentLessonName">Loading lesson...</p>
+
+    <a id="continueButton"
+       href="beginner.html"
+       class="course-button">
+
+        Continue Learning
+
+    </a>
+
+</div>
+
+<div class="course-card">
+
+    <h3 id="nextLessonTitle">Loading...</h3>
+
+    <p id="nextLessonName">Loading...</p>
+
+    <a id="nextLessonButton"
+       href="#"
+       class="course-button">
+
+        Locked
+
+    </a>
+
+</div>
+
+<div class="course-card">
+
+    <h3>🏆 Certificate</h3>
+
+    <p id="certificateStatus">
+
+        Complete the Beginner Course to unlock your certificate.
+
+    </p>
+
+    <a id="certificateButton"
+       href="#"
+       class="course-button">
+
+        Locked
+
+    </a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="container">
+
+<h2 class="section-title">
+
+My Courses
+
+</h2>
+
+<div class="courses-grid">
+
+<div class="course-card">
+
+    <h3>🟢 Beginner</h3>
+
+    <p id="beginnerProgress">Loading...</p>
+
+    <a href="beginner.html"
+       class="course-button">
+
+        Open Course
+
+    </a>
+
+</div>
+
+<div class="course-card">
+
+    <h3>🔵 Intermediate</h3>
+
+    <p>Coming Soon</p>
+
+    <button
+        id="intermediateButton"
+        class="course-button">
+
+        Locked
+
+    </button>
+
+</div>
+<div class="course-card">
+
+    <h3>🟡 Advanced</h3>
+
+    <p>Coming Soon</p>
+
+    <button
+        id="advancedButton"
+        class="course-button">
+
+        Locked
+
+    </button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<footer class="footer">
+
+<div class="container">
+
+<h3>Portuguese Now</h3>
+
+<p>Learn Brazilian Portuguese Online</p>
+
+<p>© 2026 Portuguese Now</p>
+
+</div>
+
+</footer>
+
+<script type="module" src="js/script.js"></script>
+<script type="module" src="js/dashboard.js"></script>
+<script type="module" src="js/auth.js"></script>
+  
+</body>
+
+</html>
