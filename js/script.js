@@ -236,19 +236,6 @@ document.addEventListener("DOMContentLoaded", () => {
 =========================== */
 
 
-const intermediateButton =
-document.getElementById("intermediateButton");
-
-if(intermediateButton){
-
-    intermediateButton.addEventListener("click",function(){
-
-        alert("Intermediate Course is coming soon!");
-
-    });
-
-}
-
 const advancedButton =
 document.getElementById("advancedButton");
 
