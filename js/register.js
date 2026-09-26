@@ -13,6 +13,16 @@ form.addEventListener("submit", async (e) => {
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
 
+    if (!fullName || !email || !password || !confirmPassword) {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    if (password.length < 8) {
+        alert("Password must have at least 8 characters.");
+        return;
+    }
+
     if (password !== confirmPassword) {
         alert("Passwords do not match.");
         return;

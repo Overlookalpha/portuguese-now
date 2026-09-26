@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intermediate Lesson | Portuguese Now</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="brand"><div class="brand-text"><h2>Portuguese Now</h2><span>Learn Brazilian Portuguese Online</span></div></div>
+    <nav><a href="dashboard.html">Dashboard</a><a href="intermediate-course.html" class="active">Intermediate</a></nav>
+  </header>
+  <main class="section">
+    <div class="container">
+      <p id="lessonNumber"></p>
+      <h1 id="lessonTitle">Loading lesson…</h1>
+      <p id="lessonFocus"></p>
+      <div class="learning-card">
+        <h2>By the end of this lesson</h2>
+        <p id="lessonOutcome"></p>
+      </div>
+      <div class="learning-card">
+        <h2>Listen and repeat</h2>
+        <p id="listenPhrase"></p>
+        <button id="listenButton" class="hero-button" type="button">🔊 Listen in Brazilian Portuguese</button>
+      </div>
+      <div class="learning-card">
+        <h2>Dialogue</h2>
+        <div id="lessonDialogue"></div>
+      </div>
+      <div class="learning-card">
+        <h2>Useful vocabulary</h2>
+        <ul id="lessonVocabulary"></ul>
+      </div>
+      <div class="learning-card">
+        <h2>Speaking challenge</h2>
+        <p id="speakingChallenge"></p>
+      </div>
+      <div class="lesson-navigation">
+        <a id="previousLesson" class="hero-button" href="intermediate-course.html">← Previous</a>
+        <a id="nextLesson" class="hero-button" href="#">Next lesson →</a>
+      </div>
+    </div>
+  </main>
+  <script type="module" src="js/intermediate-player.js"></script>
+</body>
+</html>

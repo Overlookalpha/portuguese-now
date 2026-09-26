@@ -1,26 +1,45 @@
 import { auth, db } from "./firebase.js";
 
-import { doc, updateDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import { doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import { courseConfig } from "./course-config.js";
 
 export async function completeLesson(lesson) {
+
+    const totalLessons = courseConfig.lastPublishedLesson;
 
     const user = auth.currentUser;
 
     if (!user) return;
 
-    const completedLessons = [];
+    const lessonNumber = Number(lesson);
 
-    for (let i = 1; i <= lesson; i++) {
-        completedLessons.push(i);
+    if (!Number.isInteger(lessonNumber) || lessonNumber < 1) {
+        throw new Error("Invalid lesson number.");
     }
 
-    await updateDoc(doc(db, "users", user.uid), {
-        currentLesson: lesson + 1,
+    const userRef = doc(db, "users", user.uid);
+    const userSnapshot = await getDoc(userRef);
+    const existingLessons = userSnapshot.exists()
+        ? userSnapshot.data().completedLessons || []
+        : [];
+    const completedLessons = [...new Set([...existingLessons, lessonNumber])]
+        .sort((first, second) => first - second);
+
+    const nextLesson = lessonNumber + 1;
+
+    await updateDoc(userRef, {
+        currentLesson: nextLesson,
         completedLessons: completedLessons
     });
 
+    if (lessonNumber >= totalLessons) {
+        alert("🎉 All published lessons completed!");
+        window.location.href = "dashboard.html";
+        return;
+    }
+
     alert("🎉 Lesson completed!");
-    console.log("Indo para:", `lesson${lesson + 1}.html`);
-   window.location.href = `lesson${lesson + 1}.html`;
+    console.log("Indo para:", `lesson${nextLesson}.html`);
+    window.location.href = `lesson${nextLesson}.html`;
 
 }

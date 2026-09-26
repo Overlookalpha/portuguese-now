@@ -199,9 +199,9 @@ The quiz engine will be added next.
 
 </a>
 
-<a href="lesson22.html" class="hero-button">
+<a href="dashboard.html" class="hero-button" id="completeCourseButton">
 
-Next Lesson →
+Complete Published Lessons →
 
 </a>
 
@@ -245,6 +245,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const lesson = getModule2Lesson(21);
 
     LessonEngine.init(lesson);
+
+});
+
+</script>
+
+<script type="module">
+
+document.getElementById('completeCourseButton').addEventListener('click', async function(event) {
+
+    event.preventDefault();
+
+    const { completeLesson } = await import('./js/progress.js');
+
+    await completeLesson(21);
 
 });
 

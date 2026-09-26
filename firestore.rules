@@ -1,0 +1,50 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function ownsProfile(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    function validNewProfile() {
+      return request.resource.data.keys().hasOnly([
+          'name', 'email', 'course', 'currentLesson',
+          'completedLessons', 'certificate', 'createdAt'
+        ]) &&
+        request.resource.data.name is string &&
+        request.resource.data.name.size() > 0 &&
+        request.resource.data.name.size() <= 80 &&
+        request.resource.data.email is string &&
+        request.resource.data.email.size() <= 254 &&
+        request.resource.data.course == 'beginner' &&
+        request.resource.data.currentLesson == 1 &&
+        request.resource.data.completedLessons is list &&
+        request.resource.data.completedLessons.size() == 0 &&
+        request.resource.data.certificate == false &&
+        request.resource.data.createdAt is timestamp;
+    }
+
+    function validStudentUpdate() {
+      return request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['name', 'currentLesson', 'completedLessons']) &&
+        request.resource.data.name is string &&
+        request.resource.data.name.size() > 0 &&
+        request.resource.data.name.size() <= 80 &&
+        request.resource.data.currentLesson is int &&
+        request.resource.data.currentLesson >= 1 &&
+        request.resource.data.currentLesson <= 22 &&
+        request.resource.data.completedLessons is list &&
+        request.resource.data.completedLessons.size() <= 21;
+    }
+
+    match /users/{userId} {
+      allow create: if ownsProfile(userId) && validNewProfile();
+      allow read: if ownsProfile(userId);
+      allow update: if ownsProfile(userId) && validStudentUpdate();
+    }
+  }
+}

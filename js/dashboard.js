@@ -3,9 +3,11 @@ import { auth, db } from "./firebase.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 import {
     doc,
-    getDoc,
-    updateDoc
+    getDoc
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import { courseConfig } from "./course-config.js";
+
+const TOTAL_LESSONS = courseConfig.lastPublishedLesson;
 
 onAuthStateChanged(auth, async (user) => {
 
@@ -19,11 +21,13 @@ onAuthStateChanged(auth, async (user) => {
     const data = docSnap.data();
 
     // Valores padrão para usuário novo
-    data.currentLesson = Number(data.currentLesson || 1);
-    data.completedLessons = data.completedLessons || [];
+    data.currentLesson = Math.max(1, Number(data.currentLesson || 1));
+    data.completedLessons = [...new Set(data.completedLessons || [])]
+        .filter((lesson) => Number.isInteger(lesson) && lesson >= 1 && lesson <= TOTAL_LESSONS)
+        .sort((first, second) => first - second);
 
     const percent = Math.round(
-        (data.completedLessons.length / 20) * 100
+        (data.completedLessons.length / TOTAL_LESSONS) * 100
     );
 
     // Nome
@@ -44,11 +48,16 @@ onAuthStateChanged(auth, async (user) => {
         progressText.textContent = percent + "% Completed";
     }
 
+    const progressSummary = document.getElementById("progressSummary");
+    if (progressSummary) {
+        progressSummary.textContent = `${data.completedLessons.length} of ${TOTAL_LESSONS} published lessons completed`;
+    }
+
     // Card do curso
     const beginnerProgress = document.getElementById("beginnerProgress");
 
     if (beginnerProgress) {
-        beginnerProgress.textContent = percent + "% Completed";
+        beginnerProgress.textContent = `${percent}% complete • ${data.completedLessons.length}/${TOTAL_LESSONS} lessons`;
     }
 
     // Lição atual
@@ -71,7 +80,7 @@ const nextLessonName = document.getElementById("nextLessonName");
 const nextLesson = data.currentLesson + 1;
 
 if (nextLessonTitle) {
-    if (nextLesson <= 20) {
+    if (nextLesson <= TOTAL_LESSONS) {
         nextLessonTitle.textContent = "Lesson " + nextLesson;
         nextLessonName.textContent = "Next Lesson";
     } else {
@@ -83,7 +92,7 @@ if (nextLessonTitle) {
     // Botões Continuar
     const continueButton = document.getElementById("continueButton");
 
-    if (continueButton) {
+    if (continueButton && data.currentLesson <= TOTAL_LESSONS) {
         continueButton.href =
             "lesson" + data.currentLesson + ".html";
     }
@@ -91,7 +100,7 @@ if (nextLessonTitle) {
     const heroContinueButton =
         document.getElementById("heroContinueButton");
 
-    if (heroContinueButton) {
+    if (heroContinueButton && data.currentLesson <= TOTAL_LESSONS) {
         heroContinueButton.href =
             "lesson" + data.currentLesson + ".html";
     }
@@ -101,7 +110,7 @@ const nextLessonButton = document.getElementById("nextLessonButton");
 
 if (nextLessonButton) {
 
-    if (data.completedLessons.length >= data.currentLesson) {
+    if (data.currentLesson <= TOTAL_LESSONS) {
 
         nextLessonButton.textContent = "Start Lesson";
         nextLessonButton.href = "lesson" + (data.currentLesson + 1) + ".html";
@@ -118,21 +127,3 @@ if (nextLessonButton) {
     console.log("Dashboard carregado:", data);
 
 });
-
-
-export async function completeLesson(userId, lesson) {
-
-    const docRef = doc(db, "users", userId);
-
-    await updateDoc(docRef, {
-
-        currentLesson: lesson + 1,
-
-        completedLessons: Array.from(
-            { length: lesson },
-            (_, i) => i + 1
-        )
-
-    });
-
-}
