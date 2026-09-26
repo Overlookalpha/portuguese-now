@@ -36,21 +36,28 @@
     <p>Students with an active course can sign in below.
 Don't have access yet? Buy a course to get started.</p>
 
-   <div class="login-box">
+   <form class="login-box" id="loginForm">
 
+    <label for="email">Email address</label>
     <input
         type="email"
         id="email"
-        placeholder="Email Address">
+        placeholder="Email Address"
+        autocomplete="email"
+        required>
 
+    <label for="password">Password</label>
     <input
         type="password"
         id="password"
-        placeholder="Password">
+        placeholder="Password"
+        autocomplete="current-password"
+        required>
 
     <button
         id="loginBtn"
-        class="btn">
+        class="btn"
+        type="submit">
         Sign In
     </button>
 
@@ -59,7 +66,7 @@ Don't have access yet? Buy a course to get started.</p>
     <a href="register.html">Create Account</a> |
     <a href="#" id="forgotPassword">Forgot Password?</a>
 </p>
-</div>
+</form>
 
 </section>
 
