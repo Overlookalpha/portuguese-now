@@ -4,10 +4,11 @@ import {
   sendPasswordResetEmail
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
-const loginBtn = document.getElementById("loginBtn");
 const forgotPassword = document.getElementById("forgotPassword");
+const loginForm = document.getElementById("loginForm");
 
-loginBtn.addEventListener("click", async () => {
+loginForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
