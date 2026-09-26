@@ -6,6 +6,28 @@
 
 console.log("Portuguese Now Loaded!");
 
+// Mobile app navigation is shared by the lesson pages that already load this
+// script. The dedicated mobile shell remains responsible for the main pages.
+document.addEventListener("DOMContentLoaded", function () {
+    if (document.querySelector(".mobile-bottom-nav")) return;
+
+    document.body.insertAdjacentHTML("beforeend", `
+        <nav class="mobile-bottom-nav" aria-label="Navegação principal">
+            <a href="index.html" data-route="index.html"><span>⌂</span><small>Início</small></a>
+            <a href="courses.html" data-route="courses.html"><span>▣</span><small>Cursos</small></a>
+            <a href="dashboard.html" data-route="dashboard.html"><span>◔</span><small>Progresso</small></a>
+            <a href="login.html" data-route="login.html"><span>◯</span><small>Perfil</small></a>
+        </nav>`);
+
+    const page = window.location.pathname.split("/").pop() || "index.html";
+    const activeLink = document.querySelector(`[data-route="${page}"]`);
+    if (activeLink) activeLink.classList.add("is-active");
+
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js").catch(function () {});
+    }
+});
+
 /* =======================================
    Dashboard Data
 ======================================= */
