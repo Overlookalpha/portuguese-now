@@ -315,6 +315,10 @@ footer{
     padding:120px 20px 80px;
 }
 
+.courses-hero.beginner-hero{
+    background:linear-gradient(rgba(0,70,40,.64),rgba(0,70,40,.64)),url("../images/beginner-cafe-hero.png") center/cover;
+}
+
 .courses-hero .hero-content{
     max-width:800px;
 }
