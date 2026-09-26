@@ -14,7 +14,7 @@ loginForm.addEventListener("submit", async (event) => {
     const password = document.getElementById("password").value;
 
     if (!email || !password) {
-        alert("Please fill in all fields.");
+        alert("Preencha o e-mail e a senha.");
         return;
     }
 
@@ -26,7 +26,7 @@ loginForm.addEventListener("submit", async (event) => {
 
     } catch (error) {
 
-        alert("Invalid email or password.");
+        alert("E-mail ou senha inválidos. Se não lembrar da senha, use “Esqueci minha senha?”.");
 
         console.error(error);
 
@@ -41,7 +41,7 @@ forgotPassword.addEventListener("click", async (e) => {
     const email = document.getElementById("email").value.trim();
 
     if (!email) {
-        alert("Enter your email first.");
+        alert("Digite o seu e-mail primeiro.");
         return;
     }
 
@@ -49,7 +49,7 @@ forgotPassword.addEventListener("click", async (e) => {
 
         await sendPasswordResetEmail(auth, email);
 
-        alert("Password reset email sent.");
+        alert("Enviamos o e-mail para redefinir a sua senha.");
 
     } catch (error) {
 
