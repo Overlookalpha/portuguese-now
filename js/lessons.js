@@ -3087,6 +3087,40 @@ function loadChallenge() {
 
 }
 
+function speakLetter(text) {
+  if (!('speechSynthesis' in window) || !window.SpeechSynthesisUtterance) {
+    console.error('Speech synthesis is not supported by this browser.');
+    return;
+  }
+
+  const synth = window.speechSynthesis;
+  synth.cancel();
+
+  const speak = () => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'pt-BR';
+    utterance.rate = 0.85;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+
+    const voices = synth.getVoices();
+    const portugueseVoice = voices.find((voice) => voice.lang === 'pt-BR')
+      || voices.find((voice) => voice.lang && voice.lang.toLowerCase().startsWith('pt'));
+
+    if (portugueseVoice) utterance.voice = portugueseVoice;
+    utterance.onerror = (event) => console.error('Speech synthesis error:', event.error);
+    synth.speak(utterance);
+  };
+
+  if (synth.getVoices().length === 0) {
+    synth.addEventListener('voiceschanged', speak, { once: true });
+    window.setTimeout(speak, 250);
+    return;
+  }
+
+  speak();
+}
+
 function playChallengeAudio() {
 
     const question = listeningQuestions[currentChallenge];
