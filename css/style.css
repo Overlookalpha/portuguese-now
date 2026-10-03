@@ -1561,3 +1561,22 @@ position:static;
   .mobile-bottom-nav a small{font-size:10px}
   .mobile-bottom-nav a.is-active{color:#fff;background:#009739;box-shadow:0 8px 18px rgba(0,151,57,.28)}
 }
+
+/* Small-screen safeguards */
+html, body { max-width: 100%; overflow-x: clip; }
+img, video, iframe, canvas { max-width: 100%; height: auto; }
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.lesson-progress progress { max-width: 100%; }
+.offline-page { min-height: 100vh; display: grid; place-content: center; gap: 20px; text-align: center; }
+
+@media (max-width: 760px) {
+  header.navbar { gap: 12px; flex-wrap: wrap; }
+  .navbar .logo { min-width: 0; }
+  .navbar .logo h2 { white-space: normal; font-size: 1.35rem; }
+  .navbar > .btn-primary { width: 100%; text-align: center; }
+  .courses-grid, .learning-grid, .faq-grid, .roadmap-container { grid-template-columns: 1fr; }
+  .about-grid, .challenge-options { grid-template-columns: 1fr; gap: 24px; }
+  .teacher-photo img { width: 100%; height: auto; }
+  .lesson-content { padding: 20px; }
+  .alphabet-table { display: block; max-width: 100%; overflow-x: auto; white-space: nowrap; }
+}

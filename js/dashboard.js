@@ -113,7 +113,7 @@ if (nextLessonButton) {
     if (data.currentLesson <= TOTAL_LESSONS) {
 
         nextLessonButton.textContent = "Start Lesson";
-        nextLessonButton.href = "lesson" + (data.currentLesson + 1) + ".html";
+        nextLessonButton.href = "lesson" + data.currentLesson + ".html";
 
     } else {
 

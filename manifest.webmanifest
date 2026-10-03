@@ -1,9 +1,13 @@
 {
   "name": "Portuguese Now",
   "short_name": "Portuguese Now",
+  "id": "./",
+  "description": "Curso de português brasileiro com lições práticas.",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
+  "orientation": "any",
   "background_color": "#f7f9fc",
   "theme_color": "#009739",
-  "icons": [{ "src": "images/logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+  "icons": [{ "src": "images/logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
 }
